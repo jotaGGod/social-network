@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes} = require('sequelize');
 const db = require('./db');
 
 const Users = require('../models/users');
@@ -29,12 +29,21 @@ const Friendship = db.define("friendship", {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
-   }    
+   },
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+    },
+    updated_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+    }
 }, {
-    timestamps: true,
     tableName: 'friendship'
 });
 
-// Friendship.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
+//Friendship.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
 
 module.exports = Friendship; 

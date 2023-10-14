@@ -5,12 +5,14 @@ facilitando o tratamento de erros assíncronos
 */
 const express = require("express");
 const userRouter = require("./routes/userRoutes");
+const friendshipRouter = require("./routes/friendshipRoutes")
 const errorHandler = require("./middlewares/error");
 const app = express();
 
 app.use(express.json());
 
 app.use('/users', userRouter);
+app.use('/friendship', friendshipRouter)
 app.use(errorHandler);
 
 

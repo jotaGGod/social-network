@@ -5,13 +5,15 @@ require('dotenv').config()
 
 const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT
+    dialect: process.env.DB_DIALECT,
+    define: {
+        timestamps: false
+    }
 });
 
 module.exports = sequelize
 
-//função para verificar a conexão com o bando de dados
-
+// verify connection with DB
 /*
 sequelize.authenticate()
 .then(function(){     console.log("connected database successfully") })

@@ -1,4 +1,4 @@
-const httpStatus = require('../utils/statusCodes');
+  const httpStatus = require('../utils/statusCodes');
 const userService = require('../services/userServices');
 
 const UserController = {
