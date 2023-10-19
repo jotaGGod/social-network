@@ -8,6 +8,7 @@ const userRouter = require("./routes/userRoutes");
 const friendshipRouter = require("./routes/friendshipRoutes");
 const fileTypeRouter = require("./routes/fileTypeRoutes");
 const targetPublicRouter = require("./routes/targetPublicRoutes");
+const albumRouter = require("./routes/albumRoutes");
 const errorHandler = require("./middlewares/error");
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/users', userRouter);
 app.use('/friendship', friendshipRouter);
 app.use('/file_type', fileTypeRouter);
 app.use('/target_public', targetPublicRouter);
+app.use('/album', albumRouter);
 app.use(errorHandler);
 
 
