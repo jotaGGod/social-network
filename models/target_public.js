@@ -18,7 +18,7 @@ const Target_public = db.define("target_public", {
         defaultValue: true
    }
 }, {
-    timestamps: true,
+    timestamps: false,
     tableName: 'target_public'
 });
 

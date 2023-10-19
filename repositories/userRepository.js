@@ -6,7 +6,9 @@ class Repository {
     async createUser(full_name, email) {
         const t = await Sequelize.transaction();
 
-        console.log(full_name, email)
+        const existingUser = await User.findOne({ where: { full_name: full_name, email: email } });
+
+        if (existingUser) throw new Error('User already exists');
 
       const user = await User.create(
           {
@@ -21,44 +23,41 @@ class Repository {
 
     async getById(id){
         const user = await User.findOne({ where: { id } });
+
+        if (!user) throw new Error('User not found');
+
         return user;
     };
     async getAll(){
         const users = await User.findAll();
+
         return users
     };
     
-    async update(req) {           
+    async update(id, full_name, email) {
         const t = await Sequelize.transaction();
-        const { id } = req.params
-        const {  full_name, user_name, password, profile_image, 
-            email, birth_date, zip_code, address, city, neighborhood, state } = req.body;
-        const user = await User.findByPk(id, { transaction: t });
+
+        const user = await User.findOne({ where: { id } });
+
+        if (!user) throw new Error('User not found');
+
         user.set({
-            "full_name": full_name,
-            "user_name" : user_name,
-            "password" :password,
-            "profile_image": profile_image,
-            "email": email,
-            "birth_date": birth_date,
-            "zip_code": zip_code,
-            "address": address,
-            "city": city,
-            "neighborhood": neighborhood,
-            "state": state
+            full_name,
+            email
         });
 
         await user.save({ transaction: t });    
         await t.commit()            
     };
 
-    async deleteUSer (id) {
+    async delete (id) {
         const user = await User.findOne({ where: { id } });
-        if (user) {
-          await user.destroy();
-          return true;
-        }
-        return false;
+
+        if (!user) throw new Error('User not found');
+
+        await user.destroy();
+
+        return true;
     };
     
 }

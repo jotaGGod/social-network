@@ -16,12 +16,12 @@ class UserService {
     return Repository.getAll();
   };
 
-  async updateUser(req) {
-    return Repository.update(req);
+  async updateUser(id, full_name, email) {
+    return Repository.update(id, full_name, email);
   };
 
-  async delete(id) {
-    return Repository.deleteUSer(id);
+  async deleteUser(id) {
+    return Repository.delete(id);
   };
 }
 

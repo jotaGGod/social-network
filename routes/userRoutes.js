@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controller/userController');
-const { validation , validateId, validationUsers }  = require('../middlewares/validationUser');
+const Validations  = require('../middlewares/validationUser');
 const userSchema = require('../validation/userValidation')
 
-router.post('/', validation(userSchema), UserController.createUser);
-router.get('/', validationUsers, UserController.getUsers);
-router.get('/:id', validateId, UserController.getUserByid);
-router.put('/:id', validateId, UserController.updateUser);
-router.delete('/:id', validateId, UserController.deleteUser);
+router.post('/', Validations.validation(userSchema), UserController.createUser);
+router.get('/', UserController.getUsers);
+router.get('/:id', Validations.validation(userSchema), UserController.getUserByid);
+router.put('/:id', Validations.validation(userSchema), UserController.updateUser);
+router.delete('/:id', Validations.validation(userSchema), UserController.deleteUser);
 
 module.exports = router;

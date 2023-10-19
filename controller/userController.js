@@ -13,24 +13,32 @@ const UserController = {
     });    
   },
   async getUserByid(req, res) {
-      const { id } = req.params;    
-      const user = await userService.getUserById(id);      
+      const { id } = req.params;
+
+      const user = await userService.getUserById(id);
+
       return res.status(httpStatus.OK).json(user);
   },
   async getUsers(req, res) {    
-      const users = await userService.getAllUsers();      
+      const users = await userService.getAllUsers();
+
       return res.status(httpStatus.OK).json(users);
   },
   async updateUser(req, res) {
-    const { id } = req.params;    
-    const user = await userService.updateUser(req);
+    const { id } = req.params;
+    const { full_name, email } = req.body;
+
+    await userService.updateUser(id, full_name, email);
+
     return res.status(httpStatus.OK).json({
       details: "User updated successfully"
     });  
   },
   async deleteUser(req, res) {
     const { id } = req.params;
-    const userId = await userService.delete(id);    
+
+    await userService.deleteUser(id);
+
     return res.status(httpStatus.OK).json({
       details: "User deleted successfully"
     });

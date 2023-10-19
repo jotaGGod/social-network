@@ -1,14 +1,12 @@
 const Friendship = require('../models/friendship');
-//const httpStatus = require('../utils/statusCodes');
 const Sequelize = require('../models/db');
-const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async createFriendship(principal_user_id, friend_id) {
         const t = await Sequelize.transaction();
 
         const existingFriendship = await Friendship.findOne({
-            where: { principal_user_id: principal_user_id, friend_id: friend_id, is_active: true}
+            where: { principal_user_id: principal_user_id, friend_id: friend_id, is_active: true }
         });
 
         if (existingFriendship) throw new Error('Friendship already exists');
@@ -17,7 +15,7 @@ class Repository {
         const friendship = await Friendship.create(
             {
                 principal_user_id,
-                friend_id,
+                friend_id
             },
             { transaction: t }
         );

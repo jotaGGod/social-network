@@ -5,14 +5,18 @@ facilitando o tratamento de erros assíncronos
 */
 const express = require("express");
 const userRouter = require("./routes/userRoutes");
-const friendshipRouter = require("./routes/friendshipRoutes")
+const friendshipRouter = require("./routes/friendshipRoutes");
+const fileTypeRouter = require("./routes/fileTypeRoutes");
+const targetPublicRouter = require("./routes/targetPublicRoutes");
 const errorHandler = require("./middlewares/error");
 const app = express();
 
 app.use(express.json());
 
 app.use('/users', userRouter);
-app.use('/friendship', friendshipRouter)
+app.use('/friendship', friendshipRouter);
+app.use('/file_type', fileTypeRouter);
+app.use('/target_public', targetPublicRouter);
 app.use(errorHandler);
 
 
