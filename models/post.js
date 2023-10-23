@@ -4,6 +4,7 @@ const db = require('./db');
 const Target_public = require("../models/target_public");
 const Users = require("../models/users");
 const File_type = require("../models/file_type");
+const {DataTypes} = require("sequelize");
 
 const Post = db.define("post", {
     id: {
@@ -11,6 +12,11 @@ const Post = db.define("post", {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
+    },
+    description:{
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: true
     },
     user_id: {
         type: Sequelize.INTEGER,
@@ -28,20 +34,24 @@ const Post = db.define("post", {
             key: 'id'
         }             
     },
-    file_type_id: {
+    type_id: {
         type: Sequelize.INTEGER,
         references:{
             model: File_type,
             key: 'id'
         }
     },
-    description:{
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: true
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+    },
+    updated_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
     }
 }, {
-    timestamps: true,
     tableName: 'post'
 });
 
