@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require('./db');
+const {DataTypes} = require("sequelize");
 
 const Reactions_type = db.define("reactions_type", {
     id: {
@@ -10,14 +11,13 @@ const Reactions_type = db.define("reactions_type", {
     },
     description:{
         type: Sequelize.STRING
-    },   
+    },
     is_active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
    }
 }, {
-    timestamps: false,
     tableName: 'reactions_type'
 });
 

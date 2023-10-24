@@ -4,12 +4,16 @@ require("express-async-errors");
 facilitando o tratamento de erros assíncronos
 */
 const express = require("express");
+
 const userRouter = require("./routes/userRoutes");
 const friendshipRouter = require("./routes/friendshipRoutes");
 const fileTypeRouter = require("./routes/fileTypeRoutes");
 const targetPublicRouter = require("./routes/targetPublicRoutes");
 const albumRouter = require("./routes/albumRoutes");
 const postRouter = require("./routes/postRoutes");
+const albumItemRouter = require("./routes/albumItemRoutes");
+const reactionsTypeRouter = require("./routes/reactionsTypeRoutes");
+
 const errorHandler = require("./middlewares/error");
 const app = express();
 
@@ -21,6 +25,9 @@ app.use('/file_type', fileTypeRouter);
 app.use('/target_public', targetPublicRouter);
 app.use('/album', albumRouter);
 app.use('/post', postRouter);
+app.use('/album_item', albumItemRouter);
+app.use('/reactions_type', reactionsTypeRouter);
+
 app.use(errorHandler);
 
 
