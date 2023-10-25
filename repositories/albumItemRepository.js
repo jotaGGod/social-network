@@ -24,9 +24,7 @@ class Repository {
         return albumItem;
     };
     async getAll(){
-        const albumItem = await AlbumItem.findAll();
-
-        return albumItem;
+        return await AlbumItem.findAll();
     };
     async delete (id) {
         const albumItem = await AlbumItem.findOne({ where:  { id: id } });

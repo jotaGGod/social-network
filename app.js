@@ -13,6 +13,8 @@ const albumRouter = require("./routes/albumRoutes");
 const postRouter = require("./routes/postRoutes");
 const albumItemRouter = require("./routes/albumItemRoutes");
 const reactionsTypeRouter = require("./routes/reactionsTypeRoutes");
+const reactionsRouter = require("./routes/reactionsRoutes");
+const commentsRouter = require("./routes/commentsRoutes");
 
 const errorHandler = require("./middlewares/error");
 const app = express();
@@ -27,6 +29,8 @@ app.use('/album', albumRouter);
 app.use('/post', postRouter);
 app.use('/album_item', albumItemRouter);
 app.use('/reactions_type', reactionsTypeRouter);
+app.use('/reactions', reactionsRouter);
+app.use('/comments', commentsRouter);
 
 app.use(errorHandler);
 

@@ -2,10 +2,7 @@ const Repository = require('../repositories/albumItemRepository');
 
 class AlbumItemService {
     async createAlbumItem(post_id, album_id) {
-
-        const albumItem = await Repository.create(post_id, album_id);
-
-        return albumItem;
+        return await Repository.create(post_id, album_id);
     };
 
     async getAllAlbumItem() {

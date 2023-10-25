@@ -2,10 +2,7 @@ const Repository = require('../repositories/reactionsTypeRepository');
 
 class ReactionsTypeService {
     async createReactionType(description) {
-
-        const reactionType = await Repository.create(description);
-
-        return reactionType;
+        return await Repository.create(description);
     };
 
     async getAllReactionsType() {

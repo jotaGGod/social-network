@@ -23,9 +23,7 @@ class Repository {
         return reactionType;
     };
     async getAll(){
-        const reactionsType = await ReactionsType.findAll();
-
-        return reactionsType;
+        return await ReactionsType.findAll();
     };
     async delete (id) {
         const reactionType = await ReactionsType.findOne({ where:  { id: id } });

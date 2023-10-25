@@ -2,10 +2,7 @@ const Repository = require('../repositories/postRepository')
 
 class PostService {
     async createPost(description, user_id, target_id, type_id) {
-
-        const post = await Repository.create(description, user_id, target_id, type_id);
-
-        return post;
+        return await Repository.create(description, user_id, target_id, type_id);
     };
 
     async getPostById(id) {

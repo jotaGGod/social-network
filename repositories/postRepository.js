@@ -27,9 +27,7 @@ class Repository {
         return post;
     };
     async getAll(){
-        const posts = await Post.findAll();
-
-        return posts
+        return await Post.findAll()
     };
 
     async update(id, description, user_id, target_id, type_id) {

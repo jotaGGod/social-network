@@ -2,10 +2,7 @@ const Repository = require('../repositories/userRepository')
 
 class UserService {
   async createUser(full_name, email) {
-
-    const user = await Repository.createUser(full_name, email);
-
-    return user;
+    return await Repository.createUser(full_name, email);
   };
 
   async getUserById(id) {

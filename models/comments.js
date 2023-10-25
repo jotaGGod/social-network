@@ -3,6 +3,7 @@ const db = require('./db');
 
 const Users = require('../models/users');
 const Post = require('../models/post.js');
+const {DataTypes} = require("sequelize");
 
 const Comments = db.define("comments", {
     id: {
@@ -30,13 +31,22 @@ const Comments = db.define("comments", {
             key: 'id'
         }
     },
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+    },
+    updated_at: {
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+    },
     is_active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
    }
 }, {
-    timestamps: false,
     tableName: 'comments'
 
 });

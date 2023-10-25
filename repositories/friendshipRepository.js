@@ -24,9 +24,7 @@ class Repository {
         return friendship;
     };
     async getAll(){
-        const friendship = await Friendship.findAll();
-
-        return friendship;
+        return await Friendship.findAll();
     };
     async delete (id) {
         const friendship = await Friendship.findOne({ where:  { id: id } });

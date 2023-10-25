@@ -28,9 +28,7 @@ class Repository {
         return album;
     };
     async getAll(){
-        const album = await Album.findAll();
-
-        return album
+        return await Album.findAll()
     };
 
     async update(id, description, target_id) {

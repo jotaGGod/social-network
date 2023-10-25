@@ -2,10 +2,7 @@ const Repository = require('../repositories/albumRepository')
 
 class AlbumService {
     async createAlbum(description, target_id) {
-
-        const album = await Repository.create(description, target_id);
-
-        return album;
+        return await Repository.create(description, target_id);
     };
 
     async getAlbumById(id) {

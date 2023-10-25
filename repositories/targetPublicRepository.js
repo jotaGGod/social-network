@@ -23,9 +23,7 @@ class Repository {
         return targetPublic;
     };
     async getAll(){
-        const targetPublic = await TargetPublic.findAll();
-
-        return targetPublic;
+        return await TargetPublic.findAll();
     };
     async delete (id) {
         const targetPublic = await TargetPublic.findOne({ where:  { id: id } });

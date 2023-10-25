@@ -2,10 +2,7 @@ const Repository = require('../repositories/targetPublicRepository');
 
 class TargetPublicService {
     async createTargetPublic(type) {
-
-        const fileType = await Repository.create(type);
-
-        return fileType;
+        return await Repository.create(type);
     };
 
     async getAllTargetPublic() {

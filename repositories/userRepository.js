@@ -1,5 +1,4 @@
 const User = require('../models/users');
-const httpStatus = require('../utils/statusCodes');
 const Sequelize = require('../models/db');
 
 class Repository {
@@ -29,9 +28,7 @@ class Repository {
         return user;
     };
     async getAll(){
-        const users = await User.findAll();
-
-        return users
+        return await User.findAll()
     };
     
     async update(id, full_name, email) {

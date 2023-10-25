@@ -23,9 +23,7 @@ class Repository {
         return fileType;
     };
     async getAll(){
-        const fileType = await FileType.findAll();
-
-        return fileType;
+        return await FileType.findAll();
     };
     async delete (id) {
         const fileType = await FileType.findOne({ where:  { id: id } });
