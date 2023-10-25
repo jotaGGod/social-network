@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const TargetPublicController = require('../controller/targetPublicRoutes');
-const Validations  = require('../middlewares/validationFriendship');
-const friendshipSchema = require('../validation/friendshipValidation');
-
+const TargetPublicController = require('../controller/targetPublicController');
 
 router.post('/', TargetPublicController.createTargetPublic);
 router.get('/', TargetPublicController.getTargetPublics);
