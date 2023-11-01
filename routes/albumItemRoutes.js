@@ -6,5 +6,4 @@ router.post('/', AlbumItemController.createAlbumItem);
 router.get('/', AlbumItemController.getAlbumItems);
 router.delete('/:id', AlbumItemController.deleteAlbumItem);
 
-
 module.exports = router;

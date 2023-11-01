@@ -1,5 +1,5 @@
 const httpStatus = require('../utils/statusCodes');
-const FileTypeService = require('../services/fileTypeService');
+const FileTypeService  = require('../services/fileTypeService');
 
 class FileTypeController {
 
@@ -32,3 +32,4 @@ class FileTypeController {
 }
 
 module.exports = new FileTypeController();
+

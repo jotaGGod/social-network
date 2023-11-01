@@ -1,1 +1,38 @@
-1- oop: abstração, polimorfismo
+`Desafio de API Node.js - Aprimoramentos e Novas Funcionalidades
+
+Padronização de Espaços Vazios:
+
+Garantir que os arquivos estejam formatados de acordo com um padrão consistente, removendo espaços desnecessários.
+Linha Vazia no Final de Cada Arquivo:
+
+Adicionar uma linha vazia no final de cada arquivo para garantir uma formatação limpa.
+Remoção de Espaços Vazios:
+
+Realizar uma verificação e remoção de espaços em branco nos arquivos para melhorar a qualidade do código.
+Adição de Senha na Criação do Usuário:
+
+Incluir a funcionalidade de adicionar uma senha ao criar um usuário. A senha precisa ser criptografada em MD5 ou em um método de criptografia similar para segurança.
+Verificação da Implementação da MD5 na Bcrypt:
+
+Verificar se a biblioteca Bcrypt oferece suporte para criptografia MD5 ou métodos de criptografia semelhantes.
+Adição de Senha na Tabela de Usuários:
+
+Modificar a estrutura da tabela "user" para incluir um campo de senha criptografada.
+Recebimento e Criptografia de Senha na Controller:
+
+Receber a senha na controladora (controller), aplicar o algoritmo de hash (por exemplo, MD5) e salvar a senha criptografada no banco de dados.
+Retorno de Dados sem Senha na Rota de Criação de Usuário:
+
+Ao criar um usuário, retornar todos os dados, exceto a senha, para manter a segurança dos dados do usuário.
+Criação de Rota para Login do Usuário (Email, Senha) - Método POST:
+
+Implementar uma rota dedicada para o processo de login, onde o usuário deve fornecer seu email e senha.
+Comparação de Senha com o Hash no Banco de Dados:
+
+Ao receber as credenciais de login, comparar a senha fornecida com a senha armazenada no banco de dados (senha criptografada). Se forem iguais, conceder acesso; caso contrário, retornar um erro.
+Definição dos Status Codes para Login:
+
+Estabelecer os códigos de status HTTP a serem usados no processo de login, definindo códigos específicos para sucesso e falha. Por exemplo, 200 para sucesso e 401 para falha de autenticação.
+
+Usar o repositório: https://github.com/hagopj13/node-express-boilerplate como referência
+`

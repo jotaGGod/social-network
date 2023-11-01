@@ -34,7 +34,6 @@ class Repository {
 
         return true;
     };
-
 }
 
 module.exports = new Repository();

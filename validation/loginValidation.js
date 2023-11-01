@@ -1,8 +1,7 @@
 const yup = require('yup');
-const userSchema = yup.object({
-    full_name: yup.string().required(),
+const loginSchema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required()
 });
 
-module.exports =  userSchema;
+module.exports =  loginSchema;

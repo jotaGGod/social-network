@@ -1,8 +1,8 @@
-const Repository = require('../repositories/fileTypeRepository');
+const Repository  = require('../repositories/fileTypeRepository');
 
 class FileTypeService {
     async createFileType(type) {
-        return await Repository.create(type);
+        return await Repository.create(type)
     };
 
     async getAllFileType() {
