@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="remove files" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jotaGGod&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b5e0542f-4244-464a-a7fc-d2b3ec4840cc" />
+        <option name="url" value="git@github.com:jotaGGod/social-network.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/challange.txt" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2WbCy5QN4ygHyhlxghhdnscrwMf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/JACKSON/OneDrive/Documents/Dev/Back-end/Challenges/express-api-feature-db",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo",
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="" />
+      <created>1696992143692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696992143692</updated>
+      <workItem from="1696992144706" duration="1383000" />
+      <workItem from="1697031971891" duration="1602000" />
+      <workItem from="1697116954794" duration="20160000" />
+      <workItem from="1697205627937" duration="7627000" />
+      <workItem from="1697226232337" duration="7514000" />
+      <workItem from="1697249706791" duration="5852000" />
+      <workItem from="1697464895896" duration="136000" />
+      <workItem from="1697577268364" duration="7306000" />
+      <workItem from="1697729054077" duration="2157000" />
+      <workItem from="1697750567081" duration="10974000" />
+      <workItem from="1698006016290" duration="7005000" />
+      <workItem from="1698182330100" duration="9945000" />
+      <workItem from="1698339579705" duration="1496000" />
+      <workItem from="1698342002577" duration="123000" />
+      <workItem from="1698422751102" duration="460000" />
+      <workItem from="1698674014354" duration="1442000" />
+      <workItem from="1698698730372" duration="4953000" />
+      <workItem from="1698766506625" duration="702000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1697136451746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697136451746</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactoring and inserting routes">
+      <option name="closed" value="true" />
+      <created>1697251385167</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697251385167</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactoring and inserting methods">
+      <option name="closed" value="true" />
+      <created>1697751087158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697751087158</updated>
+    </task>
+    <task id="LOCAL-00004" summary="new table 'album'">
+      <option name="closed" value="true" />
+      <created>1697754100710</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697754100710</updated>
+    </task>
+    <task id="LOCAL-00005" summary="crud on new table 'post'">
+      <option name="closed" value="true" />
+      <created>1698086452352</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698086452352</updated>
+    </task>
+    <task id="LOCAL-00006" summary="crud on new tables 'album-item' and 'reactions-type'">
+      <option name="closed" value="true" />
+      <created>1698183638531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698183638531</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactoring and inserting crud's tables">
+      <option name="closed" value="true" />
+      <created>1698200463672</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698200463672</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" correction">
+      <option name="closed" value="true" />
+      <created>1698201529062</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698201529062</updated>
+    </task>
+    <task id="LOCAL-00009" summary="inserting cryptography and login auth user">
+      <option name="closed" value="true" />
+      <created>1698811404450</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698811404450</updated>
+    </task>
+    <task id="LOCAL-00010" summary="inserting cryptography and login auth user">
+      <option name="closed" value="true" />
+      <created>1698811549395</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1698811549395</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="refactoring and inserting routes" />
+    <MESSAGE value="refactoring and inserting methods" />
+    <MESSAGE value="new table 'album'" />
+    <MESSAGE value="crud on new table 'post'" />
+    <MESSAGE value="crud on new tables 'album-item' and 'reactions-type'" />
+    <MESSAGE value="refactoring and inserting crud's tables" />
+    <MESSAGE value=" correction" />
+    <MESSAGE value="inserting cryptography and login auth user" />
+    <MESSAGE value="remove files" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove files" />
+  </component>
+</project>

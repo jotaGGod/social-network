@@ -1,12 +1,11 @@
 const httpStatus = require('../utils/statusCodes');
 const userService = require('../services/userServices');
-const bcrypt = require('bcrypt');
+const authService = require('../services/authService');
 
 class UserController {
   async createUser(req, res) {
     const { full_name, email, password } = req.body;
-    const criptoPass = await bcrypt.hash(password, 10);
-    const user = await userService.createUser(full_name, email, criptoPass);
+    const user = await userService.createUser(full_name, email, password);
     return res.status(httpStatus.CREATED).json({
       message: 'User created successfully!',
       data: user
@@ -14,16 +13,11 @@ class UserController {
   };
   async loginUser(req,res) {
     const { email, password } = req.body;
-    const auth = await userService.loginUser(email, password);
-    if (!auth) {
-      return res.status(httpStatus.UNAUTHORIZED).json({
-        message: 'Incorrect password!!'
-      })
-    }else{
-      return res.status(httpStatus.OK).json({
-        message: 'Logged in successfully'
-      });
-    }
+    await authService.loginUser(email, password);
+    // const tokens = tokenService.generateAuthTokens(user);
+    return res.status(httpStatus.OK).json({
+      message: 'Logged in successfully'
+    });
   };
   async getUserById(req, res) {
       const { id } = req.params;

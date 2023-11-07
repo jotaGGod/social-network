@@ -2,7 +2,6 @@ const httpStatus = require('../utils/statusCodes');
 const friendshipService = require('../services/friendshipServices');
 
 class FriendshipController {
-
     async createFriendship(req, res) {
         const { principal_user_id, friend_id } = req.body;
 
@@ -13,13 +12,11 @@ class FriendshipController {
             data: friendship
         });
     }
-
     async getFriendships(req, res) {
         const friendship = await friendshipService.getAllFriendships();
 
         return res.status(httpStatus.OK).json(friendship);
     }
-
     async deleteFriendship(req, res) {
         const { id } = req.params;
 

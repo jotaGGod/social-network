@@ -4,11 +4,9 @@ class ReactionsTypeService {
     async createReactionType(description) {
         return await Repository.create(description);
     };
-
     async getAllReactionsType() {
         return Repository.getAll();
     };
-
     async deleteReactionType(id) {
         return Repository.delete(id);
     };

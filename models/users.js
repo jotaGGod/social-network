@@ -28,12 +28,13 @@ const Users = db.define("user", {
         defaultValue: true
    }
 }, {
-    timestamps: false,
-    tableName: 'user'
+    tableName: 'user',
+    hooks: {
+        afterCreate: (record) => {
+            delete record.dataValues.password;
+            delete record.dataValues.is_active;
+        },
+    }
 });
 
-//Users.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
 module.exports = Users;
-
-
-// Desabilita as colunas createdAt e updatedAt

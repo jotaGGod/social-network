@@ -1,5 +1,6 @@
 const AlbumItem = require('../models/album_item');
 const Sequelize = require('../models/db');
+const ApiError = require("../utils/ApiError");
 
 class Repository {
     async create(post_id, album_id) {
@@ -9,7 +10,7 @@ class Repository {
             where: { post_id, album_id, is_active: true}
         });
 
-        if (existingAlbumItem) throw new Error('Album item already exists');
+        if (existingAlbumItem) throw new ApiError('Album item already exists');
 
 
         const albumItem = await AlbumItem.create(
@@ -29,7 +30,7 @@ class Repository {
     async delete (id) {
         const albumItem = await AlbumItem.findOne({ where:  { id: id } });
 
-        if (!albumItem) throw new Error('Album item not found!!');
+        if (!albumItem) throw new ApiError('Album item not found!!');
 
         await albumItem.destroy();
 
