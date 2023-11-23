@@ -1,31 +1,35 @@
 const ReactionsType = require('../models/reactions_type');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(description) {
-        const t = await Sequelize.transaction();
-        const existingReactionType = await ReactionsType.findOne({
-            where: { description, is_active: true}
-        });
-        if (existingReactionType) throw new ApiError('Reaction type already exists');
-        const reactionType = await ReactionsType.create(
-            {
-                description
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return reactionType;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return ReactionsType.create(
+                    {description},
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating reaction type');
+        }
     };
     async getAll(){
         return await ReactionsType.findAll();
     };
     async delete (id) {
-        const reactionType = await ReactionsType.findOne({ where:  { id: id } });
-        if (!reactionType) throw new ApiError('Album item not found!!');
-        await reactionType.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return ReactionsType.findOne(
+                    {id},
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.NOT_FOUND,'Reaction type not found!!');
+        }
     };
 }
 

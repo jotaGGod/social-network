@@ -1,6 +1,5 @@
 const { Sequelize, DataTypes} = require('sequelize');
 const db = require('./db');
-
 const Users = require('../models/users');
 
 const Friendship = db.define("friendship", {

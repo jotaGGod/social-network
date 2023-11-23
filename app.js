@@ -13,10 +13,12 @@ const commentsRouter = require("./routes/commentsRoutes");
 const errorHandler = require("./middlewares/error");
 const app = express();
 
+const testeController = require('./controller/friendshipController');
+
 app.use(express.json());
 app.use('/users', userRouter);
 app.use('/', userRouter);
-app.use('/friendship', friendshipRouter);
+app.use('/friendship',friendshipRouter);
 app.use('/file_type', fileTypeRouter);
 app.use('/target_public', targetPublicRouter);
 app.use('/album', albumRouter);

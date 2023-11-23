@@ -6,6 +6,7 @@ const friendshipSchema = require('../validation/friendshipValidation');
 
 router.post('/', Validations.validation(friendshipSchema), FriendshipController.createFriendship);
 router.get('/', FriendshipController.getFriendships);
-router.delete('/:id', Validations.validation(friendshipSchema), FriendshipController.deleteFriendship);
+router.delete('/:id', FriendshipController.deleteFriendship);
+router.get('/:id', FriendshipController.getById);
 
 module.exports = router;

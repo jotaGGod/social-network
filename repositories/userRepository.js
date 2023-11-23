@@ -1,6 +1,5 @@
 const User = require('../models/users');
 const Sequelize = require('../models/db');
-const bcrypt = require("bcrypt");
 const httpStatus = require("../utils/statusCodes");
 const ApiError = require("../utils/ApiError");
 
@@ -20,45 +19,55 @@ class Repository {
         }
     };
     async getByEmail(email) {
-        return User.findOne({ where: { email } });
-        /*const isPasswordMatch = await bcrypt.compare(password, user.password);
-        if (!isPasswordMatch) throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');*/
+        try {
+            return Sequelize.transaction(async (t) => {
+                return User.findOne({ where: { email } });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting a user');
+        }
     };
     async getById(id){
-        const user = await User.findOne({ where: { id } });
-        if (!user) throw new ApiError('User not found');
-        return {
-            id: user.id,
-            full_name: user.full_name,
-            email: user.email,
-            is_active: user.is_active
-        };
+        try {
+            return Sequelize.transaction(async (t) => {
+                return User.findOne({
+                    where: { id: id },
+                    attributes: ['id', 'full_name', 'email']
+                });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting a user');
+        }
     };
     async getAll(){
-        return await User.findAll();
-    };
-    
-    async update(id, full_name, email) {
-        const t = await Sequelize.transaction();
-        const user = await User.findOne({ where: { id } });
-        if (!user) throw new ApiError('User not found');
-        user.set({
-            full_name,
-            email
+        return await User.findAll({
+            attributes: ['id', 'full_name', 'email']
         });
-        await user.save({ transaction: t });    
-        await t.commit();
-        return {
-            full_name,
-            email
-        };
+    };
+    async update(id, full_name, email) {
+        try {
+            return Sequelize.transaction(async (t) => {
+                const user = await User.findOne({ where: { id } });
+                await t.commit();
+                return user.set({
+                    full_name,
+                    email
+                });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating a user');
+        }
     };
 
     async delete (id) {
-        const user = await User.findOne({ where: { id } });
-        if (!user) throw new Error('User not found');
-        await user.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                const user = await User.findOne({ where: { id } });
+                return user.destroy();
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting a user');
+        }
     };
 }
 

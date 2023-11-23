@@ -1,31 +1,35 @@
 const TargetPublic = require('../models/target_public');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(type) {
-        const t = await Sequelize.transaction();
-        const existingTargetPublic = await TargetPublic.findOne({
-            where: { type: type, is_active: true}
-        });
-        if (existingTargetPublic) throw new ApiError('Target public already exists');
-        const targetPublic = await TargetPublic.create(
-            {
-                type
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return targetPublic;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return TargetPublic.create(
+                    {type},
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating target public');
+        }
     };
     async getAll(){
         return await TargetPublic.findAll();
     };
     async delete (id) {
-        const targetPublic = await TargetPublic.findOne({ where:  { id: id } });
-        if (!targetPublic) throw new ApiError('Target public not found!!');
-        await targetPublic.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return TargetPublic.findOne(
+                    {id},
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.NOT_FOUND,'Target public not found!!');
+        }
     };
 }
 

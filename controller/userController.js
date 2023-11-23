@@ -1,6 +1,7 @@
 const httpStatus = require('../utils/statusCodes');
 const userService = require('../services/userServices');
 const authService = require('../services/authService');
+const tokenService = require('../services/tokenService');
 
 class UserController {
   async createUser(req, res) {
@@ -13,20 +14,23 @@ class UserController {
   };
   async loginUser(req,res) {
     const { email, password } = req.body;
-    await authService.loginUser(email, password);
-    // const tokens = tokenService.generateAuthTokens(user);
+    const user = await authService.loginUser(email, password);
+    const token = await tokenService.generateAuthTokens(user);
     return res.status(httpStatus.OK).json({
-      message: 'Logged in successfully'
+      message: 'Logged in successfully',
+      token: token
     });
   };
   async getUserById(req, res) {
-      const { id } = req.params;
-      const user = await userService.getUserById(id);
-      return res.status(httpStatus.OK).json(user);
+    const { id } = req.params;
+    const user = await userService.getUserById(id);
+    return res.status(httpStatus.OK).json(user);
   };
-  async getUsers(req, res) {    
-      const users = await userService.getAllUsers();
-      return res.status(httpStatus.OK).json(users);
+  async getUsers(req, res) {
+    const { authorization: token } = req.headers;
+    await tokenService.verifyToken(token);
+    const users = await userService.getAllUsers();
+    return res.status(httpStatus.OK).json(users);
   };
   async updateUser(req, res) {
     const { id } = req.params;

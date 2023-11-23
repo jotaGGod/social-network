@@ -6,23 +6,24 @@ const HashService = require("./hashService")
 class UserService {
   async createUser(full_name, email, password) {
     const emailAlreadyExists = await Repository.getByEmail(email);
-    if (emailAlreadyExists) throw new ApiError(httpStatus.CONFLICT,'Email already taken');
+    if (emailAlreadyExists) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
     const hashedPassword = await HashService.hash(password);
     return Repository.createUser(full_name, email, hashedPassword);
   };
-  async loginUser(email, password) {
-    return Repository.login(email, password);
-  }
   async getUserById(id) {
-    return Repository.getById(id);
+      const user = await Repository.getById(id);
+      if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+      return user;
   };
   async getAllUsers() {
     return Repository.getAll();
   };
   async updateUser(id, full_name, email) {
+    await this.getUserById(id);
     return Repository.update(id, full_name, email);
   };
   async deleteUser(id) {
+    await this.getUserById(id);
     return Repository.delete(id);
   };
 }
