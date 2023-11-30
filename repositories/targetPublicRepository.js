@@ -8,7 +8,7 @@ class Repository {
         try {
             return Sequelize.transaction(async (t) => {
                 return TargetPublic.create(
-                    {type},
+                    { type },
                     { transaction: t }
                 );
             });
@@ -17,18 +17,31 @@ class Repository {
         }
     };
     async getAll(){
-        return await TargetPublic.findAll();
+        return TargetPublic.findAll(
+            { attributes: ['id', 'type', 'is_active'] }
+        );
     };
-    async delete (id) {
+    async getById(id){
+        return TargetPublic.findOne(
+            {
+                where: {id: id},
+                attributes: ['id', 'type', 'is_active']
+            }
+        );
+    };
+    async delete(id) {
         try {
             return Sequelize.transaction(async (t) => {
-                return TargetPublic.findOne(
-                    {id},
-                    { transaction: t }
+                return TargetPublic.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
                 );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.NOT_FOUND,'Target public not found!!');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting a target public');
         }
     };
 }

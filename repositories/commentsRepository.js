@@ -1,47 +1,71 @@
 const Comments = require('../models/comments');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const User = require("../models/users");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(description, user_id, post_id) {
-        const t = await Sequelize.transaction();
-        const comment = await Comments.create(
-            {
-                description,
-                user_id,
-                post_id
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return comment;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Comments.create(
+                    {
+                        description: description,
+                        user_id: user_id,
+                        post_id: post_id
+                    }, { transaction: t });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating comment');
+        }
     };
     async getById(id){
-        const comment = await Comments.findOne({ where: { id } });
-        if (!comment) throw new ApiError('Comment not found');
-        return comment;
+        return Comments.findOne(
+            {
+                where: { id: id },
+                attributes: ['id', 'description', 'user_id', 'post_id', 'is_active']
+            }
+        );
     };
     async getAll(){
-        return await Comments.findAll()
+        return Comments.findAll(
+            { attributes: ['id', 'description', 'user_id', 'post_id', 'is_active'] }
+        )
     };
 
     async update(id, description, user_id, post_id) {
-        const t = await Sequelize.transaction();
-        const comment = await Comments.findOne({ where: { id } });
-        if (!comment) throw new ApiError('Comment not found');
-        comment.set({
-            description,
-            user_id,
-            post_id
-        });
-        await comment.save({ transaction: t });
-        await t.commit()
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Comments.update(
+                    {
+                        description: description,
+                        user_id: user_id,
+                        post_id: post_id
+                    },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating comment');
+        }
     };
     async delete (id) {
-        const comment = await Comments.findOne({ where: { id } });
-        if (!comment) throw new ApiError('Comment not found');
-        await comment.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Comments.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting comment');
+        }
     };
 }
 

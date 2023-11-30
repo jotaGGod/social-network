@@ -8,8 +8,8 @@ class Repository {
         try {
             return Sequelize.transaction(async (t) => {
                 return Friendship.findOne({
-                    principal_user_id,
-                    friend_id,
+                    principal_user_id: principal_user_id,
+                    friend_id: friend_id,
                     is_active: true
                     },
                     { transaction: t }
@@ -20,20 +20,28 @@ class Repository {
         }
     };
     async getAll(){
-        return Friendship.findAll({ attributes : ['id', 'principal_user_id', 'friend_id', 'is_active'] });
+        return Friendship.findAll(
+            { attributes : ['id', 'principal_user_id', 'friend_id', 'is_active'] }
+        );
     };
     async getById(id){
-        return Friendship.findOne({
-            where : {id: id},
-            attributes : ['id', 'principal_user_id', 'friend_id', 'is_active']
-        });
-    }
-    async delete (user) {
+        return Friendship.findOne(
+            {
+                where: {id: id},
+                attributes: ['id', 'principal_user_id', 'friend_id', 'is_active']
+            }
+        );
+    };
+    async delete(id){
         try {
             return Sequelize.transaction(async(t) => {
-                return user.update({
-                    is_active: false
-                });
+                return Friendship.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
             });
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting friendship');

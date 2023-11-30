@@ -5,8 +5,8 @@ const HashService = require("./hashService")
 
 class UserService {
   async createUser(full_name, email, password) {
-    const emailAlreadyExists = await Repository.getByEmail(email);
-    if (emailAlreadyExists) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
+    const isEmailTaken = await Repository.getByEmail(email);
+    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
     const hashedPassword = await HashService.hash(password);
     return Repository.createUser(full_name, email, hashedPassword);
   };
@@ -15,15 +15,23 @@ class UserService {
       if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       return user;
   };
+  async isEmailTaken(email) {
+    const existingUser = await Repository.getByEmail(email);
+    return !!existingUser;
+  }
   async getAllUsers() {
     return Repository.getAll();
   };
-  async updateUser(id, full_name, email) {
-    await this.getUserById(id);
-    return Repository.update(id, full_name, email);
+  async updateUserById(id, full_name, email) {
+    const user = await Repository.getById(id);
+    if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    const isEmailTaken = await this.isEmailTaken(email);
+    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
+    await Repository.update(id, full_name, email);
   };
   async deleteUser(id) {
-    await this.getUserById(id);
+    const user = await Repository.getById(id);
+    if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     return Repository.delete(id);
   };
 }

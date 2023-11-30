@@ -35,10 +35,9 @@ class UserController {
   async updateUser(req, res) {
     const { id } = req.params;
     const { full_name, email } = req.body;
-    const user = await userService.updateUser(id, full_name, email);
+    await userService.updateUserById(id, full_name, email);
     return res.status(httpStatus.OK).json({
-      details: "User updated successfully",
-      data: user
+      details: "User updated successfully"
     });  
   };
   async deleteUser(req, res) {

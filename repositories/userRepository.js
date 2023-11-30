@@ -9,8 +9,8 @@ class Repository {
             return Sequelize.transaction(async (t) => {
                 return User.create(
                     {
-                        full_name,
-                        email,
+                        full_name: full_name,
+                        email: email,
                         password: hashedPassword
                     }, { transaction: t });
             });
@@ -20,53 +20,55 @@ class Repository {
     };
     async getByEmail(email) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return User.findOne({ where: { email } });
-            });
+            return User.findOne(
+                { where: { email } }
+            );
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting a user');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting e-mail');
         }
     };
     async getById(id){
-        try {
-            return Sequelize.transaction(async (t) => {
-                return User.findOne({
-                    where: { id: id },
-                    attributes: ['id', 'full_name', 'email']
-                });
-            });
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting a user');
-        }
+        return User.findOne(
+            {
+                where: { id: id },
+                attributes: ['id', 'full_name', 'email', 'is_active']
+            }
+        );
     };
     async getAll(){
-        return await User.findAll({
-            attributes: ['id', 'full_name', 'email']
-        });
+        return User.findAll(
+            { attributes: ['id', 'full_name', 'email', 'is_active'] }
+        );
     };
     async update(id, full_name, email) {
         try {
             return Sequelize.transaction(async (t) => {
-                const user = await User.findOne({ where: { id } });
-                await t.commit();
-                return user.set({
-                    full_name,
-                    email
-                });
+                return User.update(
+                    { full_name: full_name, email: email },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating a user');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating user');
         }
     };
 
     async delete (id) {
         try {
             return Sequelize.transaction(async (t) => {
-                const user = await User.findOne({ where: { id } });
-                return user.destroy();
+                return User.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting a user');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting user');
         }
     };
 }

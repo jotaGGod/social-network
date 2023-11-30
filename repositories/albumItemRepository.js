@@ -1,40 +1,49 @@
 const AlbumItem = require('../models/album_item');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(post_id, album_id) {
-        const t = await Sequelize.transaction();
-
-        const existingAlbumItem = await AlbumItem.findOne({
-            where: { post_id, album_id, is_active: true}
-        });
-
-        if (existingAlbumItem) throw new ApiError('Album item already exists');
-
-
-        const albumItem = await AlbumItem.create(
+        try {
+            return Sequelize.transaction(async (t) => {
+                return AlbumItem.create(
+                    {
+                        post_id: post_id,
+                        album_id: album_id
+                    }, { transaction: t });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating album item');
+        }
+    };
+    async getById(id){
+        return AlbumItem.findOne(
             {
-                post_id,
-                album_id
-            },
-            { transaction: t }
+                where: { id: id },
+                attributes: ['id', 'post_id', 'album_id', 'is_active']
+            }
         );
-        await t.commit();
-
-        return albumItem;
     };
     async getAll(){
-        return await AlbumItem.findAll();
+        return AlbumItem.findAll(
+            { attributes: ['id', 'post_id', 'album_id', 'is_active'] }
+        );
     };
     async delete (id) {
-        const albumItem = await AlbumItem.findOne({ where:  { id: id } });
-
-        if (!albumItem) throw new ApiError('Album item not found!!');
-
-        await albumItem.destroy();
-
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return await AlbumItem.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting album item');
+        }
     };
 
 }
