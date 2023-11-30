@@ -1,12 +1,11 @@
 class Validations {
     validation = (schema) => async (req, res, next) => {
         const {
-            full_name, email, password
+            full_name, email
         } = req.body;
         await schema.validate({
             full_name,
             email,
-            password
         })
         next();
     }

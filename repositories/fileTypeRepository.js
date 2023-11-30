@@ -1,31 +1,46 @@
 const FileType = require('../models/file_type');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(type) {
-        const t = await Sequelize.transaction();
-        const existingFileType = await FileType.findOne({
-            where: { type: type, is_active: true}
-        });
-        if (existingFileType) throw new ApiError('File type already exists');
-        const fileType = await FileType.create(
-            {
-                type
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return fileType;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return FileType.findOne(
+                    { type: type },
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
+        }
     };
     async getAll(){
-        return await FileType.findAll();
+        return FileType.findAll();
     };
+    async getById(id){
+        return FileType.findOne(
+            {
+                where: {id: id},
+                attributes: ['id', 'type', 'is_active']
+            }
+        );
+    }
     async delete (id) {
-        const fileType = await FileType.findOne({ where:  { id: id } });
-        if (!fileType) throw new ApiError('File type not found!!');
-        await fileType.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return FileType.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
+        }
     };
 }
 

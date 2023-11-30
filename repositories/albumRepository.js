@@ -1,46 +1,61 @@
 const Album = require('../models/album');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(description, target_id) {
-        const t = await Sequelize.transaction();
-        const existingAlbum = await Album.findOne({ where: { description, target_id } });
-        if (existingAlbum) throw new ApiError('Album already exists');
-        const album = await Album.create(
-            {
-                description,
-                target_id
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return album;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Album.findOne({
+                    description: description,
+                    target_id: target_id
+                    },
+                    { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new album');
+        }
     };
     async getById(id){
-        const album = await Album.findOne({ where: { id } });
-        if (!album) throw new ApiError('Album not found');
-        return album;
+        return Album.findOne({
+        where: {id: id},
+        attributes: ['id', 'description', 'target_id', 'is_active']
+    });
     };
     async getAll(){
-        return await Album.findAll()
+        return Album.findAll({ attributes: ['id', 'description', 'target_id', 'is_active'] });
     };
     async update(id, description, target_id) {
-        const t = await Sequelize.transaction();
-        const album = await Album.findOne({ where: { id } });
-        if (!album) throw new ApiError('Album not found');
-        album.set({
-            description,
-            target_id
-        });
-        await album.save({ transaction: t });
-        await t.commit()
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Album.update(
+                    { description: description, target_id: target_id },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating album');
+        }
     };
     async delete (id) {
-        const album = await Album.findOne({ where: { id } });
-        if (!album) throw new ApiError('Album not found');
-        await album.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return await Album.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting album');
+        }
     };
 }
 

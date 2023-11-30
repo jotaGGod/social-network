@@ -10,14 +10,14 @@ class FriendshipService {
     async getAllFriendships() {
         return Repository.getAll();
     };
-    async deleteFriendship(id) {
-        const friendship = await this.getById(id);
-        return Repository.delete(friendship);
-    };
     async getById(id){
         const friendship = await Repository.getById(id);
         if (!friendship) throw new ApiError(httpStatus.NOT_FOUND, 'Friendship not found.');
         return friendship;
+    };
+    async deleteFriendship(id) {
+        await this.getById(id);
+        return Repository.delete(id);
     };
 }
 
