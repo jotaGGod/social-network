@@ -1,48 +1,70 @@
 const Reactions = require('../models/reactions');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
+const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(user_id, reactions_type_id, post_id) {
-        const t = await Sequelize.transaction();
-        const existingReaction = await Reactions.findOne({ where: { user_id, reactions_type_id, post_id } });
-        if (existingReaction) throw new ApiError("Cannot to react twice! Update or delete to change");
-        const reaction = await Reactions.create(
-            {
-                user_id,
-                reactions_type_id,
-                post_id
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return reaction;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Reactions.create(
+                    {
+                        user_id: user_id,
+                        reactions_type_id: reactions_type_id,
+                        post_id: post_id
+                    }, { transaction: t }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating reaction');
+        }
     };
     async getById(id){
-        const reaction = await Reactions.findOne({ where: { id } });
-        if (!reaction) throw new ApiError('Reaction not found');
-        return reaction;
+        return Reactions.findOne(
+            {
+                where: { id: id },
+                attributes: ['id', 'user_id', 'reactions_type_id', 'post_id', 'is_active']
+            }
+        );
     };
     async getAll(){
-        return await Reactions.findAll()
+        return Reactions.findAll(
+            { attributes: ['id', 'user_id', 'reactions_type_id', 'post_id', 'is_active'] }
+        );
     };
     async update(id, user_id, reactions_type_id, post_id) {
-        const t = await Sequelize.transaction();
-        const reaction = await Reactions.findOne({ where: { id } });
-        if (!reaction) throw new ApiError('Reaction not found');
-        reaction.set({
-            user_id,
-            reactions_type_id,
-            post_id
-        });
-        await reaction.save({ transaction: t });
-        await t.commit()
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Reactions.update(
+                    {
+                        user_id: user_id,
+                        reactions_type_id: reactions_type_id,
+                        post_id: post_id
+                    },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating reaction');
+        }
     };
     async delete (id) {
-        const reaction = await Reactions.findOne({ where: { id } });
-        if (!reaction) throw new ApiError('Reaction not found');
-        await reaction.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async(t) => {
+                return Reactions.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting reaction');
+        }
     };
 }
 

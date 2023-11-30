@@ -5,45 +5,63 @@ const ApiError = require("../utils/ApiError");
 
 class Repository {
     async create(description, user_id, target_id, type_id) {
-        const t = await Sequelize.transaction();
-        const post = await Post.create(
-            {
-                description,
-                user_id,
-                target_id,
-                type_id
-            },
-            { transaction: t }
-        );
-        await t.commit();
-        return post;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Post.create(
+                    {
+                        description: description,
+                        user_id: user_id,
+                        target_id: target_id,
+                        type_id: type_id
+                    }, { transaction: t });
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating post');
+        }
     };
     async getById(id){
-        const post = await Post.findOne({ where: { id } });
-        if (!post) throw new ApiError('Post not found');
-        return post;
+        return Post.findOne(
+            {
+                where: { id: id },
+                attributes: ['id', 'description', 'user_id', 'target_id', 'type_id']
+            }
+        );
     };
     async getAll(){
-        return await Post.findAll()
+        return Post.findAll(
+            { attributes: ['id', 'description', 'user_id', 'target_id', 'type_id'] }
+        );
     };
     async update(id, description, user_id, target_id, type_id) {
-        const t = await Sequelize.transaction();
-        const post = await Post.findOne({ where: { id } });
-        if (!post) throw new ApiError('Post not found');
-        post.set({
-            description,
-            user_id,
-            target_id,
-            type_id
-        });
-        await post.save({ transaction: t });
-        await t.commit()
+        try {
+            return Sequelize.transaction(async (t) => {
+                return Post.update(
+                    {
+                        description: description,
+                        user_id: user_id,
+                        target_id: target_id,
+                        type_id: type_id
+                    },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating post');
+        }
     };
     async delete (id) {
-        const post = await Post.findOne({ where: { id } });
-        if (!post) throw new ApiError('Post not found');
-        await post.destroy();
-        return true;
+        try {
+            return Sequelize.transaction(async (t) => {
+                return await Post.destroy(
+                    { where: {id: id} }
+                );
+            });
+        } catch (error) {
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting post');
+        }
     };
 }
 
