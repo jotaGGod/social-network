@@ -12,5 +12,6 @@ router.post('/login', AuthValidations.validation(loginSchema), UserController.lo
 router.put('/:id', Validations.validation(userSchema), UserController.updateUser);
 router.delete('/:id', UserController.deleteUser);
 router.get('/:id', UserController.getUserById);
+router.post('/refresh-token', UserController.createRefreshToken);
 
 module.exports = router;

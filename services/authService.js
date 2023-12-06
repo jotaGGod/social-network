@@ -1,7 +1,9 @@
 const httpStatus = require('../utils/statusCodes');
 const ApiError = require('../utils/ApiError');
 const userRepository = require('../repositories/userRepository');
-const HashService = require("./hashService");
+const HashService = require("./cryptoService");
+require('dotenv').config()
+
 
 class authService {
     async loginUser (email, password) {

@@ -1,7 +1,6 @@
 const Comments = require('../models/comments');
 const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
-const User = require("../models/users");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
