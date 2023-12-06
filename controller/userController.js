@@ -12,15 +12,24 @@ class UserController {
       data: user
     });    
   };
-  async loginUser(req,res) {
+  async loginUser(req, res) {
     const { email, password } = req.body;
     const user = await authService.loginUser(email, password);
-    const token = await tokenService.generateAuthTokens(user);
+    const { token, refreshToken } = await tokenService.generateAuthTokens(user);
     return res.status(httpStatus.OK).json({
       message: 'Logged in successfully',
-      token: token
+      token: token,
+      refreshToken: refreshToken
     });
   };
+  async createRefreshToken(req, res){
+    const { refreshToken } = req.body;
+    const newRefreshToken = await tokenService.generateRefreshToken(refreshToken);
+    return res.status(httpStatus.CREATED).json({
+      message: 'Refresh token generated successfully',
+      refreshToken: newRefreshToken
+    });
+  }
   async getUserById(req, res) {
     const { id } = req.params;
     const user = await userService.getUserById(id);
