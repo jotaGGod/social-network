@@ -22,6 +22,4 @@ const File_type = db.define('file_type', {
     tableName: 'file_type'
 });
 
-// File_type.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = File_type;

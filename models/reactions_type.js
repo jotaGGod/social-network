@@ -21,6 +21,4 @@ const Reactions_type = db.define("reactions_type", {
     tableName: 'reactions_type'
 });
 
-// Reactions_type.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Reactions_type;

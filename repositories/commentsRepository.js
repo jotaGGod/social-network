@@ -34,8 +34,8 @@ class Repository {
 
     async update(id, description, user_id, post_id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Comments.update(
+            await Sequelize.transaction(async (t) => {
+                await Comments.update(
                     {
                         description: description,
                         user_id: user_id,
@@ -53,8 +53,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Comments.update(
+            await Sequelize.transaction(async (t) => {
+                await Comments.update(
                     { is_active: false },
                     {
                         where: {id: id},

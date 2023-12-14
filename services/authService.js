@@ -5,8 +5,8 @@ const HashService = require("./cryptoService");
 require('dotenv').config()
 
 
-class authService {
-    async loginUser (email, password) {
+class AuthenticateService {
+    async authenticateLoginUser (email, password) {
         const user = await userRepository.getByEmail(email);
         if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email not found');
         const isValidPassword = await HashService.compare(password, user.password);
@@ -15,4 +15,4 @@ class authService {
     };
 }
 
-module.exports = new authService();
+module.exports = new AuthenticateService();

@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const CommentsController = require('../controller/commentsController');
-const Validations  = require('../middlewares/validationComments');
-const commentsSchema = require('../validation/commentsValidation');
+const validate  = require('../middlewares/validationComments');
+const {createCommentSchema, updateCommentSchema, getByIdSchema} = require('../validation/commentsValidation');
 
-router.post('/', Validations.validation(commentsSchema), CommentsController.createComment);
+router.post('/', validate(createCommentSchema), CommentsController.createComment);
 router.get('/', CommentsController.getComments);
-router.get('/:id', CommentsController.getCommentById);
-router.put('/:id', Validations.validation(commentsSchema), CommentsController.updateComment);
-router.delete('/:id', CommentsController.deleteComment);
+router.get('/:id', validate(getByIdSchema), CommentsController.getCommentById);
+router.put('/:id', validate(updateCommentSchema), CommentsController.updateComment);
+router.delete('/:id', validate(getByIdSchema), CommentsController.deleteComment);
 
 module.exports = router;

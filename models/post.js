@@ -55,6 +55,4 @@ const Post = db.define("post", {
     tableName: 'post'
 });
 
-// Post.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Post;

@@ -22,6 +22,4 @@ const Target_public = db.define("target_public", {
     tableName: 'target_public'
 });
 
-// Target_public.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Target_public;

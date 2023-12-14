@@ -22,7 +22,7 @@ class PostService {
     async deletePost(id) {
         const post = await Repository.getById(id);
         if (!post) throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 

@@ -12,7 +12,7 @@ class AlbumItemService {
     async deleteAlbumItem(id) {
         const albumItem = await Repository.getById(id);
         if (!albumItem) throw new ApiError(httpStatus.NOT_FOUND, 'Album item not found');
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 

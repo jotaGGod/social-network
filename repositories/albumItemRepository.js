@@ -32,8 +32,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return await AlbumItem.update(
+            await Sequelize.transaction(async (t) => {
+                 await AlbumItem.update(
                     { is_active: false },
                     {
                         where: {id: id},

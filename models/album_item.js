@@ -47,6 +47,4 @@ const Album_item = db.define("album_item", {
     tableName: 'album_item'
 });
 
-// Album_item.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Album_item;

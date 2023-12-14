@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const AlbumController = require('../controller/albumController');
-const Validations  = require('../middlewares/validationAlbum');
-const albumSchema = require('../validation/albumValidation');
+const validate  = require('../middlewares/validationAlbum');
+const { createAlbumSchema, updateAlbumSchema, getByIdSchema } = require('../validation/albumValidation');
 
-router.post('/', Validations.validation(albumSchema), AlbumController.createAlbum);
+router.post('/', validate(createAlbumSchema), AlbumController.createAlbum);
 router.get('/', AlbumController.getAlbums);
-router.get('/:id', AlbumController.getAlbumById);
-router.put('/:id', Validations.validation(albumSchema), AlbumController.updateAlbum);
-router.delete('/:id', AlbumController.deleteAlbum);
+router.get('/:id', validate(getByIdSchema), AlbumController.getAlbumById);
+router.put('/:id', validate(updateAlbumSchema), AlbumController.updateAlbum);
+router.delete('/:id', validate(getByIdSchema), AlbumController.deleteAlbum);
 
 module.exports = router;

@@ -43,6 +43,4 @@ const Friendship = db.define("friendship", {
     tableName: 'friendship'
 });
 
-//Friendship.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Friendship; 

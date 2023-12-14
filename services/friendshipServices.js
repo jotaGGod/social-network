@@ -17,7 +17,7 @@ class FriendshipService {
     };
     async deleteFriendship(id) {
         await this.getById(id);
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 
