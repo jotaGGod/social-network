@@ -3,9 +3,7 @@ const httpStatus = require("../utils/statusCodes");
 
 const validation = (schema) => async (req, res, next) => {
     try {
-        const {
-            email, password
-        } = req.body;
+        const { email, password } = req.body;
         await schema.validate({
             email,
             password
