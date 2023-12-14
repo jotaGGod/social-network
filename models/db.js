@@ -12,9 +12,6 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
 
 module.exports = sequelize
 
-// verify connection with DB
-/*
 sequelize.authenticate()
 .then(function(){     console.log("connected database successfully") })
 .catch(function(){     console.log("Error: couldn't connect database") })
-*/

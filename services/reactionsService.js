@@ -23,7 +23,7 @@ class ReactionsService {
     async deleteReaction(id) {
         const reaction = await Repository.getById(id);
         if (!reaction) throw new ApiError(httpStatus.NOT_FOUND,'Reaction not found');
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 

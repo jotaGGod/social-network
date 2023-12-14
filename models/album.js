@@ -42,9 +42,4 @@ const Album = db.define('album', {
     tableName: 'album'
 });
 
-// Album.sync(); //a função sync() cria a tabela no banco de dados caso nao esteja criada
-
 module.exports = Album;
-
-
-// Desabilita ou habilita as colunas createdAt e updatedAt

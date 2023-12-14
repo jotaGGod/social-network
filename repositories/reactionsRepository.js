@@ -53,8 +53,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            return Sequelize.transaction(async(t) => {
-                return Reactions.update(
+            await Sequelize.transaction(async(t) => {
+                await Reactions.update(
                     { is_active: false },
                     {
                         where: {id: id},

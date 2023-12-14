@@ -38,8 +38,8 @@ class Repository {
     }
     async updateById(id, newToken){
         try {
-            return Sequelize.transaction(async (t) => {
-                return Token.update({ value: newToken },
+            await Sequelize.transaction(async (t) => {
+                await Token.update({ value: newToken },
                     {
                         where: {id: id}
                     }

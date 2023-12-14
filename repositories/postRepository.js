@@ -54,8 +54,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return await Post.destroy(
+            await Sequelize.transaction(async (t) => {
+                await Post.destroy(
                     { where: {id: id} }
                 );
             });

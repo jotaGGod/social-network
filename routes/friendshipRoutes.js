@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const FriendshipController = require('../controller/friendshipController');
-const Validations  = require('../middlewares/validationFriendship');
-const friendshipSchema = require('../validation/friendshipValidation');
+const validate  = require('../middlewares/validationFriendship');
+const { createFriendshipSchema, getByidSchema } = require('../validation/friendshipValidation');
 
-router.post('/', Validations.validation(friendshipSchema), FriendshipController.createFriendship);
+router.post('/', validate(createFriendshipSchema), FriendshipController.createFriendship);
 router.get('/', FriendshipController.getFriendships);
-router.delete('/:id', FriendshipController.deleteFriendship);
-router.get('/:id', FriendshipController.getById);
+router.delete('/:id', validate(getByidSchema), FriendshipController.deleteFriendship);
+router.get('/:id', validate(getByidSchema), FriendshipController.getById);
 
 module.exports = router;

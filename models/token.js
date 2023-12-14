@@ -27,13 +27,4 @@ const Token = db.define("token",  {
     }, { tableName: 'token'}
 );
 
-// db.sync()
-//   .then(() => {
-//     console.log('Todas as tabelas foram sincronizadas');
-//   })
-//   .catch((error) => {
-//     console.error('Erro ao sincronizar tabelas:', error);
-//   });
-
-
 module.exports = Token;

@@ -16,7 +16,7 @@ class TargetPublicService {
     };
     async deleteTargetPublic(id) {
         await this.getById(id);
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 

@@ -32,7 +32,7 @@ class UserService {
   async deleteUser(id) {
     const user = await Repository.getById(id);
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    return Repository.delete(id);
+    await Repository.delete(id);
   };
 }
 

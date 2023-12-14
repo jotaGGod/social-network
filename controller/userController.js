@@ -1,6 +1,6 @@
 const httpStatus = require('../utils/statusCodes');
 const userService = require('../services/userServices');
-const authService = require('../services/authService');
+const authenticateService = require('../services/authService');
 const tokenService = require('../services/tokenService');
 
 class UserController {
@@ -14,7 +14,7 @@ class UserController {
   };
   async loginUser(req, res) {
     const { email, password } = req.body;
-    const user = await authService.loginUser(email, password);
+    const user = await authenticateService.authenticateLoginUser(email, password);
     const { token, refreshToken } = await tokenService.generateAuthTokens(user);
     return res.status(httpStatus.OK).json({
       message: 'Logged in successfully',

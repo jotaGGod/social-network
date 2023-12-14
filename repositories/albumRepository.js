@@ -29,8 +29,8 @@ class Repository {
     };
     async update(id, description, target_id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Album.update(
+            await Sequelize.transaction(async (t) => {
+                await Album.update(
                     { description: description, target_id: target_id },
                     {
                         where: {id: id},
@@ -44,8 +44,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return await Album.update(
+            await Sequelize.transaction(async (t) => {
+                 await Album.update(
                     { is_active: false },
                     {
                         where: {id: id},

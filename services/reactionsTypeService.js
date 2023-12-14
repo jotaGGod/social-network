@@ -12,7 +12,7 @@ class ReactionsTypeService {
     async deleteReactionType(id) {
         const reactionsType = await Repository.getById(id);
         if (!reactionsType) throw new ApiError(httpStatus.NOT_FOUND, 'Reaction type not found');
-        return Repository.delete(id);
+        await Repository.delete(id);
     };
 }
 
