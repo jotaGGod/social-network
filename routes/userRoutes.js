@@ -3,8 +3,8 @@ const router = express.Router();
 const UserController = require('../controller/userController');
 const validate  = require('../middlewares/userValidation');
 const validateLogin  = require('../middlewares/loginValidation');
-const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../schemas/userValidation');
-const loginSchema = require('../schemas/loginValidation');
+const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../schemas/userSchema');
+const loginSchema = require('../schemas/loginSchema');
 
 router.get('/', UserController.getUsers);
 router.post('/', validate(createUserSchema), UserController.createUser);

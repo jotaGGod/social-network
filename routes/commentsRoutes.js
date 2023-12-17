@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CommentsController = require('../controller/commentsController');
 const validate  = require('../middlewares/commentsValidation');
-const {createCommentSchema, updateCommentSchema, getByIdSchema} = require('../schemas/commentsValidation');
+const {createCommentSchema, updateCommentSchema, getByIdSchema} = require('../schemas/commentsSchema');
 
 router.post('/', validate(createCommentSchema), CommentsController.createComment);
 router.get('/', CommentsController.getComments);
