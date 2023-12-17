@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controller/userController');
-const validate  = require('../middlewares/validationUser');
-const validateLogin  = require('../middlewares/validationLogin');
-const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../validation/userValidation');
-const loginSchema = require('../validation/loginValidation');
+const validate  = require('../middlewares/userValidation');
+const validateLogin  = require('../middlewares/loginValidation');
+const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../schemas/userValidation');
+const loginSchema = require('../schemas/loginValidation');
 
 router.get('/', UserController.getUsers);
 router.post('/', validate(createUserSchema), UserController.createUser);
