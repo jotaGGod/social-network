@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const ReactionsController = require('../controller/reactionsController');
-const validate  = require('../middlewares/reactionValidation');
+const validateSchema  = require('../middlewares/reactionValidation');
 const { createReactionsSchema, updateReactionsSchema, getByidSchema} = require('../schemas/reactionsSchema');
 
 router.get('/', ReactionsController.getReactions);
-router.post('/', validate(createReactionsSchema), ReactionsController.createReaction);
-router.get('/:id', validate(getByidSchema), ReactionsController.getReactionById);
-router.put('/:id', validate(updateReactionsSchema), ReactionsController.updateReaction);
-router.delete('/:id', validate(getByidSchema), ReactionsController.deleteReaction);
+router.post('/', validateSchema(createReactionsSchema), ReactionsController.createReaction);
+router.get('/:id', validateSchema(getByidSchema), ReactionsController.getReactionById);
+router.put('/:id', validateSchema(updateReactionsSchema), ReactionsController.updateReaction);
+router.delete('/:id', validateSchema(getByidSchema), ReactionsController.deleteReaction);
 
 module.exports = router;
