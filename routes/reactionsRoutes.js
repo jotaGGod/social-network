@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const ReactionsController = require('../controller/reactionsController');
-const validate  = require('../middlewares/validationReactions');
-const { createReactionsSchema, updateReactionsSchema, getByidSchema} = require('../validation/reactionsValidation');
+const validate  = require('../middlewares/reactionValidation');
+const { createReactionsSchema, updateReactionsSchema, getByidSchema} = require('../schemas/reactionsValidation');
 
 router.get('/', ReactionsController.getReactions);
 router.post('/', validate(createReactionsSchema), ReactionsController.createReaction);
