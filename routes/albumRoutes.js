@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AlbumController = require('../controller/albumController');
 const validate  = require('../middlewares/albumValidation');
-const { createAlbumSchema, updateAlbumSchema, getByIdSchema } = require('../schemas/albumValidation');
+const { createAlbumSchema, updateAlbumSchema, getByIdSchema } = require('../schemas/albumSchema');
 
 router.post('/', validate(createAlbumSchema), AlbumController.createAlbum);
 router.get('/', AlbumController.getAlbums);
