@@ -1,12 +1,11 @@
-const AlbumItem = require('../models/album_item');
-const Sequelize = require('../models/db');
+const { AlbumItem } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(post_id, album_id) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await AlbumItem.sequelize.transaction(async (t) => {
                 return AlbumItem.create(
                     {
                         post_id: post_id,
@@ -32,7 +31,7 @@ class Repository {
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await AlbumItem.sequelize.transaction(async (t) => {
                  await AlbumItem.update(
                     { is_active: false },
                     {

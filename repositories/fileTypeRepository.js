@@ -1,12 +1,11 @@
-const FileType = require('../models/file_type');
-const Sequelize = require('../models/db');
+const { FileType } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(type) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await FileType.sequelize.transaction(async (t) => {
                 return FileType.findOne(
                     { type: type },
                     { transaction: t }
@@ -29,7 +28,7 @@ class Repository {
     }
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await FileType.sequelize.transaction(async (t) => {
                 await FileType.update(
                     { is_active: false },
                     {

@@ -1,12 +1,11 @@
-const User = require('../models/users');
-const Sequelize = require('../models/db');
+const { User } = require('../database/models');
 const httpStatus = require("../utils/statusCodes");
 const ApiError = require("../utils/ApiError");
 
 class Repository {
     async createUser(full_name, email, hashedPassword) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return User.sequelize.transaction(async (t) => {
                 return User.create(
                     {
                         full_name: full_name,
@@ -19,12 +18,13 @@ class Repository {
         }
     };
     async getByEmail(email) {
+        console.log('model user: ', User);
         try {
-            return User.findOne(
+            return await User.findOne(
                 { where: { email } }
             );
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while getting e-mail');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
         }
     };
     async getById(id){
@@ -42,7 +42,7 @@ class Repository {
     };
     async update(id, full_name, email) {
         try {
-            return Sequelize.transaction(async (t) => {
+            await User.sequelize.transaction(async (t) => {
                 return User.update(
                     { full_name: full_name, email: email },
                     {
@@ -58,7 +58,7 @@ class Repository {
 
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await User.sequelize.transaction(async (t) => {
                 await User.update(
                     { is_active: false },
                     {

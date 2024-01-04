@@ -1,12 +1,11 @@
-const Friendship = require('../models/friendship');
-const Sequelize = require('../models/db');
+const { Friendship } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async createFriendship(principal_user_id, friend_id) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await Friendship.sequelize.transaction(async (t) => {
                 return Friendship.findOne({
                     principal_user_id: principal_user_id,
                     friend_id: friend_id,
@@ -34,7 +33,7 @@ class Repository {
     };
     async delete(id){
         try {
-            await Sequelize.transaction(async(t) => {
+            await Friendship.sequelize.transaction(async(t) => {
                 await Friendship.update(
                     { is_active: false },
                     {

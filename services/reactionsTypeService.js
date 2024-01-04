@@ -1,4 +1,4 @@
-const Repository = require('../repositories/reactionsTypeRepository');
+const Repository = require('../repositories/reactionTypeRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 

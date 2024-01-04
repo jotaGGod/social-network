@@ -1,14 +1,12 @@
-const ReactionsType = require('../models/reactions_type');
-const Sequelize = require('../models/db');
+const { ReactionType } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
-const User = require("../models/users");
 
 class Repository {
     async create(description) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return ReactionsType.create(
+            return await ReactionType.sequelize.transaction(async (t) => {
+                return ReactionType.create(
                     { description },
                     { transaction: t }
                 );
@@ -18,7 +16,7 @@ class Repository {
         }
     };
     async getById(id){
-        return ReactionsType.findOne(
+        return ReactionType.findOne(
             {
                 where: { id: id },
                 attributes: ['id', 'description', 'is_active']
@@ -26,14 +24,14 @@ class Repository {
         );
     };
     async getAll(){
-        return ReactionsType.findAll(
+        return ReactionType.findAll(
             { attributes: ['id', 'description', 'is_active'] }
         );
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
-                await ReactionsType.update(
+            await ReactionType.sequelize.transaction(async (t) => {
+                await ReactionType.update(
                     { is_active: false },
                     {
                         where: {id: id},

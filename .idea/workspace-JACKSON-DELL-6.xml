@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/.sequelizerc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/album.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/album_item.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/comments.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/file_type.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/friendship.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/post.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reactions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reactions_type.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/target_public.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/token.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/albumItemRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/albumItemRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/albumRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/albumRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/commentsRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/commentsRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/fileTypeRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/fileTypeRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/friendshipRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/friendshipRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/postRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/postRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/reactionsRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/reactionsRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/reactionsTypeRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/reactionsTypeRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/targetPublicRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/targetPublicRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/tokenRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/tokenRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/userRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/userRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/fileTypeRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/fileTypeRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/fileTypeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/fileTypeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/reactionsService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/reactionsService.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jotaGGod&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b5e0542f-4244-464a-a7fc-d2b3ec4840cc" />
+        <option name="url" value="git@github.com:jotaGGod/social-network.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/challange.txt" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2WbCy5QN4ygHyhlxghhdnscrwMf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Node.js.app.js.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.userRoutes.js.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/migration&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jacks/OneDrive/Documents/Dev/Back-end/Challenges/express-api-feature-db&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;,
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JACKSON\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\database" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-56bbcd2c060c-JavaScript-WS-233.11799.229" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="" />
+      <created>1696992143692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696992143692</updated>
+      <workItem from="1696992144706" duration="1383000" />
+      <workItem from="1697031971891" duration="1602000" />
+      <workItem from="1697116954794" duration="20160000" />
+      <workItem from="1697205627937" duration="7627000" />
+      <workItem from="1697226232337" duration="7514000" />
+      <workItem from="1697249706791" duration="5852000" />
+      <workItem from="1697464895896" duration="136000" />
+      <workItem from="1697577268364" duration="7306000" />
+      <workItem from="1697729054077" duration="2157000" />
+      <workItem from="1697750567081" duration="10974000" />
+      <workItem from="1698006016290" duration="7005000" />
+      <workItem from="1698182330100" duration="9945000" />
+      <workItem from="1698339579705" duration="1496000" />
+      <workItem from="1698342002577" duration="123000" />
+      <workItem from="1698422751102" duration="460000" />
+      <workItem from="1698674014354" duration="1442000" />
+      <workItem from="1698698730372" duration="4953000" />
+      <workItem from="1698766506625" duration="702000" />
+      <workItem from="1698846523157" duration="2899000" />
+      <workItem from="1698853779241" duration="482000" />
+      <workItem from="1698932760588" duration="7445000" />
+      <workItem from="1698951198429" duration="719000" />
+      <workItem from="1699308358318" duration="9351000" />
+      <workItem from="1699381613355" duration="3829000" />
+      <workItem from="1699623267265" duration="1280000" />
+      <workItem from="1699742599553" duration="3787000" />
+      <workItem from="1699821473616" duration="1855000" />
+      <workItem from="1699886081625" duration="53000" />
+      <workItem from="1699886147949" duration="19000" />
+      <workItem from="1699886246157" duration="69000" />
+      <workItem from="1699886317255" duration="1598000" />
+      <workItem from="1699906183736" duration="11059000" />
+      <workItem from="1699969234236" duration="1260000" />
+      <workItem from="1700169294649" duration="595000" />
+      <workItem from="1700240759389" duration="5726000" />
+      <workItem from="1700416255090" duration="3378000" />
+      <workItem from="1700520020794" duration="10186000" />
+      <workItem from="1700704063282" duration="7111000" />
+      <workItem from="1700861024100" duration="9459000" />
+      <workItem from="1701094596863" duration="2483000" />
+      <workItem from="1701122045289" duration="12194000" />
+      <workItem from="1701180529252" duration="684000" />
+      <workItem from="1701207968709" duration="4182000" />
+      <workItem from="1701268266291" duration="1096000" />
+      <workItem from="1701300902086" duration="6098000" />
+      <workItem from="1701476378877" duration="7636000" />
+      <workItem from="1701728219088" duration="15623000" />
+      <workItem from="1701813412697" duration="2379000" />
+      <workItem from="1702051854124" duration="3884000" />
+      <workItem from="1702066683644" duration="744000" />
+      <workItem from="1702071422068" duration="194000" />
+      <workItem from="1702309836505" duration="584000" />
+      <workItem from="1702310511345" duration="417000" />
+      <workItem from="1702330720773" duration="7421000" />
+      <workItem from="1702399944721" duration="596000" />
+      <workItem from="1702427593378" duration="1457000" />
+      <workItem from="1702568998116" duration="1060000" />
+      <workItem from="1702581978224" duration="6180000" />
+      <workItem from="1702589911538" duration="602000" />
+      <workItem from="1702755011678" duration="1428000" />
+      <workItem from="1702832598088" duration="2503000" />
+      <workItem from="1702929525660" duration="2934000" />
+      <workItem from="1702946375350" duration="818000" />
+      <workItem from="1703009658312" duration="535000" />
+      <workItem from="1703015832985" duration="274000" />
+      <workItem from="1703171358846" duration="4515000" />
+      <workItem from="1703287010565" duration="4894000" />
+      <workItem from="1703528800431" duration="906000" />
+      <workItem from="1703607054808" duration="651000" />
+      <workItem from="1703619269747" duration="6827000" />
+      <workItem from="1703687430632" duration="1993000" />
+      <workItem from="1703696249798" duration="428000" />
+      <workItem from="1703696807608" duration="3407000" />
+      <workItem from="1703783285181" duration="1736000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1697136451746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697136451746</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactoring and inserting routes">
+      <option name="closed" value="true" />
+      <created>1697251385167</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697251385167</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactoring and inserting methods">
+      <option name="closed" value="true" />
+      <created>1697751087158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697751087158</updated>
+    </task>
+    <task id="LOCAL-00004" summary="new table 'album'">
+      <option name="closed" value="true" />
+      <created>1697754100710</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697754100710</updated>
+    </task>
+    <task id="LOCAL-00005" summary="crud on new table 'post'">
+      <option name="closed" value="true" />
+      <created>1698086452352</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698086452352</updated>
+    </task>
+    <task id="LOCAL-00006" summary="crud on new tables 'album-item' and 'reactions-type'">
+      <option name="closed" value="true" />
+      <created>1698183638531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698183638531</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactoring and inserting crud's tables">
+      <option name="closed" value="true" />
+      <created>1698200463672</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698200463672</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" correction">
+      <option name="closed" value="true" />
+      <created>1698201529062</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698201529062</updated>
+    </task>
+    <task id="LOCAL-00009" summary="inserting cryptography and login auth user">
+      <option name="closed" value="true" />
+      <created>1698811404450</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698811404450</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1699319669761</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699319669761</updated>
+    </task>
+    <task id="LOCAL-00011" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1700709378145</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700709378145</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/refactoring" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="refactoring and inserting routes" />
+    <MESSAGE value="refactoring and inserting methods" />
+    <MESSAGE value="new table 'album'" />
+    <MESSAGE value="crud on new table 'post'" />
+    <MESSAGE value="crud on new tables 'album-item' and 'reactions-type'" />
+    <MESSAGE value="refactoring and inserting crud's tables" />
+    <MESSAGE value=" correction" />
+    <MESSAGE value="inserting cryptography and login auth user" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+  </component>
+</project>

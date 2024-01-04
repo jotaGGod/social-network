@@ -1,12 +1,11 @@
-const TargetPublic = require('../models/target_public');
-const Sequelize = require('../models/db');
+const { TargetPublic } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(type) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await TargetPublic.sequelize.transaction(async (t) => {
                 return TargetPublic.create(
                     { type },
                     { transaction: t }
@@ -31,7 +30,7 @@ class Repository {
     };
     async delete(id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await TargetPublic.sequelize.transaction(async (t) => {
                 await TargetPublic.update(
                     { is_active: false },
                     {

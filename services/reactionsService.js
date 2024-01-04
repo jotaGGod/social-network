@@ -1,5 +1,5 @@
-const Repository = require('../repositories/reactionsRepository')
-const Reactions = require("../models/reactions");
+const Repository = require('../repositories/reactionRepository')
+const Reactions = require("../database/models/reaction");
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
