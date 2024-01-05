@@ -21,21 +21,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     principal_user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
     },
     friend_id: {
       type: DataTypes.INTEGER
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     updated_at: {
       type: DataTypes.DATE,
     },
     is_active: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: true,
     }
   }, {

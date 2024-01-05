@@ -6,7 +6,7 @@ class Repository {
     async createFriendship(principal_user_id, friend_id) {
         try {
             return await Friendship.sequelize.transaction(async (t) => {
-                return Friendship.findOne({
+                return Friendship.create({
                     principal_user_id: principal_user_id,
                     friend_id: friend_id,
                     is_active: true
@@ -15,7 +15,7 @@ class Repository {
                 );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new friendship');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
         }
     };
     async getAll(){

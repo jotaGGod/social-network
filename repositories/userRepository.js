@@ -18,7 +18,6 @@ class Repository {
         }
     };
     async getByEmail(email) {
-        console.log('model user: ', User);
         try {
             return await User.findOne(
                 { where: { email } }
