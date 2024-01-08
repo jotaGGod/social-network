@@ -46,7 +46,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: new Date(),
       allowNull: false
-    }
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    },
   }, {
     sequelize,
     modelName: 'Post',

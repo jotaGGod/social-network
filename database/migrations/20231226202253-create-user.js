@@ -23,6 +23,16 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      created_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+      },
       is_active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

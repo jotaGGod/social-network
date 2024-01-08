@@ -24,6 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+      allowNull: false
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+      allowNull: false
+    },
     is_active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
