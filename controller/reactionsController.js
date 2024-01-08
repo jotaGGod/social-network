@@ -3,8 +3,8 @@ const reactionsService = require('../services/reactionsService');
 
 class ReactionsController {
     async createReaction(req, res) {
-        const { user_id, reactions_type_id, post_id } = req.body;
-        const reaction = await reactionsService.createReaction(user_id, reactions_type_id, post_id);
+        const { user_id, reaction_type_id, post_id } = req.body;
+        const reaction = await reactionsService.createReaction(user_id, reaction_type_id, post_id);
         return res.status(httpStatus.CREATED).json({
             message: 'Reaction created successfully!',
             data: reaction
@@ -21,8 +21,8 @@ class ReactionsController {
     }
     async updateReaction(req, res) {
         const { id } = req.params;
-        const { user_id, reactions_type_id, post_id } = req.body;
-        await reactionsService.updateReaction(id, user_id, reactions_type_id, post_id);
+        const { user_id, reaction_type_id, post_id } = req.body;
+        await reactionsService.updateReaction(id, user_id, reaction_type_id, post_id);
         return res.status(httpStatus.OK).json({
             details: "Reaction updated successfully"
         });

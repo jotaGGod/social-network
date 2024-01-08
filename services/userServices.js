@@ -20,7 +20,9 @@ class UserService {
     return !!existingUser;
   }
   async getAllUsers() {
-    return Repository.getAll();
+    const users = await Repository.getAll();
+    if (!users) throw new ApiError(httpStatus.NOT_FOUND, 'No users was found!');
+    return users;
   };
   async updateUserById(id, full_name, email) {
     const user = await Repository.getById(id);

@@ -4,8 +4,8 @@ const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class ReactionsService {
-    async createReaction(user_id, reactions_type_id, post_id) {
-        return Repository.create(user_id, reactions_type_id, post_id);
+    async createReaction(user_id, reaction_type_id, post_id) {
+        return Repository.create(user_id, reaction_type_id, post_id);
     };
     async getReactionById(id) {
         const reaction = await Repository.getById(id);
@@ -15,10 +15,10 @@ class ReactionsService {
     async getAllReactions() {
         return Repository.getAll();
     };
-    async updateReaction(id, user_id, reactions_type_id, post_id) {
+    async updateReaction(id, user_id, reaction_type_id, post_id) {
         const reaction = await Repository.getById(id);
         if (!reaction) throw new ApiError(httpStatus.NOT_FOUND,'Reaction not found');
-        return Repository.update(id, user_id, reactions_type_id, post_id);
+        return Repository.update(id, user_id, reaction_type_id, post_id);
     };
     async deleteReaction(id) {
         const reaction = await Repository.getById(id);

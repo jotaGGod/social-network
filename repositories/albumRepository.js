@@ -6,7 +6,7 @@ class Repository {
     async create(description, target_id) {
         try {
             return await Album.sequelize.transaction(async (t) => {
-                return Album.findOne({
+                return Album.create({
                     description: description,
                     target_id: target_id
                     },
