@@ -1,7 +1,7 @@
 const Repository = require('../repositories/userRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
-const HashService = require("./cryptoService")
+const HashService = require("./cryptoService");
 
 class UserService {
   async createUser(full_name, email, password) {
