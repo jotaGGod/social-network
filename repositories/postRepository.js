@@ -22,13 +22,13 @@ class Repository {
         return Post.findOne(
             {
                 where: { id: id },
-                attributes: ['id', 'description', 'user_id', 'target_id', 'type_id']
+                attributes: ['id', 'description', 'user_id', 'target_id', 'type_id', 'is_active']
             }
         );
     };
     async getAll(){
         return Post.findAll(
-            { attributes: ['id', 'description', 'user_id', 'target_id', 'type_id'] }
+            { attributes: ['id', 'description', 'user_id', 'target_id', 'type_id', 'is_active'] }
         );
     };
     async update(id, description, user_id, target_id, type_id) {
@@ -54,8 +54,12 @@ class Repository {
     async delete (id) {
         try {
             await Post.sequelize.transaction(async (t) => {
-                await Post.destroy(
-                    { where: {id: id} }
+                await Post.update(
+                    { is_active: false },
+                    {
+                        where: {id: id},
+                        transaction: t
+                    }
                 );
             });
         } catch (error) {

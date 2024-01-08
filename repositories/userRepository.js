@@ -5,7 +5,7 @@ const ApiError = require("../utils/ApiError");
 class Repository {
     async createUser(full_name, email, hashedPassword) {
         try {
-            return User.sequelize.transaction(async (t) => {
+            return await User.sequelize.transaction(async (t) => {
                 return User.create(
                     {
                         full_name: full_name,
@@ -23,7 +23,7 @@ class Repository {
                 { where: { email } }
             );
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while getting a email by id');
         }
     };
     async getById(id){

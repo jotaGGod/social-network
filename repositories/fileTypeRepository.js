@@ -6,7 +6,7 @@ class Repository {
     async create(type) {
         try {
             return await FileType.sequelize.transaction(async (t) => {
-                return FileType.findOne(
+                return FileType.create(
                     { type: type },
                     { transaction: t }
                 );
