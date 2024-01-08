@@ -1,13 +1,12 @@
-const Reactions = require('../models/reactions');
-const Sequelize = require('../models/db');
+const { Reaction } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(user_id, reactions_type_id, post_id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Reactions.create(
+            return await Reaction.sequelize.transaction(async (t) => {
+                return Reaction.create(
                     {
                         user_id: user_id,
                         reactions_type_id: reactions_type_id,
@@ -20,7 +19,7 @@ class Repository {
         }
     };
     async getById(id){
-        return Reactions.findOne(
+        return Reaction.findOne(
             {
                 where: { id: id },
                 attributes: ['id', 'user_id', 'reactions_type_id', 'post_id', 'is_active']
@@ -28,14 +27,14 @@ class Repository {
         );
     };
     async getAll(){
-        return Reactions.findAll(
+        return Reaction.findAll(
             { attributes: ['id', 'user_id', 'reactions_type_id', 'post_id', 'is_active'] }
         );
     };
     async update(id, user_id, reactions_type_id, post_id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Reactions.update(
+            await Reaction.sequelize.transaction(async (t) => {
+                return Reaction.update(
                     {
                         user_id: user_id,
                         reactions_type_id: reactions_type_id,
@@ -53,8 +52,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async(t) => {
-                await Reactions.update(
+            await Reaction.sequelize.transaction(async(t) => {
+                await Reaction.update(
                     { is_active: false },
                     {
                         where: {id: id},

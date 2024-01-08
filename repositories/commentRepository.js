@@ -1,13 +1,12 @@
-const Comments = require('../models/comments');
-const Sequelize = require('../models/db');
+const { Comment } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(description, user_id, post_id) {
         try {
-            return Sequelize.transaction(async (t) => {
-                return Comments.create(
+            return await Comment.sequelize.transaction(async (t) => {
+                return Comment.create(
                     {
                         description: description,
                         user_id: user_id,
@@ -19,7 +18,7 @@ class Repository {
         }
     };
     async getById(id){
-        return Comments.findOne(
+        return Comment.findOne(
             {
                 where: { id: id },
                 attributes: ['id', 'description', 'user_id', 'post_id', 'is_active']
@@ -27,15 +26,15 @@ class Repository {
         );
     };
     async getAll(){
-        return Comments.findAll(
+        return Comment.findAll(
             { attributes: ['id', 'description', 'user_id', 'post_id', 'is_active'] }
         )
     };
 
     async update(id, description, user_id, post_id) {
         try {
-            await Sequelize.transaction(async (t) => {
-                await Comments.update(
+            await Comment.sequelize.transaction(async (t) => {
+                await Comment.update(
                     {
                         description: description,
                         user_id: user_id,
@@ -53,8 +52,8 @@ class Repository {
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
-                await Comments.update(
+            await Comment.sequelize.transaction(async (t) => {
+                await Comment.update(
                     { is_active: false },
                     {
                         where: {id: id},

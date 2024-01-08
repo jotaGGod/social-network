@@ -1,7 +1,6 @@
 const Repository = require('../repositories/friendshipRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
-const userService = require("./userServices");
 
 class FriendshipService {
     async createFriendship(principal_user_id, friend_id) {

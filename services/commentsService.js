@@ -1,4 +1,4 @@
-const Repository = require('../repositories/commentsRepository');
+const Repository = require('../repositories/commentRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 

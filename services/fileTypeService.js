@@ -1,5 +1,4 @@
 const Repository  = require('../repositories/fileTypeRepository');
-const FileType = require("../models/file_type");
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 

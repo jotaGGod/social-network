@@ -1,12 +1,11 @@
-const Post = require('../models/post');
+const { Post } = require('../database/models');
 const httpStatus = require('../utils/statusCodes');
-const Sequelize = require('../models/db');
 const ApiError = require("../utils/ApiError");
 
 class Repository {
     async create(description, user_id, target_id, type_id) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await Post.sequelize.transaction(async (t) => {
                 return Post.create(
                     {
                         description: description,
@@ -34,7 +33,7 @@ class Repository {
     };
     async update(id, description, user_id, target_id, type_id) {
         try {
-            return Sequelize.transaction(async (t) => {
+            await Post.sequelize.transaction(async (t) => {
                 return Post.update(
                     {
                         description: description,
@@ -54,7 +53,7 @@ class Repository {
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await Post.sequelize.transaction(async (t) => {
                 await Post.destroy(
                     { where: {id: id} }
                 );

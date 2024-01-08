@@ -1,12 +1,11 @@
-const Album = require('../models/album');
-const Sequelize = require('../models/db');
+const { Album } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class Repository {
     async create(description, target_id) {
         try {
-            return Sequelize.transaction(async (t) => {
+            return await Album.sequelize.transaction(async (t) => {
                 return Album.findOne({
                     description: description,
                     target_id: target_id
@@ -29,7 +28,7 @@ class Repository {
     };
     async update(id, description, target_id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await Album.sequelize.transaction(async (t) => {
                 await Album.update(
                     { description: description, target_id: target_id },
                     {
@@ -44,7 +43,7 @@ class Repository {
     };
     async delete (id) {
         try {
-            await Sequelize.transaction(async (t) => {
+            await Album.sequelize.transaction(async (t) => {
                  await Album.update(
                     { is_active: false },
                     {

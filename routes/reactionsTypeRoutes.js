@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const ReactionsTypeController = require('../controller/reactionsTypeController');
+const validateSchema = require("../middlewares/reactionsTypeValidation");
+const { createReactionTypeSchema, getByIdSchema } = require("../schemas/reactionsTypeSchema");
 
-router.post('/', ReactionsTypeController.createReactionType);
+router.post('/', validateSchema(createReactionTypeSchema), ReactionsTypeController.createReactionType);
 router.get('/', ReactionsTypeController.getReactionsType);
-router.delete('/:id', ReactionsTypeController.deleteReactionType);
+router.delete('/:id', validateSchema(getByIdSchema), ReactionsTypeController.deleteReactionType);
 
 module.exports = router;
