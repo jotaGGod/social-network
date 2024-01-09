@@ -14,7 +14,15 @@ module.exports = {
                 is_active: true
             },
             {
-                type: 'private',
+                type: 'friends except',
+                is_active: true
+            },
+            {
+                type: 'only me',
+                is_active: true
+            },
+            {
+                type: 'custom',
                 is_active: true
             }
         ]

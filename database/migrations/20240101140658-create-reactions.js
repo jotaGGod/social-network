@@ -20,7 +20,6 @@ module.exports = {
       reaction_type_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
         references:{
           model: 'reaction_type',
           key: 'id'

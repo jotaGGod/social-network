@@ -32,6 +32,7 @@ module.exports = {
       },
       type_id: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references:{
           model: 'file_type',
           key: 'id'
