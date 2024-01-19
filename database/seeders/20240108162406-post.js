@@ -7,7 +7,7 @@ module.exports = {
         [
             {
                 description: 'Eu com meu mano Mickey',
-                user_id: 1,
+                user_id: 25,
                 target_id: 1,
                 type_id: 1,
                 created_at: new Date('2022-04-01T08:30:00'),
@@ -16,7 +16,7 @@ module.exports = {
             },
             {
                 description: 'Minha mãe passando mal na montanha russa',
-                user_id: 1,
+                user_id: 26,
                 target_id: 1,
                 type_id: 1,
                 created_at: new Date('2022-12-28T15:45:00'),
@@ -25,7 +25,7 @@ module.exports = {
             },
             {
                 description: 'Jacaré invadiu a piscina de casa',
-                user_id: 1,
+                user_id: 27,
                 target_id: 1,
                 type_id: 1,
                 created_at: new Date('2022-02-12T20:12:00'),
@@ -34,7 +34,7 @@ module.exports = {
             },
             {
                 description: 'Eu dando mortal',
-                user_id: 2,
+                user_id: 22,
                 target_id: 1,
                 type_id: 2,
                 created_at: new Date('2022-03-05T12:00:00'),
@@ -43,7 +43,7 @@ module.exports = {
             },
             {
                 description: 'Olha essa água',
-                user_id: 2,
+                user_id: 23,
                 target_id: 1,
                 type_id: 2,
                 created_at: new Date('2022-01-04T09:30:00'),
@@ -52,7 +52,7 @@ module.exports = {
             },
             {
                 description: 'Treino e dieta nas maldivas',
-                user_id: 2,
+                user_id: 24,
                 target_id: 1,
                 type_id: 2,
                 created_at: new Date('2022-08-03T18:20:00'),
@@ -133,7 +133,7 @@ module.exports = {
             },
             {
                 description: 'Construí uma cabana no Alaska',
-                user_id: 10,
+                user_id: 28,
                 target_id: 4,
                 type_id: 2,
                 created_at: new Date('2002-02-25T19:40:00'),
@@ -142,7 +142,7 @@ module.exports = {
             },
             {
                 description: 'Hoje irei para o show do Guns',
-                user_id: 15,
+                user_id: 29,
                 target_id: 4,
                 created_at: new Date('2002-02-25T19:40:00'),
                 updated_at: new Date('2002-02-25T19:45:00'),
@@ -150,7 +150,7 @@ module.exports = {
             },
             {
                 description: 'Que calor, parece que estamos no sol',
-                user_id: 15,
+                user_id: 30,
                 target_id: 4,
                 created_at: new Date('2002-02-25T19:40:00'),
                 updated_at: new Date('2002-02-25T19:45:00'),

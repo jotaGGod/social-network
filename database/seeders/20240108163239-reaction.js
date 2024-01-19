@@ -16,7 +16,7 @@ module.exports = {
           {
             user_id: 30,
             reaction_type_id: 1,
-            post_id: 2,
+            post_id: 1,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
@@ -24,6 +24,22 @@ module.exports = {
           {
             user_id: 30,
             reaction_type_id: 1,
+            post_id: 2,
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+          },
+          {
+            user_id: 29,
+            reaction_type_id: 2,
+            post_id: 2,
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+          },
+          {
+            user_id: 29,
+            reaction_type_id: 2,
             post_id: 3,
             created_at: new Date(),
             updated_at: new Date(),
@@ -32,39 +48,23 @@ module.exports = {
           {
             user_id: 29,
             reaction_type_id: 2,
+            post_id: 3,
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+          },
+          {
+            user_id: 28,
+            reaction_type_id: 1,
             post_id: 4,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
           },
           {
-            user_id: 29,
-            reaction_type_id: 2,
-            post_id: 5,
-            created_at: new Date(),
-            updated_at: new Date(),
-            is_active: true
-          },
-          {
-            user_id: 29,
-            reaction_type_id: 2,
-            post_id: 6,
-            created_at: new Date(),
-            updated_at: new Date(),
-            is_active: true
-          },
-          {
             user_id: 28,
             reaction_type_id: 1,
-            post_id: 7,
-            created_at: new Date(),
-            updated_at: new Date(),
-            is_active: true
-          },
-          {
-            user_id: 28,
-            reaction_type_id: 1,
-            post_id: 8,
+            post_id: 4,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
@@ -72,7 +72,7 @@ module.exports = {
           {
             user_id: 27,
             reaction_type_id: 4,
-            post_id: 9,
+            post_id: 4,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
@@ -80,7 +80,7 @@ module.exports = {
           {
             user_id: 26,
             reaction_type_id: 6,
-            post_id: 10,
+            post_id: 17,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
@@ -104,7 +104,7 @@ module.exports = {
           {
             user_id: 23,
             reaction_type_id: 1,
-            post_id: 13,
+            post_id: 17,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
@@ -112,15 +112,15 @@ module.exports = {
           {
             user_id: 22,
             reaction_type_id: 2,
-            post_id: 14,
+            post_id: 16,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
           },
           {
             user_id: 21,
-            reaction_type_id: 1,
-            post_id: 15,
+            reaction_type_id: 6,
+            post_id: 17,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true

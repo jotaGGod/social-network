@@ -7,7 +7,7 @@ module.exports = {
         [
           {
             description: "Queriaa estar aí!!",
-            user_id: 30,
+            user_id: 6,
             post_id: 1,
             created_at: new Date(),
             updated_at: new Date(),
@@ -15,7 +15,7 @@ module.exports = {
           },
           {
             description: "Essa montanha russa é braba",
-            user_id: 30,
+            user_id: 5,
             post_id: 2,
             created_at: new Date(),
             updated_at: new Date(),
@@ -23,7 +23,7 @@ module.exports = {
           },
           {
             description: "Já teve vários acidentes com jacaré aí",
-            user_id: 30,
+            user_id: 4,
             post_id: 3,
             created_at: new Date(),
             updated_at: new Date(),
@@ -31,7 +31,7 @@ module.exports = {
           },
           {
             description: "Uma das águas mais lindas do mundo",
-            user_id: 29,
+            user_id: 8,
             post_id: 5,
             created_at: new Date(),
             updated_at: new Date(),
@@ -39,7 +39,7 @@ module.exports = {
           },
           {
             description: "Foco sempre irmão",
-            user_id: 29,
+            user_id: 7,
             post_id: 6,
             created_at: new Date(),
             updated_at: new Date(),
@@ -86,17 +86,17 @@ module.exports = {
             is_active: true
           },
           {
-            description: "Pra cima, você vai conseguir!",
+            description: "Banda dhr demais",
             user_id: 22,
-            post_id: 14,
+            post_id: 16,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
           },
           {
-            description: "Muito aconchegante, top demais",
+            description: "Comprei um ar condicionado",
             user_id: 21,
-            post_id: 15,
+            post_id: 17,
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
