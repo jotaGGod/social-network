@@ -13,5 +13,8 @@ router.put('/:id', validateSchema(updateUserSchema), UserController.updateUser);
 router.delete('/:id', validateSchema(getByIdSchema), UserController.deleteUser);
 router.get('/:id', validateSchema(getByIdSchema), UserController.getUserById);
 router.post('/refresh-token', UserController.createRefreshToken);
+router.get('/:id/feed', UserController.getFeedNews);
+router.get('/reports/post-statistics', UserController.getPostStatistics);
+// router.get('/reports/user-activity', UserController.getUserActivity);
 
 module.exports = router;

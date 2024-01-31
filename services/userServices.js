@@ -36,6 +36,14 @@ class UserService {
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     await Repository.delete(id);
   };
+  async getFeedNews(id) {
+    return Repository.getFeedNews(id);
+  };
+  async getPostStatistics() {
+    const postStatistics = await Repository.getPostStatistics();
+    if (!postStatistics) throw new ApiError(httpStatus.NOT_FOUND, 'No post statistics was found!');
+    return postStatistics;
+  };
 }
 
 module.exports = new UserService();

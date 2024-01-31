@@ -29,7 +29,7 @@ class UserController {
       message: 'Refresh token generated successfully',
       refreshToken: newRefreshToken
     });
-  }
+  };
   async getUserById(req, res) {
     const { id } = req.params;
     const user = await userService.getUserById(id);
@@ -54,6 +54,19 @@ class UserController {
     await userService.deleteUser(id);
     return res.status(httpStatus.OK).json({
       details: "User deleted successfully"
+    });
+  };
+  async getFeedNews(req, res) {
+    const { id } = req.params;
+    const feed = await userService.getFeedNews(id);
+    return res.status(httpStatus.OK).json({
+      feed: feed
+    });
+  };
+  async getPostStatistics(req, res) {
+    const postStatistics = await userService.getPostStatistics();
+    return res.status(httpStatus.OK).json({
+      post_statistics: postStatistics
     });
   };
 }

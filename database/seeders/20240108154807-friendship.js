@@ -14,14 +14,14 @@ module.exports = {
                 is_active: true
             },
             {
-                principal_user_id: 2,
+                principal_user_id: 1,
                 friend_id: 29,
                 created_at: new Date(),
                 updated_at: new Date(),
                 is_active: true
             },
             {
-                principal_user_id: 3,
+                principal_user_id: 1,
                 friend_id: 28,
                 created_at: new Date(),
                 updated_at: new Date(),
