@@ -60,7 +60,7 @@ class UserController {
     const { id } = req.params;
     const feed = await userService.getFeedNews(id);
     return res.status(httpStatus.OK).json({
-      feed: feed
+      feed: {posts: feed}
     });
   };
   async getPostStatistics(req, res) {

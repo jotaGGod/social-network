@@ -76,12 +76,12 @@ class Repository {
             return await sequelize.query(`
                 SELECT
                     post_id,
-                    JSON_OBJECT(
-                            'author_  id', post_author_id,
-                            'author_name', post_author
-                    ) AS author,
                     post_description,
                     created_at,
+                    JSON_OBJECT(
+                            'id', post_author_id,
+                            'name', post_author
+                    ) AS author,
                     JSON_OBJECT(
                         'likes', SUM(IF(reaction_type = 'like' AND reaction_quantity IS NOT NULL, reaction_quantity, 0)),
                         'love', SUM(IF(reaction_type = 'love' AND reaction_quantity IS NOT NULL, reaction_quantity, 0)),
@@ -94,10 +94,10 @@ class Repository {
                 FROM
                     (SELECT
                          P.id AS post_id,
+                         P.description AS post_description,
+                         P.created_at,                         
                          F.friend_id AS post_author_id,
                          UF.full_name AS post_author,
-                         P.description AS post_description,
-                         P.created_at,
                          R.reaction_type,
                          R.reaction_quantity,
                          (
@@ -143,12 +143,12 @@ class Repository {
             return await sequelize.query(`
                 SELECT
                     post_id,
-                    JSON_OBJECT(
-                            'author_  id', post_author_id,
-                            'author_name', post_author
-                    ) AS author,
                     post_description,
                     created_at,
+                    JSON_OBJECT(
+                            'id', post_author_id,
+                            'name', post_author
+                    ) AS author,
                     JSON_OBJECT(
                         'likes', SUM(IF(reaction_type = 'like' AND reaction_quantity IS NOT NULL, reaction_quantity, 0)),
                         'love', SUM(IF(reaction_type = 'love' AND reaction_quantity IS NOT NULL, reaction_quantity, 0)),
@@ -161,10 +161,10 @@ class Repository {
                 FROM
                     (SELECT
                          P.id AS post_id,
-                         F.friend_id AS post_author_id,
-                         UF.full_name AS post_author,
                          P.description AS post_description,
                          P.created_at,
+                         F.friend_id AS post_author_id,
+                         UF.full_name AS post_author,
                          R.reaction_type,
                          R.reaction_quantity,
                          (
@@ -201,41 +201,9 @@ class Repository {
                 }
             )
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while getting a feed');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while getting a post statistics');
         }
     };
 }
 
 module.exports = new Repository();
-
-/*
-{
-    "feed": [
-    {
-        "post_id": 1,
-        "author": {
-            "id": 456,
-            "username": "autor_postagem",
-            "name": "Nome do Autor"
-        },
-        "description": "Conteúdo da postagem",
-        "created_at": "2024-01-11T12:30:00Z",
-        "likes": 20,
-        "love": 190,
-        "comments": 33
-    },
-    {
-        "post_id": 56,
-        "author": {
-            "id": 89,
-            "username": "autor_postagem",
-            "name": "Nome do Autor"
-        },
-        "description": "Conteúdo da postagem",
-        "created_at": "2024-01-11T12:30:00Z",
-        "likes": 14,
-        "saf": 3,
-        "comments": 1
-    }
-]
-}*/
