@@ -1,49 +1,51 @@
-const Repository = require('../repositories/userRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
-const HashService = require("./cryptoService");
 
 class UserService {
-  async createUser(full_name, email, password) {
-    const isEmailTaken = await Repository.getByEmail(email);
+  constructor(userRepository, hashService) {
+    this.userRepository = userRepository;
+    this.hashService = hashService;
+  }
+  async create(full_name, email, password) {
+    const isEmailTaken = await this.userRepository.getByEmail(email);
     if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
-    const hashedPassword = await HashService.hash(password);
-    return Repository.createUser(full_name, email, hashedPassword);
+    const hashedPassword = await this.hashService.hash(password);
+    return this.userRepository.create(full_name, email, hashedPassword);
   };
   async getUserById(id) {
-      const user = await Repository.getById(id);
+      const user = await this.userRepository.getById(id);
       if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       return user;
   };
   async isEmailTaken(email) {
-    const existingUser = await Repository.getByEmail(email);
+    const existingUser = await this.userRepository.getByEmail(email);
     return !!existingUser;
   }
   async getAllUsers() {
-    const users = await Repository.getAll();
+    const users = await this.userRepository.getAll();
     if (!users) throw new ApiError(httpStatus.NOT_FOUND, 'No users was found!');
     return users;
   };
   async updateUserById(id, full_name, email) {
-    const user = await Repository.getById(id);
+    const user = await this.userRepository.getById(id);
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     const isEmailTaken = await this.isEmailTaken(email);
     if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
-    await Repository.update(id, full_name, email);
+    await this.userRepository.update(id, full_name, email);
   };
   async deleteUser(id) {
-    const user = await Repository.getById(id);
+    const user = await this.userRepository.getById(id);
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    await Repository.delete(id);
+    await this.userRepository.delete(id);
   };
   async getFeedNews(id) {
-    return Repository.getFeedNews(id);
+    return this.userRepository.getFeedNews(id);
   };
   async getPostStatistics() {
-    const postStatistics = await Repository.getPostStatistics();
+    const postStatistics = await this.userRepository.getPostStatistics();
     if (!postStatistics) throw new ApiError(httpStatus.NOT_FOUND, 'No post statistics was found!');
     return postStatistics;
   };
 }
 
-module.exports = new UserService();
+module.exports = UserService;

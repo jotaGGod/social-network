@@ -10,4 +10,4 @@ class CryptoService {
     }
 }
 
-module.exports = new CryptoService();
+module.exports = CryptoService;
