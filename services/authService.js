@@ -6,13 +6,17 @@ require('dotenv').config()
 
 
 class AuthenticateService {
+    constructor(userRepository, hashService) {
+        this.userRepository = userRepository;
+        this.hashService = hashService;
+    }
     async authenticateLoginUser (email, password) {
-        const user = await userRepository.getByEmail(email);
+        const user = await this.userRepository.getByEmail(email);
         if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email not found');
-        const isValidPassword = await HashService.compare(password, user.password);
+        const isValidPassword = await this.hashService.compare(password, user.password);
         if(!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED,'Password incorrect');
         return user
     };
 }
 
-module.exports = new AuthenticateService();
+module.exports = AuthenticateService;
