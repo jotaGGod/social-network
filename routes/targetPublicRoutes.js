@@ -1,9 +1,11 @@
 const express = require('express');
-const router = express.Router();
-const TargetPublicController = require('../controller/targetPublicController');
 
-router.post('/', TargetPublicController.createTargetPublic);
-router.get('/', TargetPublicController.getTargetPublics);
-router.delete('/:id', TargetPublicController.deleteTargetPublic);
+function createTargetPublicRoutes(targetPublicController){
+    const router = express.Router();
+    router.post('/', targetPublicController.createTargetPublic.bind(targetPublicController));
+    router.get('/', targetPublicController.getTargetPublics.bind(targetPublicController));
+    router.delete('/:id', targetPublicController.deleteTargetPublic.bind(targetPublicController));
+    return router
+}
 
-module.exports = router;
+module.exports = createTargetPublicRoutes;

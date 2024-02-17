@@ -1,48 +1,30 @@
-const { TargetPublic } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
-class Repository {
+class TargetPublicRepository {
+    constructor(database) {
+        this.database = database;
+    }
     async create(type) {
         try {
-            return await TargetPublic.sequelize.transaction(async (t) => {
-                return TargetPublic.create(
-                    { type },
-                    { transaction: t }
-                );
-            });
+            return this.database.create(type);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating target public');
         }
     };
     async getAll(){
-        return TargetPublic.findAll(
-            { attributes: ['id', 'type', 'is_active'] }
-        );
+        return this.database.getAll()
     };
     async getById(id){
-        return TargetPublic.findOne(
-            {
-                where: {id: id},
-                attributes: ['id', 'type', 'is_active']
-            }
-        );
+        return this.database.getById(id);
     };
     async delete(id) {
         try {
-            await TargetPublic.sequelize.transaction(async (t) => {
-                await TargetPublic.update(
-                    { is_active: false },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            return this.database.delete(id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting a target public');
         }
     };
 }
 
-module.exports = new Repository();
+module.exports = TargetPublicRepository;
