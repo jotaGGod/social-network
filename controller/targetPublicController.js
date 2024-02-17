@@ -1,26 +1,28 @@
 const httpStatus = require('../utils/statusCodes');
-const TargetPublicService = require('../services/targetPublicService');
 
 class TargetPublicController {
+    constructor(targetPublicService) {
+        this.targetPublicService = targetPublicService;
+    }
     async createTargetPublic(req, res) {
         const { type } = req.body;
-        const targetPublic = await TargetPublicService.createTargetPublic(type);
+        const targetPublic = await this.targetPublicService.createTargetPublic(type);
         return res.status(httpStatus.CREATED).json({
             message: 'Target public created successfully!',
             data: targetPublic
         });
     }
     async getTargetPublics(req, res) {
-        const targetPublic = await TargetPublicService.getAllTargetPublic();
+        const targetPublic = await this.targetPublicService.getAllTargetPublic();
         return res.status(httpStatus.OK).json(targetPublic);
     }
     async deleteTargetPublic(req, res) {
         const { id } = req.params;
-        await TargetPublicService.deleteTargetPublic(id);
+        await this.targetPublicService.deleteTargetPublic(id);
         return res.status(httpStatus.OK).json({
             details: "Target public deleted successfully"
         });
     }
 }
 
-module.exports = new TargetPublicController();
+module.exports = TargetPublicController;
