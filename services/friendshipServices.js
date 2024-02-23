@@ -1,23 +1,25 @@
-const Repository = require('../repositories/friendshipRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class FriendshipService {
-    async createFriendship(principal_user_id, friend_id) {
-        return Repository.createFriendship(principal_user_id, friend_id);
+    constructor(friendshipRepository) {
+        this.friendshipRepository = friendshipRepository;
+    }
+    async create(principal_user_id, friend_id) {
+        return this.friendshipRepository.create(principal_user_id, friend_id);
     };
     async getAllFriendships() {
-        return Repository.getAll();
+        return this.friendshipRepository.getAll();
     };
     async getById(id){
-        const friendship = await Repository.getById(id);
+        const friendship = await this.friendshipRepository.getById(id);
         if (!friendship) throw new ApiError(httpStatus.NOT_FOUND, 'Friendship not found.');
         return friendship;
     };
     async deleteFriendship(id) {
         await this.getById(id);
-        await Repository.delete(id);
+        await this.friendshipRepository.delete(id);
     };
 }
 
-module.exports = new FriendshipService();
+module.exports = FriendshipService;

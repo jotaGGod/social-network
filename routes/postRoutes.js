@@ -1,13 +1,16 @@
 const express = require('express');
-const router = express.Router();
 const PostController = require('../controller/postController');
 const validateSchema  = require('../middlewares/postValidation');
 const {createPostSchema, updatePostSchema, getByIdSchema} = require('../schemas/postSchema')
 
-router.post('/', validateSchema(createPostSchema), PostController.createPost);
-router.get('/', PostController.getPosts);
-router.get('/:id', validateSchema(getByIdSchema), PostController.getPostById);
-router.put('/:id', validateSchema(updatePostSchema), PostController.updatePost);
-router.delete('/:id', validateSchema(getByIdSchema), PostController.deletePost);
+function createPostRoutes(postController) {
+    const router = express.Router();
+    router.post('/', validateSchema(createPostSchema), postController.createPost.bind(postController));
+    router.get('/', postController.getPosts.bind(postController));
+    router.get('/:id', validateSchema(getByIdSchema), postController.getPostById.bind(postController));
+    router.put('/:id', validateSchema(updatePostSchema), postController.updatePost.bind(postController));
+    router.delete('/:id', validateSchema(getByIdSchema), postController.deletePost.bind(postController));
+    return router
+}
 
-module.exports = router;
+module.exports = createPostRoutes;
