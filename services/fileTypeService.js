@@ -1,23 +1,25 @@
-const Repository  = require('../repositories/fileTypeRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class FileTypeService {
+    constructor(fileTypeRepository) {
+        this.fileTypeRepository = fileTypeRepository;
+    }
     async createFileType(type) {
-        return Repository.create(type)
+        return this.fileTypeRepository.create(type)
     };
     async getById(id){
-        const fileType = await Repository.getById(id);
+        const fileType = await this.fileTypeRepository.getById(id);
         if (!fileType) throw new ApiError(httpStatus.NOT_FOUND, 'File type not found!');
         return fileType;
     }
     async getAllFileType() {
-        return Repository.getAll();
+        return this.fileTypeRepository.getAll();
     };
     async deleteFileType(id) {
         await this.getById(id);
-        await Repository.delete(id);
+        await this.fileTypeRepository.delete(id);
     };
 }
 
-module.exports = new FileTypeService();
+module.exports = FileTypeService;
