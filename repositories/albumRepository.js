@@ -1,61 +1,37 @@
-const { Album } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
-class Repository {
+class AlbumRepository {
+    constructor(database) {
+        this.database = database;
+    }
     async create(description, target_id) {
         try {
-            return await Album.sequelize.transaction(async (t) => {
-                return Album.create({
-                    description: description,
-                    target_id: target_id
-                    },
-                    { transaction: t }
-                );
-            });
+            return this.database.create(description, target_id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new album');
         }
     };
     async getById(id){
-        return Album.findOne({
-        where: {id: id},
-        attributes: ['id', 'description', 'target_id', 'is_active']
-    });
+        return this.database.getById(id);
     };
     async getAll(){
-        return Album.findAll({ attributes: ['id', 'description', 'target_id', 'is_active'] });
+        return this.database.getAll();
     };
     async update(id, description, target_id) {
         try {
-            await Album.sequelize.transaction(async (t) => {
-                await Album.update(
-                    { description: description, target_id: target_id },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            this.database.update(id, description, target_id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating album');
         }
     };
     async delete (id) {
         try {
-            await Album.sequelize.transaction(async (t) => {
-                 await Album.update(
-                    { is_active: false },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            this.database.delete(id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting album');
         }
     };
 }
 
-module.exports = new Repository();
+module.exports = AlbumRepository;

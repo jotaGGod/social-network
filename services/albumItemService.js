@@ -1,19 +1,21 @@
-const Repository = require('../repositories/albumItemRepository');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
 class AlbumItemService {
+    constructor(albumItemRepository) {
+        this.albumItemRepository = albumItemRepository;
+    }
     async createAlbumItem(post_id, album_id) {
-        return await Repository.create(post_id, album_id);
+        return this.albumItemRepository.create(post_id, album_id);
     };
     async getAllAlbumItem() {
-        return Repository.getAll();
+        return this.albumItemRepository.getAll();
     };
     async deleteAlbumItem(id) {
-        const albumItem = await Repository.getById(id);
+        const albumItem = await this.albumItemRepository.getById(id);
         if (!albumItem) throw new ApiError(httpStatus.NOT_FOUND, 'Album item not found');
-        await Repository.delete(id);
+        await this.albumItemRepository.delete(id);
     };
 }
 
-module.exports = new AlbumItemService();
+module.exports = AlbumItemService;

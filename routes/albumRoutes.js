@@ -1,13 +1,15 @@
 const express = require('express');
-const router = express.Router();
-const AlbumController = require('../controller/albumController');
 const validateSchema  = require('../middlewares/albumValidation');
 const { createAlbumSchema, updateAlbumSchema, getByIdSchema } = require('../schemas/albumSchema');
 
-router.post('/', validateSchema(createAlbumSchema), AlbumController.createAlbum);
-router.get('/', AlbumController.getAlbums);
-router.get('/:id', validateSchema(getByIdSchema), AlbumController.getAlbumById);
-router.put('/:id', validateSchema(updateAlbumSchema), AlbumController.updateAlbum);
-router.delete('/:id', validateSchema(getByIdSchema), AlbumController.deleteAlbum);
+function createAlbumRoutes(albumController) {
+    const router = express.Router();
+    router.post('/', validateSchema(createAlbumSchema), albumController.createAlbum.bind(albumController));
+    router.get('/', albumController.getAlbums.bind(albumController));
+    router.get('/:id', validateSchema(getByIdSchema), albumController.getAlbumById.bind(albumController));
+    router.put('/:id', validateSchema(updateAlbumSchema), albumController.updateAlbum.bind(albumController));
+    router.delete('/:id', validateSchema(getByIdSchema), albumController.deleteAlbum.bind(albumController));
+    return router
+}
 
-module.exports = router;
+module.exports = createAlbumRoutes;

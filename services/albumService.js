@@ -1,29 +1,31 @@
-const Repository = require('../repositories/albumRepository');
 const httpStatus = require("../utils/statusCodes");
 const ApiError = require("../utils/ApiError");
 
 class AlbumService {
+    constructor(albumRepository) {
+        this.albumRepository = albumRepository;
+    }
     async createAlbum(description, target_id) {
-        return await Repository.create(description, target_id);
+        return this.albumRepository.create(description, target_id);
     };
     async getAlbumById(id) {
-        const album = await Repository.getById(id);
+        const album = await this.albumRepository.getById(id);
         if (!album) throw new ApiError(httpStatus.NOT_FOUND, 'Album not found!');
         return album;
     };
     async getAllAlbums() {
-        return Repository.getAll();
+        return this.albumRepository.getAll();
     };
     async updateAlbum(id, description, target_id) {
-        const album = await Repository.getById(id);
+        const album = await this.albumRepository.getById(id);
         if (!album) throw new ApiError(httpStatus.NOT_FOUND, 'Album not found!');
-        await Repository.update(id, description, target_id);
+        await this.albumRepository.update(id, description, target_id);
     };
     async deleteAlbum(id) {
-        const album = await Repository.getById(id);
+        const album = await this.albumRepository.getById(id);
         if (!album) throw new ApiError(httpStatus.NOT_FOUND, 'Album not found!');
-        await Repository.delete(id);
+        await this.albumRepository.delete(id);
     };
 }
 
-module.exports = new AlbumService();
+module.exports = AlbumService;
