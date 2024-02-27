@@ -1,46 +1,30 @@
-const { FileType } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
-class Repository {
+class FileTypeRepository {
+    constructor(database) {
+        this.database = database;
+    }
     async create(type) {
         try {
-            return await FileType.sequelize.transaction(async (t) => {
-                return FileType.create(
-                    { type: type },
-                    { transaction: t }
-                );
-            });
+            return this.database.create(type);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
         }
     };
     async getAll(){
-        return FileType.findAll();
+        return this.database.getAll();
     };
     async getById(id){
-        return FileType.findOne(
-            {
-                where: {id: id},
-                attributes: ['id', 'type', 'is_active']
-            }
-        );
+        return this.database.getById(id);
     }
     async delete (id) {
         try {
-            await FileType.sequelize.transaction(async (t) => {
-                await FileType.update(
-                    { is_active: false },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            await this.database.delete(id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
         }
     };
 }
 
-module.exports = new Repository();
+module.exports = FileTypeRepository;

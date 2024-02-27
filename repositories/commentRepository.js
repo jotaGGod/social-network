@@ -1,70 +1,37 @@
-const { Comment } = require('../database/models');
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 
-class Repository {
+class CommentRepository {
+    constructor(database) {
+        this.database = database;
+    }
     async create(description, user_id, post_id) {
         try {
-            return await Comment.sequelize.transaction(async (t) => {
-                return Comment.create(
-                    {
-                        description: description,
-                        user_id: user_id,
-                        post_id: post_id
-                    }, { transaction: t });
-            });
+            return this.database.create(description, user_id, post_id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating comment');
         }
     };
     async getById(id){
-        return Comment.findOne(
-            {
-                where: { id: id },
-                attributes: ['id', 'description', 'user_id', 'post_id', 'is_active']
-            }
-        );
+        return this.database.getById(id);
     };
     async getAll(){
-        return Comment.findAll(
-            { attributes: ['id', 'description', 'user_id', 'post_id', 'is_active'] }
-        )
+        return this.database.getAll();
     };
-
     async update(id, description, user_id, post_id) {
         try {
-            await Comment.sequelize.transaction(async (t) => {
-                await Comment.update(
-                    {
-                        description: description,
-                        user_id: user_id,
-                        post_id: post_id
-                    },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            this.database.update(id, description, user_id, post_id)
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating comment');
         }
     };
     async delete (id) {
         try {
-            await Comment.sequelize.transaction(async (t) => {
-                await Comment.update(
-                    { is_active: false },
-                    {
-                        where: {id: id},
-                        transaction: t
-                    }
-                );
-            });
+            this.database.delete(id);
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting comment');
         }
     };
 }
 
-module.exports = new Repository();
+module.exports = CommentRepository;
