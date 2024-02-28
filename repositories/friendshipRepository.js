@@ -6,11 +6,7 @@ class FriendshipRepository {
         this.database = database;
     }
     async create(principal_user_id, friend_id) {
-        try {
-            return this.database.create(principal_user_id, friend_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
-        }
+        return this.database.create(principal_user_id, friend_id);
     };
     async getAll(){
         return this.database.getAll();
@@ -19,11 +15,7 @@ class FriendshipRepository {
         return this.database.getById(id);
     };
     async delete(id){
-        try {
-            await this.database.delete(id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting friendship');
-        }
+        this.database.delete(id);
     };
 }
 

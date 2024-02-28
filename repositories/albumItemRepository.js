@@ -6,11 +6,7 @@ class AlbumItemRepository {
         this.database = database;
     }
     async create(post_id, album_id) {
-        try {
-            return this.database.create(post_id, album_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating album item');
-        }
+        return this.database.create(post_id, album_id);
     };
     async getById(id){
         return this.database.getById(id);
@@ -19,11 +15,7 @@ class AlbumItemRepository {
         return this.database.getAll();
     };
     async delete (id) {
-        try {
-            await this.database.delete(id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting album item');
-        }
+        this.database.delete(id);
     };
 
 }

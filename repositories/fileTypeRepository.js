@@ -6,11 +6,7 @@ class FileTypeRepository {
         this.database = database;
     }
     async create(type) {
-        try {
-            return this.database.create(type);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
-        }
+        return this.database.create(type);
     };
     async getAll(){
         return this.database.getAll();
@@ -19,11 +15,7 @@ class FileTypeRepository {
         return this.database.getById(id);
     }
     async delete (id) {
-        try {
-            await this.database.delete(id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating a new file type');
-        }
+        this.database.delete(id);
     };
 }
 
