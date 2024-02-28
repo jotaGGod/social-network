@@ -6,7 +6,7 @@ class FriendshipController {
     }
     async create(req, res) {
         const { principal_user_id, friend_id } = req.body;
-        const friendship = await this.friendshipService.createFriendship(principal_user_id, friend_id);
+        const friendship = await this.friendshipService.create(principal_user_id, friend_id);
         return res.status(httpStatus.CREATED).json({
             message: 'Friendship created successfully!',
             data: friendship
