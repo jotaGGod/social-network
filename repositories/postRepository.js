@@ -6,11 +6,7 @@ class PostRepository {
         this.database = database;
     }
     async create(description, user_id, target_id, type_id) {
-        try {
-            return this.database.create(description, user_id, target_id, type_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating post');
-        }
+        return this.database.create(description, user_id, target_id, type_id);
     };
     async getById(id){
         return this.database.getById(id);
@@ -19,18 +15,10 @@ class PostRepository {
         return this.database.getAll();
     };
     async update(id, description, user_id, target_id, type_id) {
-        try {
-            this.database.update(id, description, user_id, target_id, type_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating post');
-        }
+        this.database.update(id, description, user_id, target_id, type_id);
     };
     async delete (id) {
-        try {
-            this.database.delete(id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting post');
-        }
+        this.database.delete(id);
     };
 }
 

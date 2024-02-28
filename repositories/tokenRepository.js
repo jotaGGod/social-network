@@ -6,28 +6,16 @@ class TokenRepository {
         this.database = database;
     }
     async create(token, user_id) {
-        try {
-            return this.database.create(token, user_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating token');
-        }
+        return this.database.create(token, user_id);
     };
     async getTokenByUserId(userId) {
         return this.database.getTokenByUserId(userId);
     };
     async revokeTokenByUserId(userId){
-        try {
-           return this.database.revokeTokenByUserId(userId);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while revoking token');
-        }
+        return this.database.revokeTokenByUserId(userId);
     }
     async updateById(id, newToken){
-        try {
-            return this.database.updateById(id, newToken);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting token');
-        }
+        return this.database.updateById(id, newToken);
     }
 }
 

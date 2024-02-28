@@ -6,11 +6,7 @@ class CommentRepository {
         this.database = database;
     }
     async create(description, user_id, post_id) {
-        try {
-            return this.database.create(description, user_id, post_id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating comment');
-        }
+        return this.database.create(description, user_id, post_id);
     };
     async getById(id){
         return this.database.getById(id);
@@ -19,18 +15,10 @@ class CommentRepository {
         return this.database.getAll();
     };
     async update(id, description, user_id, post_id) {
-        try {
-            this.database.update(id, description, user_id, post_id)
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while updating comment');
-        }
+        this.database.update(id, description, user_id, post_id);
     };
     async delete (id) {
-        try {
-            this.database.delete(id);
-        } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting comment');
-        }
+        this.database.delete(id);
     };
 }
 
