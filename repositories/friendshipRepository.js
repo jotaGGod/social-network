@@ -1,21 +1,22 @@
-const ApiError = require("../utils/ApiError");
-const httpStatus = require("../utils/statusCodes");
+const {assertIsInstanceOfContract} = require("./Interfaces/friendshipRepositoryAbstract");
+
 
 class FriendshipRepository {
-    constructor(database) {
-        this.database = database;
+    constructor(repository, contract) {
+        assertIsInstanceOfContract(repository, contract);
+        this.repository = repository;
     }
     async create(principal_user_id, friend_id) {
-        return this.database.create(principal_user_id, friend_id);
+        return this.repository.create(principal_user_id, friend_id);
     };
     async getAll(){
-        return this.database.getAll();
+        return this.repository.getAll();
     };
     async getById(id){
-        return this.database.getById(id);
+        return this.repository.getById(id);
     };
     async delete(id){
-        this.database.delete(id);
+        this.repository.delete(id);
     };
 }
 

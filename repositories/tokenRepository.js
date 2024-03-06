@@ -1,21 +1,21 @@
-const ApiError = require("../utils/ApiError");
-const httpStatus = require("../utils/statusCodes");
+const {assertIsInstanceOfContract} = require("./Interfaces/tokenRepositoryAbstract");
 
 class TokenRepository {
-    constructor(database) {
-        this.database = database;
+    constructor(repository, contract) {
+        assertIsInstanceOfContract(repository, contract);
+        this.repository = repository;
     }
     async create(token, user_id) {
-        return this.database.create(token, user_id);
+        return this.repository.create(token, user_id);
     };
     async getTokenByUserId(userId) {
-        return this.database.getTokenByUserId(userId);
+        return this.repository.getTokenByUserId(userId);
     };
     async revokeTokenByUserId(userId){
-        return this.database.revokeTokenByUserId(userId);
+        return this.repository.revokeTokenByUserId(userId);
     }
     async updateById(id, newToken){
-        return this.database.updateById(id, newToken);
+        return this.repository.updateById(id, newToken);
     }
 }
 
