@@ -1,8 +1,9 @@
 const { TargetPublic } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
+const { ITargetPublicRepository } = require("../Interfaces/targetPublicRepositoryAbstract");
 
-class TargetPublicRepositoryImplementation {
+class TargetPublicRepositoryImplementation extends ITargetPublicRepository {
     async create(type) {
         try {
             return await TargetPublic.sequelize.transaction(async (t) => {

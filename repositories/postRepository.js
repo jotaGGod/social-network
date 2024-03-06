@@ -1,24 +1,24 @@
-const httpStatus = require('../utils/statusCodes');
-const ApiError = require("../utils/ApiError");
+const {assertIsInstanceOfContract} = require("./Interfaces/postRepositoryAbstract");
 
 class PostRepository {
-    constructor(database) {
-        this.database = database;
+    constructor(repository, contract) {
+        assertIsInstanceOfContract(repository, contract);
+        this.repository = repository;
     }
     async create(description, user_id, target_id, type_id) {
-        return this.database.create(description, user_id, target_id, type_id);
+        return this.repository.create(description, user_id, target_id, type_id);
     };
     async getById(id){
-        return this.database.getById(id);
+        return this.repository.getById(id);
     };
     async getAll(){
-        return this.database.getAll();
+        return this.repository.getAll();
     };
     async update(id, description, user_id, target_id, type_id) {
-        this.database.update(id, description, user_id, target_id, type_id);
+        this.repository.update(id, description, user_id, target_id, type_id);
     };
     async delete (id) {
-        this.database.delete(id);
+        this.repository.delete(id);
     };
 }
 

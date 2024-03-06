@@ -1,21 +1,21 @@
-const ApiError = require("../utils/ApiError");
-const httpStatus = require("../utils/statusCodes");
+const {assertIsInstanceOfContract} = require("./Interfaces/fileTypeRepositoryAbstract");
 
 class FileTypeRepository {
-    constructor(database) {
-        this.database = database;
+    constructor(repository, contract) {
+        assertIsInstanceOfContract(repository, contract);
+        this.repository = repository;
     }
     async create(type) {
-        return this.database.create(type);
+        return this.repository.create(type);
     };
     async getAll(){
-        return this.database.getAll();
+        return this.repository.getAll();
     };
     async getById(id){
-        return this.database.getById(id);
+        return this.repository.getById(id);
     }
     async delete (id) {
-        this.database.delete(id);
+        this.repository.delete(id);
     };
 }
 
