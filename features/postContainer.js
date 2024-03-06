@@ -3,7 +3,7 @@ const PostRepository = require("../repositories/postRepository");
 const PostService = require("../services/postService");
 const PostController = require("../controller/postController");
 const createPostRoutes = require("../routes/postRoutes");
-const {IPostRepository} = require("../repositories/Interfaces/postRepositoryAbstract");
+const {IPostRepository} = require("../repositories/interfaces/postRepositoryAbstract");
 
 
 function configurePostContainer() {

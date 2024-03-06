@@ -1,4 +1,4 @@
-const {assertIsInstanceOfContract} = require("./Interfaces/albumItemRepositoryAbstract");
+const { assertIsInstanceOfContract } = require("./Interfaces/validation");
 
 class AlbumItemRepository {
     constructor(repository, contract) {

@@ -16,17 +16,8 @@ function assertIsInstanceOfContract(instance, contractClass){
     }
 }
 
-class IAlbumItemRepository {
-    constructor() {
-        assertIsConcreteInstance(this, IAlbumItemRepository);
-        assertMethodImplemented(this, 'create');
-        assertMethodImplemented(this, 'getById');
-        assertMethodImplemented(this, 'getAll');
-        assertMethodImplemented(this, 'delete');
-    }
-}
-
 module.exports = {
-    IAlbumItemRepository,
+    assertIsConcreteInstance,
+    assertMethodImplemented,
     assertIsInstanceOfContract
-}
+};

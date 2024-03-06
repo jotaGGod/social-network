@@ -3,7 +3,7 @@ const AlbumRepository = require("../repositories/albumRepository");
 const AlbumService = require("../services/albumService");
 const AlbumController = require("../controller/albumController");
 const createAlbumRoutes = require("../routes/albumRoutes");
-const { IAlbumRepository } = require("../repositories/Interfaces/albumRepositoryAbstract");
+const { IAlbumRepository } = require("../repositories/interfaces/albumRepositoryAbstract");
 
 function configureAlbumContainer() {
     const albumRepositoryImplementation = new AlbumRepositoryImplementation();

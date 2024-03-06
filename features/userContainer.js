@@ -8,8 +8,8 @@ const UserService = require("../services/userServices");
 const UserController = require("../controller/userController");
 const HashService = require("../services/cryptoService");
 const createUserRoutes = require("../routes/userRoutes");
-const { IUserRepository } = require("../repositories/Interfaces/userRepositoryAbstract");
-const { ITokenRepository } = require("../repositories/Interfaces/tokenRepositoryAbstract");
+const { IUserRepository } = require("../repositories/interfaces/userRepositoryAbstract");
+const { ITokenRepository } = require("../repositories/interfaces/tokenRepositoryAbstract");
 
 function configureUserContainer(){
     const tokenRepositoryImplementation = new TokenRepositoryImplementation();

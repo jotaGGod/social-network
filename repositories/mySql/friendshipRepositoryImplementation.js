@@ -1,7 +1,7 @@
 const { Friendship } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
-const { IFriendshipRepository } = require("../Interfaces/friendshipRepositoryAbstract");
+const { IFriendshipRepository } = require("../interfaces/friendshipRepositoryAbstract");
 
 class FriendshipRepositoryImplementation extends IFriendshipRepository{
     async create(principal_user_id, friend_id) {

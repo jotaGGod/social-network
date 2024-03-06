@@ -1,7 +1,7 @@
 const { Comment } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
-const { ICommentRepository } = require("../Interfaces/commentRepositoryAbstract");
+const { ICommentRepository } = require("../interfaces/commentRepositoryAbstract");
 
 class CommentRepositoryImplementation extends ICommentRepository{
     async create(description, user_id, post_id) {

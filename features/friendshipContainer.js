@@ -3,7 +3,7 @@ const FriendshipRepository = require("../repositories/friendshipRepository");
 const FriendshipService = require("../services/friendshipServices");
 const FriendshipController = require("../controller/friendshipController");
 const createFriendshipRoutes = require("../routes/friendshipRoutes");
-const {IFriendshipRepository} = require("../repositories/Interfaces/friendshipRepositoryAbstract");
+const {IFriendshipRepository} = require("../repositories/interfaces/friendshipRepositoryAbstract");
 
 function configureFriendshipContainer() {
     const friendshipRepositoryImplementation = new FriendshipRepositoryImplementation();

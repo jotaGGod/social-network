@@ -3,7 +3,7 @@ const TargetPublicRepository = require("../repositories/mySql/targetPublicReposi
 const TargetPublicService = require("../services/targetPublicService");
 const TargetPublicController = require("../controller/targetPublicController");
 const createTargetPublicRoutes = require("../routes/targetPublicRoutes");
-const { ITargetPublicRepository } = require("../repositories/Interfaces/targetPublicRepositoryAbstract");
+const { ITargetPublicRepository } = require("../repositories/interfaces/targetPublicRepositoryAbstract");
 
 function configureTargetPublicContainer(){
     const targetPublicRepositoryImplementation = new TargetPublicRepositoryImplementation();

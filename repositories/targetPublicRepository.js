@@ -1,5 +1,4 @@
-const {assertIsInstanceOfContract} = require("./Interfaces/targetPublicRepositoryAbstract");
-
+const { assertIsInstanceOfContract } = require("./Interfaces/validation");
 
 class TargetPublicRepository {
     constructor(repository, contract) {

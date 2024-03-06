@@ -3,7 +3,7 @@ const CommentRepository = require("../repositories/commentRepository");
 const CommentService = require("../services/commentService");
 const CommentController = require("../controller/commentController");
 const createCommentRoutes = require("../routes/commentRoutes");
-const {ICommentRepository} = require("../repositories/Interfaces/commentRepositoryAbstract");
+const {ICommentRepository} = require("../repositories/interfaces/commentRepositoryAbstract");
 
 
 function configureCommentContainer() {

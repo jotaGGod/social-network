@@ -1,7 +1,7 @@
 const { FileType } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
-const { IFileTypeRepository } = require("../Interfaces/fileTypeRepositoryAbstract");
+const { IFileTypeRepository } = require("../interfaces/fileTypeRepositoryAbstract");
 
 class FileTypeRepositoryImplementation extends IFileTypeRepository{
     async create(type) {
