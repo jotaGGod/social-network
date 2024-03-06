@@ -1,7 +1,7 @@
 const { Post } = require('../../database/models');
 const httpStatus = require('../../utils/statusCodes');
 const ApiError = require("../../utils/ApiError");
-const { IPostRepository } = require("../Interfaces/postRepositoryAbstract");
+const { IPostRepository } = require("../interfaces/postRepositoryAbstract");
 
 class PostRepositoryImplementation extends IPostRepository {
     async create(description, user_id, target_id, type_id) {

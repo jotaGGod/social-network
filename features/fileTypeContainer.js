@@ -3,7 +3,7 @@ const FileTypeRepository = require("../repositories/fileTypeRepository");
 const FileTypeService = require("../services/fileTypeService");
 const FileTypeController = require("../controller/fileTypeController");
 const createFileTypeRoutes = require("../routes/fileTypeRoutes");
-const { IFileTypeRepository } = require("../repositories/Interfaces/fileTypeRepositoryAbstract");
+const { IFileTypeRepository } = require("../repositories/interfaces/fileTypeRepositoryAbstract");
 
 
 function configureFileTypeContainer() {

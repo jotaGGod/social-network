@@ -3,7 +3,7 @@ const ReactionRepository = require("../repositories/reactionRepository");
 const ReactionService = require("../services/reactionService");
 const ReactionController = require("../controller/reactionController");
 const createReactionRoutes = require("../routes/reactionRoutes");
-const { IReactionRepository } = require("../repositories/Interfaces/reactionRepositoryAbstract");
+const { IReactionRepository } = require("../repositories/interfaces/reactionRepositoryAbstract");
 
 function configureReactionContainer() {
     const reactionRepositoryImplementation = new ReactionRepositoryImplementation();

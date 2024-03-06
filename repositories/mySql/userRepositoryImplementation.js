@@ -2,7 +2,7 @@ const { User, sequelize } = require('../../database/models');
 const { QueryTypes } = require('sequelize');
 const httpStatus = require("../../utils/statusCodes");
 const ApiError = require("../../utils/ApiError");
-const { IUserRepository } = require("../Interfaces/userRepositoryAbstract");
+const { IUserRepository } = require("../interfaces/userRepositoryAbstract");
 
 class UserRepositoryImplementation extends IUserRepository{
     async create(full_name, email, hashedPassword) {

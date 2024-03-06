@@ -1,7 +1,7 @@
 const { ReactionType } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
-const { IReactionTypeRepository } = require("../Interfaces/reactionTypeRepositoryAbstract");
+const { IReactionTypeRepository } = require("../interfaces/reactionTypeRepositoryAbstract");
 
 class ReactionTypeRepositoryImplementation extends IReactionTypeRepository {
     async create(description) {

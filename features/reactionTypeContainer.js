@@ -3,7 +3,7 @@ const ReactionTypeRepository = require("../repositories/reactionTypeRepository")
 const ReactionTypeService = require("../services/reactionTypeService");
 const ReactionTypeController = require("../controller/reactionTypeController");
 const createReactionTypeRoutes = require("../routes/reactionTypeRoutes");
-const {IReactionTypeRepository} = require("../repositories/Interfaces/reactionTypeRepositoryAbstract");
+const {IReactionTypeRepository} = require("../repositories/interfaces/reactionTypeRepositoryAbstract");
 
 function configureReactionTypeContainer() {
     const reactionTypeRepositoryImplementation = new ReactionTypeRepositoryImplementation();
