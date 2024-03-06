@@ -1,33 +1,34 @@
-const httpStatus = require("../utils/statusCodes");
-const ApiError = require("../utils/ApiError");
+const { assertIsInstanceOfContract} = require("./Interfaces/userRepositoryAbstract");
+
 
 class UserRepository {
-    constructor(database) {
-        this.database = database;
+    constructor(repository, contract) {
+        assertIsInstanceOfContract(repository, contract);
+        this.repository = repository;
     }
     async create(full_name, email, hashedPassword) {
-        return this.database.create(full_name, email, hashedPassword);
+        return this.repository.create(full_name, email, hashedPassword);
     };
     async getByEmail(email) {
-        return this.database.getByEmail(email);
+        return this.repository.getByEmail(email);
     };
     async getById(id){
-       return this.database.getById(id);
+       return this.repository.getById(id);
     };
     async getAll(){
-        return this.database.getAll();
+        return this.repository.getAll();
     };
     async update(id, full_name, email) {
-        this.database.update(id, full_name, email);
+        this.repository.update(id, full_name, email);
     };
     async delete (id) {
-        this.database.delete(id);
+        this.repository.delete(id);
     };
     async getFeedNews(id) {
-        return this.database.getFeedNews(id);
+        return this.repository.getFeedNews(id);
     };
     async getPostStatistics() {
-        return this.database.getPostStatistics();
+        return this.repository.getPostStatistics();
     };
 }
 

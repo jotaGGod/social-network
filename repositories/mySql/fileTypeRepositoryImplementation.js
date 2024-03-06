@@ -1,8 +1,9 @@
 const { FileType } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
+const { IFileTypeRepository } = require("../Interfaces/fileTypeRepositoryAbstract");
 
-class FileTypeRepositoryImplementation {
+class FileTypeRepositoryImplementation extends IFileTypeRepository{
     async create(type) {
         try {
             return await FileType.sequelize.transaction(async (t) => {

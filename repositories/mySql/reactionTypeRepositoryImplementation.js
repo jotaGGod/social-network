@@ -1,8 +1,9 @@
 const { ReactionType } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
+const { IReactionTypeRepository } = require("../Interfaces/reactionTypeRepositoryAbstract");
 
-class ReactionTypeRepositoryImplementation{
+class ReactionTypeRepositoryImplementation extends IReactionTypeRepository {
     async create(description) {
         try {
             return await ReactionType.sequelize.transaction(async (t) => {

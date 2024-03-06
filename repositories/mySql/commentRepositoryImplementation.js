@@ -1,8 +1,9 @@
 const { Comment } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
+const { ICommentRepository } = require("../Interfaces/commentRepositoryAbstract");
 
-class CommentRepositoryImplementation {
+class CommentRepositoryImplementation extends ICommentRepository{
     async create(description, user_id, post_id) {
         try {
             return await Comment.sequelize.transaction(async (t) => {
@@ -30,7 +31,6 @@ class CommentRepositoryImplementation {
             { attributes: ['id', 'description', 'user_id', 'post_id', 'is_active'] }
         )
     };
-
     async update(id, description, user_id, post_id) {
         try {
             await Comment.sequelize.transaction(async (t) => {

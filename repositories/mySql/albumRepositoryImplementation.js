@@ -1,8 +1,9 @@
 const { Album } = require('../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
+const { IAlbumRepository } = require("../Interfaces/albumRepositoryAbstract");
 
-class AlbumRepositoryImplementation {
+class AlbumRepositoryImplementation extends IAlbumRepository{
     async create(description, target_id) {
         try {
             return await Album.sequelize.transaction(async (t) => {
