@@ -1,5 +1,5 @@
 const axios = require('axios');
-const httpStatus = require('../utils/statusCodes');
+const httpStatus = require('../src/utils/statusCodes');
 
 it('Should return error and status 400 if the body is empty', async () => {
     const user = {        

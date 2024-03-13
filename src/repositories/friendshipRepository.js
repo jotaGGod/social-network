@@ -1,22 +1,22 @@
-const { assertIsInstanceOfContract } = require("./Interfaces/validation");
+const { assertIsInstanceOfContract } = require("./interfaces/validation");
 
-class FileTypeRepository {
+class FriendshipRepository {
     constructor(repository, contract) {
         assertIsInstanceOfContract(repository, contract);
         this.repository = repository;
     }
-    async create(type) {
-        return this.repository.create(type);
+    async create(principal_user_id, friend_id) {
+        return this.repository.create(principal_user_id, friend_id);
     };
     async getAll(){
         return this.repository.getAll();
     };
     async getById(id){
         return this.repository.getById(id);
-    }
-    async delete (id) {
+    };
+    async delete(id){
         this.repository.delete(id);
     };
 }
 
-module.exports = FileTypeRepository;
+module.exports = FriendshipRepository;
