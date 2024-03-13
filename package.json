@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon app.js",
-    "db:drop": "cd database && npx sequelize-cli db:drop",
-    "db:create": "cd database && npx sequelize-cli db:create",
-    "db:migrate": "cd database && npx sequelize-cli db:migrate",
-    "db:seed": "cd database && npx sequelize-cli db:seed:all",
+    "db:drop": "cd src/database && npx sequelize-cli db:drop",
+    "db:create": "cd src/database && npx sequelize-cli db:create",
+    "db:migrate": "cd src/database && npx sequelize-cli db:migrate",
+    "db:seed": "cd src/database && npx sequelize-cli db:seed:all",
     "db:all": "npm run db:create && npm run db:migrate && npm run db:seed"
   },
   "author": "",

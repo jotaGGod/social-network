@@ -1,16 +1,16 @@
 require("express-async-errors");
 const express = require("express");
-const errorHandler = require("./middlewares/error");
-const configureUserContainer = require("./features/userContainer");
-const configureTargetPublicContainer = require("./features/targetPublicContainer");
-const configureReactionTypeContainer = require("./features/reactionTypeContainer");
-const configureReactionContainer = require("./features/reactionContainer");
-const configurePostContainer = require("./features/postContainer");
-const configureFriendshipContainer = require("./features/friendshipContainer");
-const configureFileTypeContainer = require("./features/fileTypeContainer");
-const configureCommentContainer = require("./features/commentContainer");
-const configureAlbumItemContainer = require("./features/albumItemContainer");
-const configureAlbumContainer = require("./features/albumContainer");
+const errorHandler = require("./src/middlewares/error");
+const configureUserContainer = require("./src/features/userContainer");
+const configureTargetPublicContainer = require("./src/features/targetPublicContainer");
+const configureReactionTypeContainer = require("./src/features/reactionTypeContainer");
+const configureReactionContainer = require("./src/features/reactionContainer");
+const configurePostContainer = require("./src/features/postContainer");
+const configureFriendshipContainer = require("./src/features/friendshipContainer");
+const configureFileTypeContainer = require("./src/features/fileTypeContainer");
+const configureCommentContainer = require("./src/features/commentContainer");
+const configureAlbumItemContainer = require("./src/features/albumItemContainer");
+const configureAlbumContainer = require("./src/features/albumContainer");
 
 const app = express();
 const { userRoutes } = configureUserContainer();

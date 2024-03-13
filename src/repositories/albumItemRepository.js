@@ -1,12 +1,12 @@
-const { assertIsInstanceOfContract } = require("./Interfaces/validation");
+const { assertIsInstanceOfContract } = require("./interfaces/validation");
 
-class ReactionTypeRepository {
+class AlbumItemRepository {
     constructor(repository, contract) {
         assertIsInstanceOfContract(repository, contract);
         this.repository = repository;
     }
-    async create(description) {
-        return this.repository.create(description);
+    async create(post_id, album_id) {
+        return this.repository.create(post_id, album_id);
     };
     async getById(id){
         return this.repository.getById(id);
@@ -15,8 +15,8 @@ class ReactionTypeRepository {
         return this.repository.getAll();
     };
     async delete (id) {
-        return this.repository.delete(id);
+        this.repository.delete(id);
     };
 }
 
-module.exports = ReactionTypeRepository;
+module.exports = AlbumItemRepository;
