@@ -8,7 +8,7 @@ class UserService {
   }
   async create(full_name, email, password) {
     const isEmailTaken = await this.userRepository.getByEmail(email);
-    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
+    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken');
     const hashedPassword = await this.hashService.hash(password);
     return this.userRepository.create(full_name, email, hashedPassword);
   };
@@ -30,7 +30,7 @@ class UserService {
     const user = await this.userRepository.getById(id);
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     const isEmailTaken = await this.isEmailTaken(email);
-    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken.');
+    if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken');
     await this.userRepository.update(id, full_name, email);
   };
   async deleteUser(id) {
