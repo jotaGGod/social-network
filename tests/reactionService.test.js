@@ -12,27 +12,26 @@ const mockRepository = {
 
 describe('ReactionService', () => {
     let reactionService;
+    let reactionValue;
     beforeEach(() => {
         reactionService = new ReactionService(mockRepository);
+        reactionValue = {
+            "id": 1,
+            "user_id": 2,
+            "reaction_type_id": 3,
+            "post_id": 4,
+            "is_active": true
+        };
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('createReaction', () => {
         it('should create a reaction', async () => {
-            const createdReaction = {
-                "id": 1,
-                "user_id": 2,
-                "reaction_type_id": 3,
-                "post_id": 4,
-                "is_active": true
-            };
-            mockRepository.create.mockResolvedValueOnce(createdReaction);
-
+            mockRepository.create.mockResolvedValueOnce(reactionValue);
             const reaction = await reactionService.createReaction(2, 3, 4);
-
             expect(mockRepository.create).toHaveBeenCalledWith(2, 3, 4);
-            expect(reaction).toEqual(createdReaction);
+            expect(reaction).toEqual(reactionValue);
         });
     });
     describe('createReaction', () => {
@@ -67,19 +66,11 @@ describe('ReactionService', () => {
     });
     describe('getReactionById', () => {
         it('should get a reaction by ID', async () => {
-            const reactionValue = {
-                "id": 1,
-                "user_id": 1,
-                "reaction_type_id": 1,
-                "post_id": 1,
-                "is_active": true
-            };
             const reactionId = 1;
             mockRepository.getById.mockResolvedValueOnce(reactionValue);
             const result = await reactionService.getReactionById(reactionId);
             expect(result).toEqual(reactionValue);
         });
-
         it('should throw an error when reaction not found by ID', async () => {
             const reactionId = 345;
             mockRepository.getById.mockResolvedValueOnce(null);

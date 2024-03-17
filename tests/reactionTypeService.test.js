@@ -10,23 +10,27 @@ const mockRepository = {
 };
 describe('ReactionTypeService', () => {
     let reactionTypeService;
+    let reactionTypeValues;
+    let existingReactionTypeId;
     beforeEach(() => {
         reactionTypeService = new ReactionTypeService(mockRepository);
+        reactionTypeValues = {
+            "id": 1,
+            "description": "Like",
+            "is_active": true
+        };
+        existingReactionTypeId = 1;
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('createReactionType', () => {
         it('should create a reaction type', async () => {
-            const createdReactionType = {
-                "id": 1,
-                "description": "Like",
-                "is_active": true
-            };
-            mockRepository.create.mockResolvedValueOnce(createdReactionType);
+
+            mockRepository.create.mockResolvedValueOnce(reactionTypeValues);
             const reactionType = await reactionTypeService.createReactionType("Like");
             expect(mockRepository.create).toHaveBeenCalledWith("Like");
-            expect(reactionType).toEqual(createdReactionType);
+            expect(reactionType).toEqual(reactionTypeValues);
         });
     });
     describe('createReactionType', () => {
@@ -57,7 +61,7 @@ describe('ReactionTypeService', () => {
     });
     describe('deleteReactionType', () => {
         it('should delete an existing reaction type', async () => {
-            const existingReactionTypeId = 1;
+
             mockRepository.getById.mockResolvedValueOnce(existingReactionTypeId);
             await reactionTypeService.deleteReactionType(existingReactionTypeId);
             expect(mockRepository.getById).toHaveBeenCalledWith(existingReactionTypeId);

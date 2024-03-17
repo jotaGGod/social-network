@@ -11,31 +11,26 @@ const mockRepository = {
 
 describe('FileTypeService', () => {
     let fileTypeService;
-
+    let fileTypeValue;
     beforeEach(() => {
         fileTypeService = new FileTypeService(mockRepository);
+        fileTypeValue = {
+            "id": 1,
+            "type": "png",
+            "is_active": true
+        };
     });
-
     afterEach(() => {
         jest.clearAllMocks();
     });
-
     describe('createFileType', () => {
         it('should create a file type', async () => {
-            const createdFileType = {
-                "id": 1,
-                "type": "png",
-                "is_active": true
-            };
-            mockRepository.create.mockResolvedValueOnce(createdFileType);
-
+            mockRepository.create.mockResolvedValueOnce(fileTypeValue);
             const fileType = await fileTypeService.createFileType("png");
-
             expect(mockRepository.create).toHaveBeenCalledWith("png");
-            expect(fileType).toEqual(createdFileType);
+            expect(fileType).toEqual(fileTypeValue);
         });
     });
-
     describe('createFileType', () => {
         it('shouldnt create a file type', async () => {
             mockRepository.create.mockRejectedValueOnce(new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating file type'));
@@ -43,7 +38,6 @@ describe('FileTypeService', () => {
             expect(mockRepository.create).toHaveBeenCalledWith("png");
         });
     });
-
     describe('getAllFileType', () => {
         it('should get all file types', async () => {
             const fileTypeValues = [
@@ -63,14 +57,8 @@ describe('FileTypeService', () => {
             expect(result).toEqual(fileTypeValues);
         });
     });
-
     describe('getFileTypeById', () => {
         it('should get a file type by ID', async () => {
-            const fileTypeValue = {
-                "id": 1,
-                "type": "png",
-                "is_active": true
-            };
             const fileTypeId = 1;
             mockRepository.getById.mockResolvedValueOnce(fileTypeValue);
             const result = await fileTypeService.getById(fileTypeId);
@@ -84,7 +72,6 @@ describe('FileTypeService', () => {
             expect(mockRepository.getById).toHaveBeenCalledWith(fileTypeId);
         });
     });
-
     describe('deleteFileType', () => {
         it('should delete an existing file type', async () => {
             const existingFileTypeId = 1;
@@ -93,7 +80,6 @@ describe('FileTypeService', () => {
             expect(mockRepository.getById).toHaveBeenCalledWith(existingFileTypeId);
             expect(mockRepository.delete).toHaveBeenCalledWith(existingFileTypeId);
         });
-
         it('should throw an error when trying to delete a non-existing file type', async () => {
             const nonExistingFileTypeId = 98;
             mockRepository.getById.mockResolvedValueOnce(null);

@@ -55,7 +55,7 @@ describe('UserService', () => {
     });
     describe('getAllUsers', () => {
         it('should return all users', async () => {
-            const users = [{
+            const expectUsersValues = [{
                 "id": 3,
                 "full_name": "Fernanda Oliveira",
                 "email": "fernanda@gmail.com"
@@ -64,10 +64,10 @@ describe('UserService', () => {
                 "full_name": "Lucas Silva",
                 "email": "lucas@gmail.com"
             }];
-            mockUserRepository.getAll.mockResolvedValueOnce(users);
+            mockUserRepository.getAll.mockResolvedValueOnce(expectUsersValues);
             const allUsers = await userService.getAllUsers();
             expect(mockUserRepository.getAll).toHaveBeenCalled();
-            expect(allUsers).toEqual(users);
+            expect(allUsers).toEqual(expectUsersValues);
         });
         it('should throw an error if no users found', async () => {
             mockUserRepository.getAll.mockResolvedValueOnce(null);

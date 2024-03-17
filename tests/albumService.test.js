@@ -11,24 +11,27 @@ const mockRepository = {
 };
 describe('AlbumService', () => {
     let albumService;
+    let albumId;
+    let albumValue;
     beforeEach(() => {
         albumService = new AlbumService(mockRepository);
+        albumId = 1;
+        albumValue = {
+            "id": 1,
+            "description": "pascoa",
+            "target_id": 1,
+            "is_active": true
+        };
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('createAlbum', () => {
         it('should create an album', async () => {
-            const createdAlbum = {
-                "id": 1,
-                "description": "pascoa",
-                "target_id": 1,
-                "is_active": true
-            };
-            mockRepository.create.mockResolvedValueOnce(createdAlbum);
+            mockRepository.create.mockResolvedValueOnce(albumValue);
             const album = await albumService.createAlbum("pascoa", 1);
             expect(mockRepository.create).toHaveBeenCalledWith("pascoa", 1);
-            expect(album).toEqual(createdAlbum);
+            expect(album).toEqual(albumValue);
         });
     });
     describe('createAlbum', () => {
@@ -74,7 +77,6 @@ describe('AlbumService', () => {
         });
 
         it('should throw an error when album not found by ID', async () => {
-            const albumId = 245; // Non-existing album ID
             mockRepository.getById.mockResolvedValueOnce(null);
             await expect(albumService.getAlbumById(albumId)).rejects.toThrowError('Album not found!');
             expect(mockRepository.getById).toHaveBeenCalledWith(albumId);
@@ -82,35 +84,31 @@ describe('AlbumService', () => {
     });
     describe('updateAlbum', () => {
         it('should update an existing album', async () => {
-            const existingAlbumId = 1;
             const updatedDescription = "Updated Album Description";
             const updatedTargetId = 2;
-            mockRepository.getById.mockResolvedValueOnce({ id: existingAlbumId });
-            await albumService.updateAlbum(existingAlbumId, updatedDescription, updatedTargetId);
-            expect(mockRepository.getById).toHaveBeenCalledWith(existingAlbumId);
-            expect(mockRepository.update).toHaveBeenCalledWith(existingAlbumId, updatedDescription, updatedTargetId);
+            mockRepository.getById.mockResolvedValueOnce({ albumId });
+            await albumService.updateAlbum(albumId, updatedDescription, updatedTargetId);
+            expect(mockRepository.getById).toHaveBeenCalledWith(albumId);
+            expect(mockRepository.update).toHaveBeenCalledWith(albumId, updatedDescription, updatedTargetId);
         });
         it('should throw an error when trying to update a non-existing album', async () => {
-            const nonExistingAlbumId = 55; // Non-existing album ID
             mockRepository.getById.mockResolvedValueOnce(null);
-            await expect(albumService.updateAlbum(nonExistingAlbumId, "Updated Description", 2)).rejects.toThrowError('Album not found!');
-            expect(mockRepository.getById).toHaveBeenCalledWith(nonExistingAlbumId);
+            await expect(albumService.updateAlbum(albumId, "Updated Description", 2)).rejects.toThrowError('Album not found!');
+            expect(mockRepository.getById).toHaveBeenCalledWith(albumId);
             expect(mockRepository.update).not.toHaveBeenCalled();
         });
     });
     describe('deleteAlbum', () => {
         it('should delete an existing album', async () => {
-            const existingAlbumId = 1;
-            mockRepository.getById.mockResolvedValueOnce({ id: existingAlbumId });
-            await albumService.deleteAlbum(existingAlbumId);
-            expect(mockRepository.getById).toHaveBeenCalledWith(existingAlbumId);
-            expect(mockRepository.delete).toHaveBeenCalledWith(existingAlbumId);
+            mockRepository.getById.mockResolvedValueOnce({ albumId });
+            await albumService.deleteAlbum(albumId);
+            expect(mockRepository.getById).toHaveBeenCalledWith(albumId);
+            expect(mockRepository.delete).toHaveBeenCalledWith(albumId);
         });
         it('should throw an error when trying to delete a non-existing album', async () => {
-            const nonExistingAlbumId = 124;
             mockRepository.getById.mockResolvedValueOnce(null);
-            await expect(albumService.deleteAlbum(nonExistingAlbumId)).rejects.toThrowError('Album not found!');
-            expect(mockRepository.getById).toHaveBeenCalledWith(nonExistingAlbumId);
+            await expect(albumService.deleteAlbum(albumId)).rejects.toThrowError('Album not found!');
+            expect(mockRepository.getById).toHaveBeenCalledWith(albumId);
             expect(mockRepository.delete).not.toHaveBeenCalled();
         });
     });

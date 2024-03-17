@@ -11,22 +11,23 @@ const mockRepository = {
 };
 describe('PostService', () => {
     let postService;
+    let createdPost;
     beforeEach(() => {
         postService = new PostService(mockRepository);
+        createdPost = {
+            "id": 1,
+            "description": "slc",
+            "user_id": 1,
+            "target_id": 2,
+            "type_id": 1,
+            "is_active": true
+        };
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('createPost', () => {
         it('should create a post', async () => {
-            const createdPost = {
-                "id": 1,
-                "description": "slc",
-                "user_id": 1,
-                "target_id": 2,
-                "type_id": 1,
-                "is_active": true
-            };
             mockRepository.create.mockResolvedValueOnce(createdPost);
             const post = await postService.createPost("Sample post", 1, 2, 1);
             expect(mockRepository.create).toHaveBeenCalledWith("Sample post", 1, 2, 1);

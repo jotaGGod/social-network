@@ -10,25 +10,24 @@ const mockRepository = {
 };
 describe('TargetPublicService', () => {
     let targetPublicService;
+    let targetPublicValue;
     beforeEach(() => {
         targetPublicService = new TargetPublicService(mockRepository);
+        targetPublicValue = {
+            "id": 1,
+            "type": "Public",
+            "is_active": true
+        };
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('createTargetPublic', () => {
         it('should create a target public', async () => {
-            const createdTargetPublic = {
-                "id": 1,
-                "type": "Public",
-                "is_active": true
-            };
-            mockRepository.create.mockResolvedValueOnce(createdTargetPublic);
-
+            mockRepository.create.mockResolvedValueOnce(targetPublicValue);
             const targetPublic = await targetPublicService.createTargetPublic("Public");
-
             expect(mockRepository.create).toHaveBeenCalledWith("Public");
-            expect(targetPublic).toEqual(createdTargetPublic);
+            expect(targetPublic).toEqual(targetPublicValue);
         });
     });
     describe('createTargetPublic', () => {
@@ -59,11 +58,6 @@ describe('TargetPublicService', () => {
     });
     describe('getById', () => {
         it('should get a target public by ID', async () => {
-            const targetPublicValue = {
-                "id": 1,
-                "type": "Public",
-                "is_active": true
-            };
             const targetPublicId = 1;
             mockRepository.getById.mockResolvedValueOnce(targetPublicValue);
             const result = await targetPublicService.getById(targetPublicId);
