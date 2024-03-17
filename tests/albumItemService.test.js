@@ -1,6 +1,6 @@
-const AlbumItemService = require('../../src/services/albumItemService');
-const httpStatus = require('../../src/utils/statusCodes');
-const ApiError = require("../../src/utils/ApiError");
+const AlbumItemService = require('../src/services/albumItemService');
+const httpStatus = require('../src/utils/statusCodes');
+const ApiError = require("../src/utils/ApiError");
 
 const mockRepository = {
     create: jest.fn(),
@@ -14,7 +14,7 @@ describe('AlbumItemService', () => {
         albumItemService = new AlbumItemService(mockRepository);
     });
     afterEach(() => {
-        jest.clearAllMocks(); //garante que seja resetado os registros apos finalizar cada teste
+        jest.clearAllMocks();
     });
     describe('createAlbumItem', () => {
         it('should create an album item', async () => {
@@ -33,7 +33,7 @@ describe('AlbumItemService', () => {
         });
     });
     describe('createAlbumItem', () => {
-        it('shouldnt create an album item', async () => {
+        it('should not create an album item', async () => {
             mockRepository.create.mockRejectedValueOnce(new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating album item'));
             await expect(albumItemService.createAlbumItem(1, 2)).rejects.toThrowError('Error while creating album item');
             expect(mockRepository.create).toHaveBeenCalledWith(1, 2);
@@ -41,22 +41,42 @@ describe('AlbumItemService', () => {
     });
     describe('getAllAlbumItem', () => {
         it('should get all album items', async () => {
-            mockRepository.getAll.mockResolvedValueOnce([{  }]);
+            const returnedValues = [
+                {
+                    "id": 1,
+                    "post_id": 1,
+                    "album_id": 1,
+                    "is_active": true
+                },
+                {
+                    "id": 2,
+                    "post_id": 2,
+                    "album_id": 1,
+                    "is_active": true
+                },
+                {
+                    "id": 3,
+                    "post_id": 3,
+                    "album_id": 1,
+                    "is_active": true
+                }
+            ];
+            mockRepository.getAll.mockResolvedValueOnce(returnedValues);
             const result = await albumItemService.getAllAlbumItem();
             expect(mockRepository.getAll).toHaveBeenCalled();
-            expect(result).toEqual([{  }]);
+            expect(result).toEqual(returnedValues);
         });
     });
     describe('deleteAlbumItem', () => {
         it('should delete an existing album item', async () => {
-            const existingItemId = 'existing_id';
+            const existingItemId = 1;
             mockRepository.getById.mockResolvedValueOnce({  });
             await albumItemService.deleteAlbumItem(existingItemId);
             expect(mockRepository.getById).toHaveBeenCalledWith(existingItemId);
             expect(mockRepository.delete).toHaveBeenCalledWith(existingItemId);
         });
         it('should throw an error when trying to delete a non-existing album item', async () => {
-            const nonExistingItemId = 'non_existing_id';
+            const nonExistingItemId = 1000;
             mockRepository.getById.mockResolvedValueOnce(null);
             await expect(albumItemService.deleteAlbumItem(nonExistingItemId)).rejects.toThrowError('Album item not found');
             expect(mockRepository.getById).toHaveBeenCalledWith(nonExistingItemId);
