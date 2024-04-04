@@ -1,6 +1,6 @@
-const UserService = require('../src/services/userServices');
-const httpStatus = require('../src/utils/statusCodes');
-const ApiError = require("../src/utils/ApiError");
+const UserService = require('../../src/services/userServices');
+const httpStatus = require('../../src/utils/statusCodes');
+const ApiError = require("../../src/utils/ApiError");
 
 const mockUserRepository = {
     getByEmail: jest.fn(),

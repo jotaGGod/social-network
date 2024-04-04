@@ -1,6 +1,6 @@
 const express = require('express');
 const validateSchema = require("../middlewares/reactionsTypeValidation");
-const { createReactionTypeSchema, getByIdSchema } = require("../schemas/reactionsTypeSchema");
+const { createReactionTypeSchema } = require("../schemas/reactionsTypeSchema");
 
 function createReactionTypeRoutes(reactionTypeController) {
     const router = express.Router();

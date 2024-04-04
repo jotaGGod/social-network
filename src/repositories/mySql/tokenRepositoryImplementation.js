@@ -32,7 +32,8 @@ class TokenRepositoryImplementation extends ITokenRepository {
                 );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while revoking token');
+            //throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while revoking token');
+            console.log('!!!!aquiii: ', error);
         }
     }
     async updateById(id, newToken){
@@ -44,7 +45,7 @@ class TokenRepositoryImplementation extends ITokenRepository {
                     }
                 );
             });
-        } catch (error) {
+        } catch (error){
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while deleting token');
         }
     }

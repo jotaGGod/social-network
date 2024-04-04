@@ -4,8 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class TargetPublic extends Model {
-    static associate(models) {
-    }
   }
   TargetPublic.init({
     id: {

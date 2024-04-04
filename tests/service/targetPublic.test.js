@@ -1,6 +1,6 @@
-const TargetPublicService = require('../src/services/targetPublicService');
-const httpStatus = require('../src/utils/statusCodes');
-const ApiError = require("../src/utils/ApiError");
+const TargetPublicService = require('../../src/services/targetPublicService');
+const httpStatus = require('../../src/utils/statusCodes');
+const ApiError = require("../../src/utils/ApiError");
 
 const mockRepository = {
     create: jest.fn(),

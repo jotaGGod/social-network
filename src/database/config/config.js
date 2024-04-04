@@ -13,11 +13,11 @@ module.exports = {
     }
   },
   "test": {
-    "username": process.env.USERNAME,
-    "password": process.env.DB_PASSWORD,
-    "database": process.env.DB_DATABASE,
-    "host": process.env.DB_HOST,
-    "dialect": process.env.DB_DIALECT,
+    "username": 'root',
+    "password": '1234',
+    "database": 'social_network',
+    "host": 'localhost',
+    "dialect": 'mysql',
     "logging": true,
     "define": {
       "timestamps": false
