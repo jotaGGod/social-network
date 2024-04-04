@@ -11,11 +11,16 @@ class AuthenticateService {
         this.hashService = hashService;
     }
     async authenticateLoginUser (email, password) {
-        const user = await this.userRepository.getByEmail(email);
-        if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email not found');
-        const isValidPassword = await this.hashService.compare(password, user.password);
-        if(!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED,'Password incorrect');
-        return user
+        try{
+            const user = await this.userRepository.getByEmail(email);
+            if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email not found');
+            const isValidPassword = await this.hashService.compare(password, user.password);
+            if(!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED,'Password incorrect');
+            return user
+        }catch(err){
+            console.log(err);
+        }       
+        
     };
 }
 

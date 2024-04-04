@@ -1,6 +1,6 @@
-const ReactionService = require('../src/services/reactionService');
-const httpStatus = require('../src/utils/statusCodes');
-const ApiError = require("../src/utils/ApiError");
+const ReactionService = require('../../src/services/reactionService');
+const httpStatus = require('../../src/utils/statusCodes');
+const ApiError = require("../../src/utils/ApiError");
 
 const mockRepository = {
     create: jest.fn(),

@@ -1,6 +1,6 @@
-const AlbumService = require('../src/services/albumService');
-const httpStatus = require('../src/utils/statusCodes');
-const ApiError = require("../src/utils/ApiError");
+const AlbumService = require('../../src/services/albumService');
+const httpStatus = require('../../src/utils/statusCodes');
+const ApiError = require("../../src/utils/ApiError");
 
 const mockRepository = {
     create: jest.fn(),

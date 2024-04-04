@@ -10,13 +10,17 @@ class TokenService {
         this.hashService = hashService;
     }
     async generateAuthTokens(user){
-        const payload = { id: user.id };
-        const token = await this.generateToken(payload, secret, '15s');
-        const refreshToken = await this.generateToken(payload, secret, '2h');
-        const hashedRefreshToken = await this.hashService.hash(refreshToken);
-        await this.tokenRepository.revokeTokenByUserId(user.id);
-        await this.tokenRepository.create(hashedRefreshToken, user.id);
-        return { token, refreshToken }
+        try{
+            const payload = { id: user.id };
+            const token = await this.generateToken(payload, secret, '1h');
+            const refreshToken = await this.generateToken(payload, secret, '2h');
+            const hashedRefreshToken = await this.hashService.hash(refreshToken);
+            await this.tokenRepository.revokeTokenByUserId(user.id);
+            await this.tokenRepository.create(hashedRefreshToken, user.id);
+            return { token, refreshToken }
+        }catch(err){
+            console.log(err);
+        }        
     };
     async generateToken(payload, secret, expiresIn){
         return jwt.sign(payload, secret, {expiresIn: expiresIn})

@@ -39,6 +39,4 @@ app.use('/', userRoutes);
 
 app.use(errorHandler);
 
-app.listen(8080, () => { 
-  console.log("Server running at port 8080: http://localhost:8080");
-});
+module.exports = app;
