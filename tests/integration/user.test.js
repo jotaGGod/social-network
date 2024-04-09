@@ -28,7 +28,8 @@ describe('Testing user feature', () => {
   });
   it('Should return all users', async () => {
       const loginResponse = await request(app).post('/login').send({"email": tempUser.email, "password": "1234"});
-      const users = await request(app).get('/users').set('Authorization', loginResponse.body.token);
+      const { token } = loginResponse.body;
+      const users = await request(app).get('/users').set('Authorization', token);
       expect(users.status).toBe(200);
       expect(users.body).toBeDefined();
   });
@@ -38,7 +39,7 @@ describe('Testing user feature', () => {
     expect(user.body).toBeDefined();
   });
   
-  it('Should return login success', async () => {
+  it('Should authenticate a user', async () => {
     const login = await request(app).post('/login').send({ email: tempUser.email, password: '1234' });
     expect(login.status).toBe(httpStatus.OK);
     expect(login.body.token).toBeDefined();
@@ -48,17 +49,35 @@ describe('Testing user feature', () => {
     expect(updatedUser.status).toBe(httpStatus.OK);
     expect(updatedUser.body.details).toBe('User updated successfully');
   });
-  // it('Should delete a user', async () => {
-  //   const deletedUser = await request(app).delete(`/users/${tempUser.id}`);
-  //   expect(deletedUser.status).toBe(200);
-  //   expect(deletedUser.body.details).toBe('User deleted successfully');
-  // });
+  it('Should delete a user', async () => {
+    const deletedUser = await request(app).delete(`/users/${tempUser.id}`);
+    expect(deletedUser.status).toBe(200);
+    expect(deletedUser.body.details).toBe('User deleted successfully');
+  });
   it('Should not update a user', async () => {
     const updatedUser = await request(app).put(`/users/${tempUser.id}`).send({});
     expect(updatedUser.status).toBe(httpStatus.INTERNAL_SERVER_ERROR);
   });
-  // it('Should not authenticate a user', async () => {
-  //   const login = await request(app).post('/login').send({ email: '123@gmail.com', password: '55555' });
-  //   expect(login.status).toBe(httpStatus.UNAUTHORIZED);
-  // });
+  it('Should not authenticate a user', async () => {
+    const login = await request(app).post('/login').send({ email: 'testando@gmail.com', password: '3213' });
+    expect(login.status).toBe(httpStatus.UNAUTHORIZED);
+  });
+  it('Should not return a user by id', async () => {
+    const user = await request(app).get('/users/1000000');
+    expect(user.status).toBe(httpStatus.NOT_FOUND);
+  });
+  it('Should not delete a user', async () => {
+    const deletedUser = await request(app).delete('/users/1000000');
+    expect(deletedUser.status).toBe(httpStatus.NOT_FOUND);
+  });
+  it('Should return a user feed', async () => {
+    const userFeed = await request(app).get(`/users/${tempUser.id}/feed`);
+    expect(userFeed.status).toBe(httpStatus.OK);
+    expect(userFeed.body.feed).toBeDefined();
+  });
+  it('Should return post statistics', async () => {
+    const postStatistics = await request(app).get('/users/reports/post-statistics');
+    expect(postStatistics.status).toBe(httpStatus.OK);
+    expect(postStatistics.body.post_statistics).toBeDefined();
+  });
 });

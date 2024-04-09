@@ -20,7 +20,7 @@ class UserRepository {
     async update(id, full_name, email) {
         this.repository.update(id, full_name, email);
     };
-    async c (id) {
+    async delete (id) {
         this.repository.delete(id);
     };
     async getFeedNews(id) {
