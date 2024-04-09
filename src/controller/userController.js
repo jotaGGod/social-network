@@ -18,12 +18,13 @@ class UserController {
   async loginUser(req, res) {
     const { email, password } = req.body;
     const user = await this.authenticateService.authenticateLoginUser(email, password);
+    if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email or password incorrect');
     const { token, refreshToken } = await this.tokenService.generateAuthTokens(user);
     return res.status(httpStatus.OK).json({
       message: 'Logged in successfully',
       token: token,
       refreshToken: refreshToken
-    });
+    })
   };
   async createRefreshToken(req, res){
     const { refreshToken } = req.body;

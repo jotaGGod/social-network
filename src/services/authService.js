@@ -1,9 +1,6 @@
 const httpStatus = require('../utils/statusCodes');
 const ApiError = require('../utils/ApiError');
-const userRepository = require('../repositories/userRepository');
-const HashService = require("./cryptoService");
 require('dotenv').config()
-
 
 class AuthenticateService {
     constructor(userRepository, hashService) {
@@ -13,9 +10,9 @@ class AuthenticateService {
     async authenticateLoginUser (email, password) {
         try{
             const user = await this.userRepository.getByEmail(email);
-            if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email not found');
+            if(!user) throw new ApiError(httpStatus.UNAUTHORIZED,'Email or password incorrect');
             const isValidPassword = await this.hashService.compare(password, user.password);
-            if(!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED,'Password incorrect');
+            if(!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED,'Email or password incorrect');
             return user
         }catch(err){
             console.log(err);
