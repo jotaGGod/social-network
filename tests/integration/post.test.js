@@ -48,11 +48,11 @@ describe('Testing post feature', () => {
         const post = await request(app).delete(`/post/${tempPost.id}`);
         expect(post.status).toBe(httpStatus.OK);
     });
-    it('Should not create a post', async () => {
+    it('Should return a bad request if trying to create a post with empty body', async () => {
         const post = await request(app).post('/post').send({});
         expect(post.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a post', async () => {
+    it('Should return a not found if trying to delete an post with non-existent id', async () => {
         const post = await request(app).delete('/post/100000');
         expect(post.status).toBe(httpStatus.NOT_FOUND);
     });

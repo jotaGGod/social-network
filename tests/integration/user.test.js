@@ -15,7 +15,7 @@ describe('Testing user feature', () => {
       created_at: new Date(),
       updated_at: new Date(),
       is_active: true
-    });  
+    });
     bodyUser = {
       full_name: 'Tadeuzinho Smith',
       email: 'tadeusmiit@gmail.com'
@@ -24,7 +24,7 @@ describe('Testing user feature', () => {
   afterAll(async () => {
     await Token.destroy({ where: { user_id: tempUser.id } });
     await User.destroy({ where: { id: tempUser.id } });
-    await sequelize.close();  
+    await sequelize.close();
   });
   it('Should return all users', async () => {
       const loginResponse = await request(app).post('/login').send({"email": tempUser.email, "password": "1234"});
@@ -38,7 +38,6 @@ describe('Testing user feature', () => {
     expect(user.status).toBe(httpStatus.OK);
     expect(user.body).toBeDefined();
   });
-  
   it('Should authenticate a user', async () => {
     const login = await request(app).post('/login').send({ email: tempUser.email, password: '1234' });
     expect(login.status).toBe(httpStatus.OK);
@@ -66,7 +65,7 @@ describe('Testing user feature', () => {
     const user = await request(app).get('/users/1000000');
     expect(user.status).toBe(httpStatus.NOT_FOUND);
   });
-  it('Should not delete a user', async () => {
+  it('Should return a not found if trying to delete an user with non-existent id', async () => {
     const deletedUser = await request(app).delete('/users/1000000');
     expect(deletedUser.status).toBe(httpStatus.NOT_FOUND);
   });
@@ -80,4 +79,8 @@ describe('Testing user feature', () => {
     expect(postStatistics.status).toBe(httpStatus.OK);
     expect(postStatistics.body.post_statistics).toBeDefined();
   });
+  it('Should not return all users', async () => {
+    const users = await request(app).get('/users');
+    expect(users.status).toBe(httpStatus.UNAUTHORIZED);
+  })
 });

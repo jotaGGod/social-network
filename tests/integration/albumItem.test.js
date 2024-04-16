@@ -38,11 +38,11 @@ describe('Testing album item feature', () => {
         const albumItem = await request(app).delete(`/album_item/${tempAlbumItem.id}`);
         expect(albumItem.status).toBe(httpStatus.OK);
     });
-    it('Should not create an album item', async () => {
+    it('Should return a bad request if trying to create a album item with empty body', async () => {
         const albumItem = await request(app).post('/album_item').send({ });
         expect(albumItem.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete an album item', async () => {
+    it('Should return a not found if trying to delete an album item with non-existent id', async () => {
         const albumItem = await request(app).delete('/album_item/100000');
         expect(albumItem.status).toBe(httpStatus.NOT_FOUND);
     });

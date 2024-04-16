@@ -33,11 +33,11 @@ describe('Testing target public feature', () => {
         const targetPublic = await request(app).delete(`/target_public/${tempTargetPublic.id}`);
         expect(targetPublic.status).toBe(httpStatus.OK);
     });
-    it('Shoundnt create a target public', async () => {
+    it('Should return a internal server error if trying to create a target public with empty body', async () => {
         const targetPublic = await request(app).post('/target_public').send({});
         expect(targetPublic.status).toBe(httpStatus.INTERNAL_SERVER_ERROR);
     });
-    it('Shoundnt delete a target public', async () => {
+    it('Should return a not found if trying to delete an target public with non-existent id', async () => {
         const targetPublic = await request(app).delete('/target_public/100000');
         expect(targetPublic.status).toBe(httpStatus.NOT_FOUND);
     });
