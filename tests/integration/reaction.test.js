@@ -46,11 +46,11 @@ describe('Testing reaction feature', () => {
         const reaction = await request(app).delete(`/reactions/${tempReaction.id}`);
         expect(reaction.status).toBe(httpStatus.OK);
     });
-    it('Should not create a reaction', async () => {
+    it('Should return a bad request if trying to create a reaction with empty body', async () => {
         const reaction = await request(app).post('/reactions').send({});
         expect(reaction.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a reaction', async () => {
+    it('Should return a not found if trying to delete an reaction with non-existent id', async () => {
         const reaction = await request(app).delete('/reactions/100000');
         expect(reaction.status).toBe(httpStatus.NOT_FOUND);
     });

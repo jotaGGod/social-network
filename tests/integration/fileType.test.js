@@ -35,11 +35,11 @@ describe('Testing FileType feature', () => {
         const fileType = await request(app).delete(`/file_type/${tempFileType.id}`);
         expect(fileType.status).toBe(httpStatus.OK);
     });
-    it('Should not create a file type', async () => {
+    it('Should return a bad request if trying to create a file type with empty body', async () => {
         const fileType = await request(app).post('/file_type').send({ });
         expect(fileType.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a file type', async () => {
+    it('Should return a not found if trying to delete an file type with non-existent id', async () => {
         const fileType = await request(app).delete('/file_type/100000');
         expect(fileType.status).toBe(httpStatus.NOT_FOUND);
     });

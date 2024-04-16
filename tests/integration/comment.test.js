@@ -46,11 +46,11 @@ describe('Testing comment feature', () => {
         const comment = await request(app).delete(`/comment/${tempComment.id}`);
         expect(comment.status).toBe(httpStatus.OK);
     });
-    it('Should not create a comment', async () => {
+    it('Should return a bad request if trying to create a comment with empty body', async () => {
         const comment = await request(app).post('/comment').send({ });
         expect(comment.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a comment', async () => {
+    it('Should return a not found if trying to delete a comment with non-existent id', async () => {
         const comment = await request(app).delete('/comment/100000');
         expect(comment.status).toBe(httpStatus.NOT_FOUND);
     });

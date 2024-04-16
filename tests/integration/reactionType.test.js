@@ -33,11 +33,11 @@ describe('Testing reaction type feature', () => {
         const reactionType = await request(app).delete(`/reactions_type/${tempReactionType.id}`);
         expect(reactionType.status).toBe(httpStatus.OK);
     });
-    it('Should not create a reaction type', async () => {
+    it('Should return a bad request if trying to create a target public with empty body', async () => {
         const reactionType = await request(app).post('/reactions_type').send({});
         expect(reactionType.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a reaction type', async () => {
+    it('Should return a not found if trying to delete an reaction type with non-existent id', async () => {
         const reactionType = await request(app).delete('/reactions_type/100000');
         expect(reactionType.status).toBe(httpStatus.NOT_FOUND);
     });

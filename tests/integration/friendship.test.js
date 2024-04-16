@@ -44,11 +44,11 @@ describe('Testing friendship feature', () => {
         const friendship = await request(app).delete(`/friendship/${tempFriendship.id}`);
         expect(friendship.status).toBe(httpStatus.OK);
     });
-    it('Should not create a friendship', async () => {
+    it('Should return a bad request if trying to create a friendship with empty body', async () => {
         const friendship = await request(app).post('/friendship').send({ });
         expect(friendship.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should not delete a friendship', async () => {
+    it('Should return a not found if trying to delete an friendship with non-existent id', async () => {
         const friendship = await request(app).delete('/friendship/100000');
         expect(friendship.status).toBe(httpStatus.NOT_FOUND);
     });
