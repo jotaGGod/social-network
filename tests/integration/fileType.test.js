@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { FileType, sequelize } = require('../../src/database/models');
+const { FileType, sequelize } = require('../../database/models');
 
 describe('Testing FileType feature', () => {
     let tempFileType;

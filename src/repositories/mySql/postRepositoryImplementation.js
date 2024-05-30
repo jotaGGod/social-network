@@ -1,4 +1,4 @@
-const { Post } = require('../../database/models');
+//const { Post } = require('../../../database/models');
 const httpStatus = require('../../utils/statusCodes');
 const ApiError = require("../../utils/ApiError");
 const { IPostRepository } = require("../interfaces/postRepositoryAbstract");

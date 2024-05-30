@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { ReactionType, sequelize } = require('../../src/database/models');
+const { ReactionType, sequelize } = require('../../database/models');
 
 describe('Testing reaction type feature', () => {
     let tempReactionType;

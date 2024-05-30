@@ -6,15 +6,17 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "dev": "nodemon server.js",
-    "db:drop": "cd src/database && npx sequelize-cli db:drop",
-    "db:create": "cd src/database && npx sequelize-cli db:create",
-    "db:migrate": "cd src/database && npx sequelize-cli db:migrate",
-    "db:seed": "cd src/database && npx sequelize-cli db:seed:all",
-    "db:all": "npm run db:create && npm run db:migrate && npm run db:seed"
+    "db:drop": "cd database && npx sequelize-cli db:drop",
+    "db:create": "cd database && npx sequelize-cli db:create",
+    "db:migrate": "cd database && npx sequelize-cli db:migrate",
+    "db:seed": "cd database && npx sequelize-cli db:seed:all",
+    "db:all": "npm run db:create && npm run db:migrate && npm run db:seed",
+    "db:gen:migrate": "knex migrate:make %1 --knexfile ./config/knexfile.js --client=mysql"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "2": "^3.0.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
@@ -25,6 +27,8 @@
     "fs": "^0.0.1-security",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "mysql": "^2.18.1",
     "mysql2": "^3.5.2",
     "nodemon": "^3.0.1",
     "path": "^0.12.7",

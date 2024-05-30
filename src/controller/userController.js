@@ -36,6 +36,8 @@ class UserController {
   };
   async getUserById(req, res) {
     const { id } = req.params;
+    const { authorization: token } = req.headers;
+    await this.tokenService.verifyToken(token);
     const user = await this.userService.getUserById(id);
     return res.status(httpStatus.OK).json(user);
   };
@@ -47,32 +49,35 @@ class UserController {
   };
   async updateUser(req, res) {
     const { id } = req.params;
-    const { full_name, email } = req.body;
-    await this.userService.updateUserById(id, full_name, email);
+    const { authorization: token } = req.headers;
+    await this.tokenService.verifyToken(token);
+    const { full_name, email, password } = req.body;
+    await this.userService.updateUserById(id, full_name, email, password);
     return res.status(httpStatus.OK).json({
       details: "User updated successfully"
     });  
   };
   async deleteUser(req, res) {
+    const { authorization: token } = req.headers;``
+    await this.tokenService.verifyToken(token);
     const { id } = req.params;
     await this.userService.deleteUser(id);
     return res.status(httpStatus.OK).json({
       details: "User deleted successfully"
     });
   };
-  async getFeedNews(req, res) {
-    try {
-      const { id } = req.params;
-      const feed = await this.userService.getFeedNews(id);
-      return res.status(httpStatus.OK).json({
-        feed: {posts: feed}
-      });
-    }catch (error) {
-      throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
-    }
+  async getFeedNews(req, res) {    
+    const { authorization: token } = req.headers;
+    await this.tokenService.verifyToken(token);
+    const userId = await this.tokenService.decodeUserToken(token);
+    const feed = await this.userService.getFeedNews(userId);
+    return res.status(httpStatus.OK).json({
+      feed: {posts: feed}
+    });    
   }
-
   async getPostStatistics(req, res) {
+    const { authorization: token } = req.headers;
+    await this.tokenService.verifyToken(token);
     const postStatistics = await this.userService.getPostStatistics();
     return res.status(httpStatus.OK).json({
       post_statistics: postStatistics

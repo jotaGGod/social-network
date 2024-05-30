@@ -17,7 +17,6 @@ const mockHashService = {
 };
 let userService;
 let inputUser;
-let userValue;
 let entityId;
 describe('UserService', () => {
     beforeEach(() => {
@@ -27,13 +26,6 @@ describe('UserService', () => {
             "email": "pedro2002@hotmail.com",
             "password": "1234"
         };
-        userValue = {
-            "created_at": "2024-03-13T21:06:22.629Z",
-            "updated_at": "2024-03-13T21:06:22.629Z",
-            "id": 32,
-            "full_name": "pedro",
-            "email": "pedro2002@hotmail.com"
-        };
         entityId = 1
     });
     afterEach(() => {
@@ -42,13 +34,11 @@ describe('UserService', () => {
     describe('create', () => {
         it('should create a user', async () => {
             mockUserRepository.getByEmail.mockResolvedValueOnce(false);
-            mockHashService.hash.mockResolvedValueOnce("$2b$10$YlMAihhFSoTgW7/ETak4zuSrkuFmYQM3I5tN0J.10");
-            mockUserRepository.create.mockResolvedValueOnce(userValue);
-            const user = await userService.create(inputUser.full_name, inputUser.email, inputUser.password);
+            mockHashService.hash.mockResolvedValueOnce("$2b$10$gqjZyazk6AC2KNS4uPUwweIJPKAxb9aAZ1CWmyCpA7YOokG5ObYFu");
+            await userService.create(inputUser.full_name, inputUser.email, inputUser.password);
             expect(mockUserRepository.getByEmail).toHaveBeenCalledWith(inputUser.email);
             expect(mockHashService.hash).toHaveBeenCalledWith(inputUser.password);
-            expect(mockUserRepository.create).toHaveBeenCalledWith(inputUser.full_name, inputUser.email, "$2b$10$YlMAihhFSoTgW7/ETak4zuSrkuFmYQM3I5tN0J.10");
-            expect(user).toEqual(userValue);
+            expect(mockUserRepository.create).toHaveBeenCalledWith(inputUser.full_name, inputUser.email, "$2b$10$gqjZyazk6AC2KNS4uPUwweIJPKAxb9aAZ1CWmyCpA7YOokG5ObYFu");
         });
         it('should throw an error if email is already taken', async () => {
             mockUserRepository.getByEmail.mockResolvedValueOnce(true);

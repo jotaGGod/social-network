@@ -5,4 +5,4 @@ const userLoginSchema = yup.object({
     password: yup.string().required()
 });
 
-module.exports =  userLoginSchema;
+module.exports = { userLoginSchema };

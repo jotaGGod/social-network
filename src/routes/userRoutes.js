@@ -2,7 +2,7 @@ const express = require('express');
 const validateSchema  = require('../middlewares/userValidation');
 const validateLogin  = require('../middlewares/loginValidation');
 const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../schemas/userSchema');
-const userLoginSchema = require('../schemas/loginSchema');
+const { userLoginSchema } = require('../schemas/loginSchema');
 
 function createUserRoutes(userController){
     const router = express.Router();

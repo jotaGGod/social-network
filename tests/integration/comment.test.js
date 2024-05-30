@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Comment, sequelize } = require('../../src/database/models');
+const { Comment, sequelize } = require('../../database/models');
 
 describe('Testing comment feature', () => {
     let tempComment;

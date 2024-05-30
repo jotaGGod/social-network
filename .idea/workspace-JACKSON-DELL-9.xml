@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="preparing environment">
+      <change afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/integration/user.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/migrations/20231226202253-create-user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/migrations/20231226202253-create-user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/targetpublic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/targetpublic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/mySql/tokenRepositoryImplementation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/mySql/tokenRepositoryImplementation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/reactionTypeRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/reactionTypeRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/authService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/tokenService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/tokenService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/albumItemService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/albumItemService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/albumService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/albumService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/commentService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/commentService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fileTypeService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/fileTypeService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/friendshipService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/friendshipService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/postService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/postService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reactionService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/reactionService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reactionTypeService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/reactionTypeService.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/targetPublic.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/targetPublic.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/userService.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/service/userService.test.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="checkout" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jotaGGod&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b5e0542f-4244-464a-a7fc-d2b3ec4840cc" />
+        <option name="url" value="git@github.com:jotaGGod/social-network.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/challange.txt" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2WbCy5QN4ygHyhlxghhdnscrwMf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Jest.AlbumItemService.createAlbumItem.should create an album item.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.AlbumItemService.deleteAlbumItem.should delete an existing album item.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.AlbumItemService.deleteAlbumItem.should throw an error when trying to delete a non-existing album item.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.AlbumItemService.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.AlbumItemService.getAllAlbumItem.should get all album items.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.AlbumService.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.CommentService.updateComment.should throw an error when trying to update a non-existing comment.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.FriendshipService.createFriendship.should create a friendship.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.ReactionTypeService.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.TargetPublicService.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.UserService.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.UserService.getFeedNews.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.UserService.getUserById.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.UserService.updateUser.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.app.js.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.userRoutes.js.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/test&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.14.2&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.14.6&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jacks/OneDrive/Documents/Dev/Back-end/Challenges/express-api-feature-db&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/JACKSON/OneDrive/Documents/Dev/Back-end/Challenges/express-api-feature-db/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;,
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JACKSON\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\tests\Service" />
+      <recent name="C:\Users\JACKSON\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\tests" />
+      <recent name="C:\Users\JACKSON\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\src" />
+      <recent name="C:\Users\jacks\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\features" />
+      <recent name="C:\Users\JACKSON\OneDrive\Documents\Dev\Back-end\Challenges\express-api-feature-db\repositories\repositoryImplementation" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.FriendshipService.createFriendship.should create a friendship">
+    <configuration name="FriendshipService.createFriendship.should create a friendship" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/friendshipService.test.js" />
+      <test-names>
+        <test-name value="FriendshipService" />
+        <test-name value="createFriendship" />
+        <test-name value="should create a friendship" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserService.getFeedNews" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/userService.test.js" />
+      <test-names>
+        <test-name value="UserService" />
+        <test-name value="getFeedNews" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserService.getPostStatistics" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/userService.test.js" />
+      <test-names>
+        <test-name value="UserService" />
+        <test-name value="getPostStatistics" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserService.getPostStatistics.shouldnt get Post Statistics" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/userService.test.js" />
+      <test-names>
+        <test-name value="UserService" />
+        <test-name value="getPostStatistics" />
+        <test-name value="shouldnt get Post Statistics" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserService.getUserById" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/userService.test.js" />
+      <test-names>
+        <test-name value="UserService" />
+        <test-name value="getUserById" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.FriendshipService.createFriendship.should create a friendship" />
+        <item itemvalue="Jest.UserService.getPostStatistics.shouldnt get Post Statistics" />
+        <item itemvalue="Jest.UserService.getPostStatistics" />
+        <item itemvalue="Jest.UserService.getFeedNews" />
+        <item itemvalue="Jest.UserService.getUserById" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-56bbcd2c060c-JavaScript-WS-233.11799.229" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c59b074-9e76-415c-8834-e9a0be852fdd" name="Changes" comment="" />
+      <created>1696992143692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696992143692</updated>
+      <workItem from="1696992144706" duration="1383000" />
+      <workItem from="1697031971891" duration="1602000" />
+      <workItem from="1697116954794" duration="20160000" />
+      <workItem from="1697205627937" duration="7627000" />
+      <workItem from="1697226232337" duration="7514000" />
+      <workItem from="1697249706791" duration="5852000" />
+      <workItem from="1697464895896" duration="136000" />
+      <workItem from="1697577268364" duration="7306000" />
+      <workItem from="1697729054077" duration="2157000" />
+      <workItem from="1697750567081" duration="10974000" />
+      <workItem from="1698006016290" duration="7005000" />
+      <workItem from="1698182330100" duration="9945000" />
+      <workItem from="1698339579705" duration="1496000" />
+      <workItem from="1698342002577" duration="123000" />
+      <workItem from="1698422751102" duration="460000" />
+      <workItem from="1698674014354" duration="1442000" />
+      <workItem from="1698698730372" duration="4953000" />
+      <workItem from="1698766506625" duration="702000" />
+      <workItem from="1698846523157" duration="2899000" />
+      <workItem from="1698853779241" duration="482000" />
+      <workItem from="1698932760588" duration="7445000" />
+      <workItem from="1698951198429" duration="719000" />
+      <workItem from="1699308358318" duration="9351000" />
+      <workItem from="1699381613355" duration="3829000" />
+      <workItem from="1699623267265" duration="1280000" />
+      <workItem from="1699742599553" duration="3787000" />
+      <workItem from="1699821473616" duration="1855000" />
+      <workItem from="1699886081625" duration="53000" />
+      <workItem from="1699886147949" duration="19000" />
+      <workItem from="1699886246157" duration="69000" />
+      <workItem from="1699886317255" duration="1598000" />
+      <workItem from="1699906183736" duration="11059000" />
+      <workItem from="1699969234236" duration="1260000" />
+      <workItem from="1700169294649" duration="595000" />
+      <workItem from="1700240759389" duration="5726000" />
+      <workItem from="1700416255090" duration="3378000" />
+      <workItem from="1700520020794" duration="10186000" />
+      <workItem from="1700704063282" duration="7111000" />
+      <workItem from="1700861024100" duration="9459000" />
+      <workItem from="1701094596863" duration="2483000" />
+      <workItem from="1701122045289" duration="12194000" />
+      <workItem from="1701180529252" duration="684000" />
+      <workItem from="1701207968709" duration="4182000" />
+      <workItem from="1701268266291" duration="1096000" />
+      <workItem from="1701300902086" duration="6098000" />
+      <workItem from="1701476378877" duration="7636000" />
+      <workItem from="1701728219088" duration="15623000" />
+      <workItem from="1701813412697" duration="2379000" />
+      <workItem from="1702051854124" duration="3884000" />
+      <workItem from="1702066683644" duration="744000" />
+      <workItem from="1702071422068" duration="194000" />
+      <workItem from="1702309836505" duration="584000" />
+      <workItem from="1702310511345" duration="417000" />
+      <workItem from="1702330720773" duration="7421000" />
+      <workItem from="1702399944721" duration="596000" />
+      <workItem from="1702427593378" duration="1457000" />
+      <workItem from="1702568998116" duration="1060000" />
+      <workItem from="1702581978224" duration="6180000" />
+      <workItem from="1702589911538" duration="602000" />
+      <workItem from="1702755011678" duration="1428000" />
+      <workItem from="1702832598088" duration="2503000" />
+      <workItem from="1702929525660" duration="2934000" />
+      <workItem from="1702946375350" duration="818000" />
+      <workItem from="1703009658312" duration="535000" />
+      <workItem from="1703015832985" duration="274000" />
+      <workItem from="1703171358846" duration="4515000" />
+      <workItem from="1703287010565" duration="4894000" />
+      <workItem from="1703528800431" duration="906000" />
+      <workItem from="1703607054808" duration="651000" />
+      <workItem from="1703619269747" duration="6827000" />
+      <workItem from="1703687430632" duration="1993000" />
+      <workItem from="1703696249798" duration="428000" />
+      <workItem from="1703696807608" duration="3407000" />
+      <workItem from="1703783285181" duration="1476000" />
+      <workItem from="1703788272407" duration="1035000" />
+      <workItem from="1703802060515" duration="6413000" />
+      <workItem from="1703946001235" duration="593000" />
+      <workItem from="1704035522071" duration="1840000" />
+      <workItem from="1704116438307" duration="873000" />
+      <workItem from="1704119382373" duration="10000" />
+      <workItem from="1704119405175" duration="2963000" />
+      <workItem from="1704123141595" duration="13783000" />
+      <workItem from="1704328382740" duration="11336000" />
+      <workItem from="1704381560697" duration="199000" />
+      <workItem from="1704391819021" duration="599000" />
+      <workItem from="1704480017082" duration="3011000" />
+      <workItem from="1704483775172" duration="2160000" />
+      <workItem from="1704559815553" duration="6669000" />
+      <workItem from="1704669283885" duration="3020000" />
+      <workItem from="1704823853720" duration="11460000" />
+      <workItem from="1704998295146" duration="4260000" />
+      <workItem from="1705010561957" duration="7092000" />
+      <workItem from="1705069682597" duration="6615000" />
+      <workItem from="1705092441233" duration="4836000" />
+      <workItem from="1705339789635" duration="1262000" />
+      <workItem from="1705437631083" duration="13321000" />
+      <workItem from="1705514390230" duration="51000" />
+      <workItem from="1705514570121" duration="792000" />
+      <workItem from="1705527370794" duration="3668000" />
+      <workItem from="1705600438047" duration="1362000" />
+      <workItem from="1705665638114" duration="42000" />
+      <workItem from="1705667687387" duration="23000" />
+      <workItem from="1705703742673" duration="444000" />
+      <workItem from="1706116415063" duration="356000" />
+      <workItem from="1706236191180" duration="617000" />
+      <workItem from="1706301384127" duration="1982000" />
+      <workItem from="1706549541035" duration="4276000" />
+      <workItem from="1707164167029" duration="212000" />
+      <workItem from="1707515204803" duration="2800000" />
+      <workItem from="1707754441507" duration="11038000" />
+      <workItem from="1707836255982" duration="12157000" />
+      <workItem from="1707856425679" duration="371000" />
+      <workItem from="1708020518844" duration="1844000" />
+      <workItem from="1708022589472" duration="716000" />
+      <workItem from="1708208635512" duration="9414000" />
+      <workItem from="1708710807645" duration="226000" />
+      <workItem from="1708711060420" duration="3309000" />
+      <workItem from="1708964485030" duration="3353000" />
+      <workItem from="1709048990865" duration="4570000" />
+      <workItem from="1709079477132" duration="2457000" />
+      <workItem from="1709733607207" duration="11886000" />
+      <workItem from="1710280627529" duration="10889000" />
+      <workItem from="1710354676586" duration="10142000" />
+      <workItem from="1710368262049" duration="839000" />
+      <workItem from="1710369976014" duration="1229000" />
+      <workItem from="1710693488594" duration="4680000" />
+      <workItem from="1710882449666" duration="1235000" />
+      <workItem from="1710887957145" duration="19000" />
+      <workItem from="1712238491431" duration="88000" />
+      <workItem from="1713363577513" duration="207000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1697136451746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697136451746</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactoring and inserting routes">
+      <option name="closed" value="true" />
+      <created>1697251385167</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697251385167</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactoring and inserting methods">
+      <option name="closed" value="true" />
+      <created>1697751087158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697751087158</updated>
+    </task>
+    <task id="LOCAL-00004" summary="new table 'album'">
+      <option name="closed" value="true" />
+      <created>1697754100710</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697754100710</updated>
+    </task>
+    <task id="LOCAL-00005" summary="crud on new table 'post'">
+      <option name="closed" value="true" />
+      <created>1698086452352</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698086452352</updated>
+    </task>
+    <task id="LOCAL-00006" summary="crud on new tables 'album-item' and 'reactions-type'">
+      <option name="closed" value="true" />
+      <created>1698183638531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698183638531</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactoring and inserting crud's tables">
+      <option name="closed" value="true" />
+      <created>1698200463672</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698200463672</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" correction">
+      <option name="closed" value="true" />
+      <created>1698201529062</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698201529062</updated>
+    </task>
+    <task id="LOCAL-00009" summary="inserting cryptography and login auth user">
+      <option name="closed" value="true" />
+      <created>1698811404450</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698811404450</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1699319669761</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699319669761</updated>
+    </task>
+    <task id="LOCAL-00011" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1700709378145</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700709378145</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1704672576623</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704672576623</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1704834365341</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704834365341</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1704834918658</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704834918658</updated>
+    </task>
+    <task id="LOCAL-00015" summary="changing seeders">
+      <option name="closed" value="true" />
+      <created>1705703877250</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705703877250</updated>
+    </task>
+    <task id="LOCAL-00016" summary="changing seeders">
+      <option name="closed" value="true" />
+      <created>1707755410562</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707755410562</updated>
+    </task>
+    <task id="LOCAL-00017" summary="preparing environment">
+      <option name="closed" value="true" />
+      <created>1710290546437</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1710290546437</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="first commit" />
+    <MESSAGE value="refactoring and inserting routes" />
+    <MESSAGE value="refactoring and inserting methods" />
+    <MESSAGE value="new table 'album'" />
+    <MESSAGE value="crud on new table 'post'" />
+    <MESSAGE value="crud on new tables 'album-item' and 'reactions-type'" />
+    <MESSAGE value="refactoring and inserting crud's tables" />
+    <MESSAGE value=" correction" />
+    <MESSAGE value="inserting cryptography and login auth user" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="changing seeders" />
+    <MESSAGE value="preparing environment" />
+    <option name="LAST_COMMIT_MESSAGE" value="preparing environment" />
+  </component>
+</project>

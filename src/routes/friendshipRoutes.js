@@ -1,13 +1,11 @@
 const express = require('express');
 const validateSchema  = require('../middlewares/friendshipValidation');
-const { createFriendshipSchema, getByIdSchema } = require('../schemas/friendshipSchema');
+const { authorizationSchema } = require('../schemas/friendshipSchema');
 
 function createFriendshipRoutes(friendshipController) {
     const router = express.Router();
-    router.post('/', validateSchema(createFriendshipSchema), friendshipController.create.bind(friendshipController));
-    router.get('/', friendshipController.getFriendships.bind(friendshipController));
-    router.get('/:id', friendshipController.getById.bind(friendshipController));
-    router.delete('/:id', friendshipController.deleteFriendship.bind(friendshipController));
+    router.get('/', validateSchema(authorizationSchema), friendshipController.getFriendships.bind(friendshipController));
+    router.delete('/:id', validateSchema(authorizationSchema), friendshipController.deleteFriendship.bind(friendshipController));
     return router
 }
 

@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { TargetPublic, sequelize } = require('../../src/database/models');
+const { TargetPublic, sequelize } = require('../../database/models');
 
 describe('Testing target public feature', () => {
     let tempTargetPublic;

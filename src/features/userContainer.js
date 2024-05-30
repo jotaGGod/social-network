@@ -1,5 +1,5 @@
-const TokenRepositoryImplementation = require("../repositories/mySql/tokenRepositoryImplementation");
-const UserRepositoryImplementation = require("../repositories/mySql/userRepositoryImplementation");
+const TokenRepositoryImplementation = require("../repositories/implementation/tokenRepositoryImplementation");
+const UserRepositoryImplementation = require("../repositories/implementation/userRepositoryImplementation");
 const TokenRepository = require("../repositories/tokenRepository");
 const TokenService = require("../services/tokenService");
 const UserRepository = require("../repositories/userRepository");

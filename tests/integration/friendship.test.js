@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Friendship, sequelize } = require('../../src/database/models');
+const { Friendship, sequelize } = require('../../database/models');
 
 describe('Testing friendship feature', () => {
     let tempFriendship;
