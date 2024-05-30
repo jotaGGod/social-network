@@ -11,6 +11,8 @@ const configureFileTypeContainer = require("./src/features/fileTypeContainer");
 const configureCommentContainer = require("./src/features/commentContainer");
 const configureAlbumItemContainer = require("./src/features/albumItemContainer");
 const configureAlbumContainer = require("./src/features/albumContainer");
+const configureFriendshipRequestTypeContainer = require("./src/features/friendshipRequestTypeContainer");
+const configureFriendshipRequestContainer = require("./src/features/friendshipRequestContainer");
 
 const app = express();
 const { userRoutes } = configureUserContainer();
@@ -23,11 +25,15 @@ const { fileTypeRoutes } = configureFileTypeContainer();
 const { commentRoutes } = configureCommentContainer();
 const { albumItemRoutes } = configureAlbumItemContainer();
 const { albumRoutes } = configureAlbumContainer();
+const { friendshipRequestTypeRoutes } = configureFriendshipRequestTypeContainer();
+const { friendshipRequestRoutes } = configureFriendshipRequestContainer();
 
 app.use(express.json());
 app.use('/reactions', reactionRoutes);
 app.use('/users', userRoutes);
 app.use('/friendship',friendshipRoutes);
+app.use('/friendship_request_type', friendshipRequestTypeRoutes);
+app.use('/friendship_request', friendshipRequestRoutes);
 app.use('/file_type', fileTypeRoutes);
 app.use('/target_public', targetPublicRoutes);
 app.use('/album', albumRoutes);

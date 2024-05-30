@@ -1,4 +1,4 @@
-const { User, sequelize } = require('../../database/models');
+//const { User, sequelize } = require('../../../database/models');
 const { QueryTypes } = require('sequelize');
 const httpStatus = require("../../utils/statusCodes");
 const ApiError = require("../../utils/ApiError");
@@ -41,11 +41,11 @@ class UserRepositoryImplementation extends IUserRepository{
             { attributes: ['id', 'full_name', 'email',] }
         );
     };
-    async update(id, full_name, email) {
+    async update(id, full_name, email, hashedPassword) {
         try {
             await User.sequelize.transaction(async (t) => {
                 return User.update(
-                    { full_name: full_name, email: email },
+                    { full_name: full_name, email: email, password: hashedPassword},
                     {
                         where: {id: id},
                         transaction: t

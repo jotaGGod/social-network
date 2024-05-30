@@ -1,4 +1,4 @@
-const ReactionRepositoryImplementation = require("../repositories/mySql/reactionRepositoryImplementation")
+const ReactionRepositoryImplementation = require("../repositories/implementation/reactionRepositoryImplementation")
 const ReactionRepository = require("../repositories/reactionRepository");
 const ReactionService = require("../services/reactionService");
 const ReactionController = require("../controller/reactionController");

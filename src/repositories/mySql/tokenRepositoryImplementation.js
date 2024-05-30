@@ -1,4 +1,4 @@
-const { Token } = require("../../database/models");
+// const { Token } = require("../../../database/models");
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
 const {ITokenRepository} = require("../interfaces/tokenRepositoryAbstract");

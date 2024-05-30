@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Album, sequelize } = require('../../src/database/models');
+const { Album, sequelize } = require('../../database/models');
 
 describe('Testing album feature', () => {
     let tempAlbum;

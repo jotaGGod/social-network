@@ -1,15 +1,14 @@
 const yup = require('yup');
 
-const createFriendshipSchema = yup.object({
-    principal_user_id: yup.number().integer().required(),
-    friend_id: yup.number().integer().required()
-});
-
 const getByidSchema = yup.object({
     id: yup.number().integer().required()
 });
 
+const authorizationSchema = yup.object().shape({
+    authorization: yup.string().required()
+});
+
 module.exports = {
-    createFriendshipSchema,
-    getByidSchema
+    getByidSchema,
+    authorizationSchema
 };

@@ -1,8 +1,9 @@
 const httpStatus = require('../utils/statusCodes');
 
 class CommentController {
-    constructor(commentService) {
+    constructor(commentService,  tokenService) {
         this.commentService = commentService;
+        this.tokenService = tokenService;
     }
     async create(req, res) {
         const { description, user_id, post_id } = req.body;
@@ -14,15 +15,21 @@ class CommentController {
     }
     async getCommentById(req, res) {
         const { id } = req.params;
+        const { authorization: token } = req.headers;
+        await this.tokenService.verifyToken(token);
         const comment = await this.commentService.getCommentById(id);
         return res.status(httpStatus.OK).json(comment);
     }
     async getComments(req, res) {
+        const { authorization: token } = req.headers;
+        await this.tokenService.verifyToken(token);
         const comments = await this.commentService.getAllComments();
         return res.status(httpStatus.OK).json(comments);
     }
     async updateComment(req, res) {
         const { id } = req.params;
+        const { authorization: token } = req.headers;
+        await this.tokenService.verifyToken(token);
         const { description, user_id, post_id } = req.body;
         await this.commentService.updateComment(id, description, user_id, post_id);
         return res.status(httpStatus.OK).json({
@@ -31,6 +38,8 @@ class CommentController {
     }
     async deleteComment(req, res) {
         const { id } = req.params;
+        const { authorization: token } = req.headers;
+        await this.tokenService.verifyToken(token);
         await this.commentService.deleteComment(id);
         return res.status(httpStatus.OK).json({
             details: "Comment deleted successfully"

@@ -12,7 +12,7 @@ const updateUserSchema = yup.object().shape({
     password: yup.string()
 });
 const getByIdSchema = yup.object().shape({
-    id: yup.number().integer().required(),
+    id: yup.number().integer().required()
 });
 
 module.exports = {

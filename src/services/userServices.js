@@ -10,7 +10,7 @@ class UserService {
     const isEmailTaken = await this.userRepository.getByEmail(email);
     if (isEmailTaken) throw new ApiError(httpStatus.CONFLICT,'Email already taken');
     const hashedPassword = await this.hashService.hash(password);
-    return this.userRepository.create(full_name, email, hashedPassword);
+    this.userRepository.create(full_name, email, hashedPassword);
   };
   async getUserById(id) {
       const user = await this.userRepository.getById(id);
@@ -38,8 +38,8 @@ class UserService {
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     await this.userRepository.delete(id);
   };
-  async getFeedNews(id) {
-    return this.userRepository.getFeedNews(id);
+  async getFeedNews(userId) {
+    return this.userRepository.getFeedNews(userId);
   };
   async getPostStatistics() {
     const postStatistics = await this.userRepository.getPostStatistics();

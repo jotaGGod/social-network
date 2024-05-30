@@ -1,4 +1,4 @@
-const { AlbumItem } = require('../../database/models');
+//const { AlbumItem } = require('../../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
 const { IAlbumItemRepository } = require("../interfaces/albumItemRepositoryAbstract");

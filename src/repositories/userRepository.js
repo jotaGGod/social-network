@@ -17,8 +17,8 @@ class UserRepository {
     async getAll(){
         return this.repository.getAll();
     };
-    async update(id, full_name, email) {
-        this.repository.update(id, full_name, email);
+    async update(id, full_name, email, hashedPassword) {
+        this.repository.update(id, full_name, email, hashedPassword);
     };
     async delete (id) {
         this.repository.delete(id);

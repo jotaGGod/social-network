@@ -1,7 +1,8 @@
-const { Friendship } = require('../../database/models');
+//const { Friendship, Sequelize, sequelize} = require('../../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
 const { IFriendshipRepository } = require("../interfaces/friendshipRepositoryAbstract");
+const { QueryTypes } = require("sequelize");
 
 class FriendshipRepositoryImplementation extends IFriendshipRepository{
     async create(principal_user_id, friend_id) {
@@ -16,12 +17,16 @@ class FriendshipRepositoryImplementation extends IFriendshipRepository{
                 );
             });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while creating friendship');
         }
     };
-    async getAll(){
-        return Friendship.findAll(
-            { attributes : ['id', 'principal_user_id', 'friend_id', 'is_active'] }
+    async getAll(userId){
+        return sequelize.query(
+            `SELECT * FROM friendship WHERE principal_user_id = ${userId} OR friend_id = ${userId} AND is_active = true`,
+            {
+                replacements: { userId: userId },
+                type: QueryTypes.SELECT,
+            }
         );
     };
     async getById(id){

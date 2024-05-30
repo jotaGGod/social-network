@@ -1,4 +1,4 @@
-const { Reaction } = require('../../database/models');
+//const { Reaction } = require('../../../database/models');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
 const { IReactionRepository } = require("../interfaces/reactionRepositoryAbstract");

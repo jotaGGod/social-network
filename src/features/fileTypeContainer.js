@@ -1,4 +1,4 @@
-const FileTypeRepositoryImplementation = require("../repositories/mySql/fileTypeRepositoryImplementation");
+const FileTypeRepositoryImplementation = require("../repositories/implementation/fileTypeRepositoryImplementation");
 const FileTypeRepository = require("../repositories/fileTypeRepository");
 const FileTypeService = require("../services/fileTypeService");
 const FileTypeController = require("../controller/fileTypeController");
