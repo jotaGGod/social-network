@@ -4,7 +4,9 @@ const validateSchema = (schema) => async (req, res, next) => {
     try {
         const { full_name, email, password } = req.body;
         const { id } = req.params;
+        const { authorization } = req.headers;
         await schema.validate({
+            authorization,
             id,
             full_name,
             email,

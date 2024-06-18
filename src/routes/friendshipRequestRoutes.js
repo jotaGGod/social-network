@@ -8,8 +8,8 @@ const { createFriendshipRequestSchema,
 function createFriendshipRequestRoutes(friendshipRequestController) {
     const router = express.Router();
     router.post('/', validateSchema(createFriendshipRequestSchema), friendshipRequestController.sendFriendshipRequest.bind(friendshipRequestController));
-    router.get('/', validateSchema(seeAllFriendshipRequestsSchema), friendshipRequestController.seeAllFriendshipRequests.bind(friendshipRequestController));
-    router.put('/accept/:id', validateSchema(acceptFriendshipRequestSchema), friendshipRequestController.acceptFriendshipRequest.bind(friendshipRequestController));
+    router.get('/', validateSchema(seeAllFriendshipRequestsSchema), friendshipRequestController.getAllFriendshipRequests.bind(friendshipRequestController));
+    router.put('/:id', validateSchema(acceptFriendshipRequestSchema), friendshipRequestController.acceptFriendshipRequest.bind(friendshipRequestController));
     router.delete('/:id', validateSchema(rejectFriendshipRequestSchema), friendshipRequestController.rejectFriendshipRequest.bind(friendshipRequestController));
     return router
 }

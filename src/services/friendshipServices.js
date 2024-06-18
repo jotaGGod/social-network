@@ -5,8 +5,8 @@ class FriendshipService {
     constructor(friendshipRepository) {
         this.friendshipRepository = friendshipRepository;
     }
-    async create(senderId, receiverId) {
-        return this.friendshipRepository.create(senderId, receiverId);
+    async create(principal_user_id, friend_id) {
+        return this.friendshipRepository.create(principal_user_id, friend_id);
     };
     async getAllFriendships(userId) {
         return this.friendshipRepository.getAll(userId);

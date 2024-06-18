@@ -1,31 +1,33 @@
 const httpStatus = require("../utils/statusCodes");
 
 class FriendshipRequestController {
-    constructor(friendshipRequestService, tokenService) {
+    constructor(friendshipRequestService, friendshipService, tokenService) {
         this.friendshipRequestService = friendshipRequestService;
+        this.friendshipService = friendshipService;
         this.tokenService = tokenService;
     }
     async sendFriendshipRequest(req, res) {
         const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
-        const { sender_id: senderId, receiver_id: receiverId } = req.body;
-        await this.friendshipRequestService.sendFriendshipRequest(senderId, receiverId);
+        const senderID = await this.tokenService.getIdFromToken(token);
+        const { receiver_id: receiverId } = req.body;
+        await this.friendshipRequestService.sendFriendshipRequest(senderID, receiverId);
         return res.status(httpStatus.CREATED).json({
             message: 'Friendship request sent successfully!'
         });
     }
-    async seeAllFriendshipRequests(req, res) {
+    async getAllFriendshipRequests(req, res) {
         const { authorization: token } = req.headers;
         const userId = await this.tokenService.getIdFromToken(token);
-        const friendshipRequests = await this.friendshipRequestService.seeAllFriendshipRequests(userId);
+        const friendshipRequests = await this.friendshipRequestService.getAllFriendshipRequests(userId);
         return res.status(httpStatus.OK).json(friendshipRequests);
     }
     async acceptFriendshipRequest(req, res) {
         const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
+        const loggedUserId = await this.tokenService.getIdFromToken(token);
         const { id: requestId } = req.params;
-        const { sender_id: senderId, receiver_id: receiverId } = req.body;
-        await this.friendshipRequestService.acceptFriendshipRequest(senderId, receiverId, requestId);
+        const { sender_id: senderFriendshipRequestId } = req.body;
+        await this.friendshipRequestService.acceptFriendshipRequest(requestId);
+        this.friendshipService.create(senderFriendshipRequestId, loggedUserId);
         return res.status(httpStatus.OK).json({
             message: 'Friendship request accepted successfully!'
         });

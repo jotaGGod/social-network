@@ -20,11 +20,11 @@ class UserRepository {
     async update(id, full_name, email, hashedPassword) {
         this.repository.update(id, full_name, email, hashedPassword);
     };
-    async delete (id) {
-        this.repository.delete(id);
+    async delete (userId) {
+        this.repository.delete(userId);
     };
-    async getFeedNews(id) {
-        return this.repository.getFeedNews(id);
+    async getFeedNews(userId) {
+        return this.repository.getFeedNews(userId);
     };
     async getPostStatistics() {
         return this.repository.getPostStatistics();

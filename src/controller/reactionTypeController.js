@@ -14,15 +14,12 @@ class ReactionTypeController {
         });
     }
     async getReactionsType(req, res) {
-        const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
+
         const reactionsType = await this.reactionTypeService.getAllReactionsType();
         return res.status(httpStatus.OK).json(reactionsType);
     }
     async deleteReactionType(req, res) {
         const { id } = req.params;
-        const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
         await this.reactionTypeService.deleteReactionType(id);
         return res.status(httpStatus.OK).json({
             details: "Reaction type deleted successfully"

@@ -2,7 +2,6 @@ const yup = require('yup');
 
 const createFriendshipRequestSchema = yup.object({
     authorization: yup.string().required(),
-    sender_id: yup.number().integer().required(),
     receiver_id: yup.number().integer().required()
 });
 const seeAllFriendshipRequestsSchema = yup.object({
@@ -10,9 +9,8 @@ const seeAllFriendshipRequestsSchema = yup.object({
 });
 const acceptFriendshipRequestSchema = yup.object({
     authorization: yup.string().required(),
-    id: yup.number().integer().required(),
     sender_id: yup.number().integer().required(),
-    receiver_id: yup.number().integer().required()
+    id: yup.number().integer().required()
 });
 const rejectFriendshipRequestSchema = yup.object({
     authorization: yup.string().required(),

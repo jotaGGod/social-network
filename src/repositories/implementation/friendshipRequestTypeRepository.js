@@ -7,7 +7,9 @@ class FriendshipRequestTypeRepositoryImplementation extends IFriendshipRequestTy
     async create(type) {
         try {
             await db("friendship_request_type").insert({
-                type: type
+                type: type,
+                created_at: new Date(),
+                updated_at: new Date()
             });
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while creating friendship request type');

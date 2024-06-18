@@ -6,6 +6,8 @@ class CommentController {
         this.tokenService = tokenService;
     }
     async create(req, res) {
+        const { authorization: token } = req.headers;
+        await this.tokenService.verifyToken(token);
         const { description, user_id, post_id } = req.body;
         const comment = await this.commentService.create(description, user_id, post_id);
         return res.status(httpStatus.CREATED).json({
@@ -20,16 +22,16 @@ class CommentController {
         const comment = await this.commentService.getCommentById(id);
         return res.status(httpStatus.OK).json(comment);
     }
-    async getComments(req, res) {
+    async getCommentsByPostId(req, res) {
         const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
-        const comments = await this.commentService.getAllComments();
+        const commentId = await this.tokenService.getIdFromToken(token);
+        const comments = await this.commentService.getAllComments(commentId);
         return res.status(httpStatus.OK).json(comments);
     }
     async updateComment(req, res) {
-        const { id } = req.params;
         const { authorization: token } = req.headers;
         await this.tokenService.verifyToken(token);
+        const { id } = req.params;
         const { description, user_id, post_id } = req.body;
         await this.commentService.updateComment(id, description, user_id, post_id);
         return res.status(httpStatus.OK).json({
@@ -37,9 +39,9 @@ class CommentController {
         });
     }
     async deleteComment(req, res) {
-        const { id } = req.params;
         const { authorization: token } = req.headers;
         await this.tokenService.verifyToken(token);
+        const { id } = req.params;
         await this.commentService.deleteComment(id);
         return res.status(httpStatus.OK).json({
             details: "Comment deleted successfully"

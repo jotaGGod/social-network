@@ -13,8 +13,8 @@ class CommentService {
         if (!comment) throw new ApiError(httpStatus.NOT_FOUND, 'Comment not found');
         return comment;
     };
-    async getAllComments() {
-        return this.commentRepository.getAll();
+    async getAllComments(commentId) {
+        return this.commentRepository.getAll(commentId);
     };
     async updateComment(id, description, user_id, post_id) {
         const comment = await this.commentRepository.getById(id);

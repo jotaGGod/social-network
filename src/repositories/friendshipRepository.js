@@ -5,8 +5,8 @@ class FriendshipRepository {
         assertIsInstanceOfContract(repository, contract);
         this.repository = repository;
     }
-    async create(senderId, receiverId) {
-        return this.repository.create(senderId, receiverId);
+    async create(principal_user_id, friend_id) {
+        return this.repository.create(principal_user_id, friend_id);
     };
     async getAll(userId){
         return this.repository.getAll(userId);

@@ -4,21 +4,21 @@ const ApiError = require("../../utils/ApiError");
 const { IPostRepository } = require("../interfaces/postRepositoryAbstract");
 
 class PostRepositoryImplementation extends IPostRepository {
-    async create(description, user_id, target_id, type_id) {
+    async create(description, userId, target_id, type_id) {
         try {
             const [post] = await db.transaction(async (trx) => {
                 return db('post')
                     .transacting(trx)
                     .insert({
                         description,
-                        user_id,
+                        user_id: userId,
                         target_id,
                         type_id
                     });
             });
             return post;
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating post');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR,'Error while creating user');
         }
     };
 
@@ -29,21 +29,21 @@ class PostRepositoryImplementation extends IPostRepository {
             .first();
     };
 
-    async getAll(){
+    async getAll(userId){
         return db('post')
+            .where( {user_id: userId})
             .select('id', 'description', 'user_id', 'target_id', 'type_id', 'is_active');
     };
 
-    async update(id, description, user_id, target_id, type_id) {
+    async update(id, description, target_id, type_id) {
         try {
             await db.transaction(async (trx) => {
                 await db('post')
                     .where({ id })
                     .update({
-                        description,
-                        user_id,
-                        target_id,
-                        type_id
+                        description: description,
+                        target_id: target_id,
+                        type_id: type_id
                     })
                     .transacting(trx);
             });

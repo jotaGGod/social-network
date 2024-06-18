@@ -11,8 +11,8 @@ class PostRepository {
     async getById(id){
         return this.repository.getById(id);
     };
-    async getAll(){
-        return this.repository.getAll();
+    async getAll(userId){
+        return this.repository.getAll(userId);
     };
     async update(id, description, user_id, target_id, type_id) {
         this.repository.update(id, description, user_id, target_id, type_id);

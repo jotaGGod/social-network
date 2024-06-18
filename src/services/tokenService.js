@@ -9,8 +9,8 @@ class TokenService {
     }
     async generateAuthTokens(user) {
         const payload = {id: user};
-        const token = await this.generateToken(payload, process.env.JWT_SECRET, '15s');
-        const refreshToken = await this.generateToken(payload, process.env.JWT_SECRET, '2h');
+        const token = await this.generateToken(payload, process.env.JWT_SECRET, '2h');
+        const refreshToken = await this.generateToken(payload, process.env.JWT_SECRET, '10h');
         const hashedRefreshToken = await this.hashService.hash(refreshToken);
         await this.tokenRepository.revokeTokenByUserId(user);
         await this.tokenRepository.create(hashedRefreshToken, user);
@@ -18,8 +18,6 @@ class TokenService {
     };
     async generateToken(payload, secret, expiresIn) {
         return jwt.sign(payload, secret, {expiresIn: expiresIn})
-        // console.log(12313131)
-        
     };
     async getIdFromToken(token) {
         const {id: userId} = await this.verifyToken(token, process.env.JWT_SECRET);

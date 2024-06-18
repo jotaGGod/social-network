@@ -5,18 +5,24 @@ const createUserSchema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required()
 });
+
+const authorizationSchema = yup.object().shape({
+    authorization: yup.string().required()
+});
+
 const updateUserSchema = yup.object().shape({
     id: yup.number().integer(),
     full_name: yup.string(),
     email: yup.string().email(),
-    password: yup.string()
+    password: yup.string(),
 });
 const getByIdSchema = yup.object().shape({
-    id: yup.number().integer().required()
+    id: yup.number().integer().required(),
 });
 
 module.exports = {
     createUserSchema,
     updateUserSchema,
-    getByIdSchema
+    getByIdSchema,
+    authorizationSchema
 };

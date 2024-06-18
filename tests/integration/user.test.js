@@ -54,7 +54,7 @@ describe('Testing user feature', () => {
   });
   it('Should delete a user when authorized with valid token', async () => {
     const { token } = await loginResponse.body;
-    const deletedUser = await request(app).delete(`/users/${tempUser.id}`).set('Authorization', token);
+    const deletedUser = await request(app).delete(`/users`).set('Authorization', token);
     expect(deletedUser.status).toBe(200);
     expect(deletedUser.body.details).toBe('User deleted successfully');
   });
@@ -73,10 +73,7 @@ describe('Testing user feature', () => {
     const user = await request(app).get(`/users/${10000000000}`).set('Authorization', token);
     expect(user.status).toBe(httpStatus.NOT_FOUND);
   });
-  it('Should return a unauthorized if trying to getting all users when authorization token is missing', async () => {
-    const users = await request(app).get('/users').set('Authorization', '');
-    expect(users.status).toBe(httpStatus.UNAUTHORIZED);
-  });
+
   // it('Should return a user feed', async () => {
   //   const userFeed = await request(app).get(`/users/${tempUser.id}/feed`);
   //   expect(userFeed.status).toBe(httpStatus.OK);

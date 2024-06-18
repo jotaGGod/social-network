@@ -1,8 +1,8 @@
 const express = require('express');
 const validateSchema  = require('../middlewares/userValidation');
 const validateLogin  = require('../middlewares/loginValidation');
-const { createUserSchema, updateUserSchema, getByIdSchema }  = require('../schemas/userSchema');
-const { userLoginSchema } = require('../schemas/loginSchema');
+const { createUserSchema, updateUserSchema, getByIdSchema, authorizationSchema }  = require('../schemas/userSchema');
+const userLoginSchema = require('../schemas/loginSchema');
 
 function createUserRoutes(userController){
     const router = express.Router();
@@ -10,10 +10,10 @@ function createUserRoutes(userController){
     router.post('/', validateSchema(createUserSchema), userController.create.bind(userController));
     router.post('/login', validateLogin(userLoginSchema), userController.loginUser.bind(userController));
     router.put('/:id', validateSchema(updateUserSchema), userController.updateUser.bind(userController));
-    router.delete('/:id', validateSchema(getByIdSchema), userController.deleteUser.bind(userController));
+    router.delete('/', validateSchema(authorizationSchema), userController.deleteUser.bind(userController));
     router.get('/:id', validateSchema(getByIdSchema), userController.getUserById.bind(userController));
     router.post('/refresh-token', userController.createRefreshToken.bind(userController));
-    router.get('/:id/feed', userController.getFeedNews.bind(userController));
+    router.get('/:id/feed', validateSchema(authorizationSchema), userController.getFeedNews.bind(userController));
     router.get('/reports/post-statistics', userController.getPostStatistics.bind(userController));
     return router
 }

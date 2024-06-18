@@ -1,14 +1,14 @@
 const express = require('express');
 const validateSchema  = require('../middlewares/reactionValidation');
-const { createReactionsSchema, updateReactionsSchema, getByidSchema} = require('../schemas/reactionsSchema');
+const { createReactionsSchema, updateReactionsSchema, getByIdSchema, authorizationSchema} = require('../schemas/reactionsSchema');
 
 function createReactionRoutes(reactionController) {
     const router = express.Router();
     router.get('/', reactionController.getReactions.bind(reactionController));
     router.post('/', validateSchema(createReactionsSchema), reactionController.createReaction.bind(reactionController));
-    router.get('/:id', validateSchema(getByidSchema), reactionController.getReactionById.bind(reactionController));
+    router.get('/', validateSchema(authorizationSchema), reactionController.getReactionById.bind(reactionController));
     router.put('/:id', validateSchema(updateReactionsSchema), reactionController.updateReaction.bind(reactionController));
-    router.delete('/:id', validateSchema(getByidSchema), reactionController.deleteReaction.bind(reactionController));
+    router.delete('/:id', validateSchema(getByIdSchema), reactionController.deleteReaction.bind(reactionController));
     return router
 }
 

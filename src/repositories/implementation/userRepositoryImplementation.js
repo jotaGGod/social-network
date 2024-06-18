@@ -2,6 +2,7 @@ const db = require('../../database/config/db');
 const httpStatus = require("../../utils/statusCodes");
 const { IUserRepository } = require("../interfaces/userRepositoryAbstract");
 const ApiError = require("../../utils/ApiError");
+const knex = require('knex');
 
 class UserRepositoryImplementation extends IUserRepository{
     async create(full_name, email, hashedPassword) {
@@ -28,6 +29,7 @@ class UserRepositoryImplementation extends IUserRepository{
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while getting a email by id');
         }      
     };
+    
     async getById(id){
         try {
             return await db('user')
@@ -35,7 +37,7 @@ class UserRepositoryImplementation extends IUserRepository{
                 .where({ id })
                 .first();
         } catch (error) {
-            throw new Error('Error while getting user by id');
+            throw new ApiError(httpStatus.NOT_FOUND, 'Error while getting user by id');
         }
     };
     
@@ -43,6 +45,7 @@ class UserRepositoryImplementation extends IUserRepository{
         try {
             return await db('user')
                 .select('id', 'full_name', 'email')
+                // .where({ is_active: true });
         } catch (error) {
             throw new Error('Error while getting all users');
         }
