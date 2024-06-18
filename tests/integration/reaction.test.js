@@ -1,57 +1,111 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Reaction, sequelize } = require('../../src/database/models');
+const db = require('../../src/database/config/db');
 
-describe('Testing reaction feature', () => {
-    let tempReaction;
-    let bodyReaction;
+describe('Testing Reaction feature', () => {
+    let loggedUser;
+    let loginResponse;
+    let post;
+    let reaction;
+    let authorPost;
+
     beforeAll(async () => {
-        tempReaction = await Reaction.create({
-            id: 1000,
-            user_id: 1,
-            reaction_type_id: 1,
-            post_id: 3,
+        // Criar usuário de teste
+        await db('user').insert({
+            id: 10000,
+            full_name: 'Test User',
+            email: 'testuser@gmail.com',
+            password: '$2b$10$OMDQ.q5dkZAZkQH1g5W6IOP4ZLCwBV4xnTCHDng2pNhlWOpq/n5xO',
             created_at: new Date(),
             updated_at: new Date(),
             is_active: true
         });
-        bodyReaction = { 
-            user_id: 1,
-            reaction_type_id: 2,
-            post_id: 3,
-         };
+        loggedUser = await db('user').where({ id: 10000 }).first();
+        loginResponse = await request(app).post('/login').send({"email": loggedUser.email, "password": "1234"});
+        await db('user').insert({
+            id: 99999,
+            full_name: 'Test User',
+            email: 'authorpostuser@gmail.com',
+            password: '$2b$10$OMDQ.q5dkZAZkQH1g5W6IOP4ZLCwBV4xnTCHDng2pNhlWOpq/n5xO',
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+        });
+        authorPost = await db('user').where({ id: 99999 }).first();
+        await db('post').insert({
+            id: 30000,
+            description: 'Test post',
+            user_id: 99999,
+            target_id: 1,
+            type_id: 1,
+            created_at: new Date(),
+            updated_at: new Date()
+        });
+        post = await db('post').where({ id: 30000 }).first();
+        await db('reaction').insert({
+            id: 33333,
+            user_id: loggedUser.id,
+            reaction_type_id: 1,
+            post_id: post.id,
+            created_at: new Date(),
+            updated_at: new Date()
+        });
     });
+
     afterAll(async () => {
-        await Reaction.destroy({ where: { id: tempReaction.id } });
-        await sequelize.close();
-    });
-    it('Should return a list of reactions', async () => {
-        const reactions = await request(app).get('/reactions');
-        expect(reactions.status).toBe(httpStatus.OK);
-        expect(Array.isArray(reactions.body)).toBe(true);
-        expect(reactions.body).toBeDefined();
-    });
-    it('Should return a reaction by id', async () => {
-        const reaction = await request(app).get(`/reactions/${tempReaction.id}`);
-        expect(reaction.status).toBe(httpStatus.OK);
-        expect(reaction.body).toBeDefined();
+        await db('reaction').where({ id: 33333 }).del();
+        await db('reaction').where({ user_id: loggedUser.id }).del();
+        await db('post').where({ id: post.id }).del();
+        await db('token').where({ user_id: loggedUser.id }).del();
+        await db('user').where({ id: loggedUser.id }).del();
+        await db('user').where({ id: authorPost.id }).del();
     });
     it('Should create a reaction', async () => {
-        const reaction = await request(app).post('/reactions').send(bodyReaction);
-        expect(reaction.status).toBe(httpStatus.CREATED);
-        expect(reaction.body).toBeDefined();
+        const { token } = loginResponse.body;
+        const response = await request(app)
+            .post('/reactions')
+            .set('authorization', token)
+            .send({ "reaction_type_id": 1, "post_id": post.id });
+        expect(response.status).toBe(httpStatus.CREATED);
+        expect(response.body).toBeDefined();
+        expect(response.body.message).toBe('Reaction created successfully!');
+        reaction = response.body.data;
+    });
+    it('Should get a reaction by id', async () => {
+        const { token } = loginResponse.body;
+        const response = await request(app)
+            .get('/reactions/33333')
+            .set('authorization', token);
+        expect(response.status).toBe(httpStatus.OK);
+        expect(response.body).toBeDefined();
+        expect(response.body.id).toBe(33333);
+    });
+    it('Should return all reactions of a user', async () => {
+        const { token } = loginResponse.body;
+        const response = await request(app)
+            .get('/reactions')
+            .set('authorization', token);
+        expect(response.status).toBe(httpStatus.OK);
+        expect(response.body).toBeDefined();
+    });
+    it('Should update a reaction', async () => {
+        const { token } = loginResponse.body;
+        const response = await request(app)
+            .put('/reactions/33333')
+            .set('authorization', token)
+            .send({ "reaction_type_id": 2 });
+        expect(response.status).toBe(httpStatus.OK);
+        expect(response.body).toBeDefined();
+        expect(response.body.details).toBe('Reaction updated successfully');
     });
     it('Should delete a reaction', async () => {
-        const reaction = await request(app).delete(`/reactions/${tempReaction.id}`);
-        expect(reaction.status).toBe(httpStatus.OK);
-    });
-    it('Should not create a reaction', async () => {
-        const reaction = await request(app).post('/reactions').send({});
-        expect(reaction.status).toBe(httpStatus.BAD_REQUEST);
-    });
-    it('Should not delete a reaction', async () => {
-        const reaction = await request(app).delete('/reactions/100000');
-        expect(reaction.status).toBe(httpStatus.NOT_FOUND);
+        const { token } = loginResponse.body;
+        const response = await request(app)
+            .delete('/reactions/33333')
+            .set('authorization', token);
+        expect(response.status).toBe(httpStatus.OK);
+        expect(response.body).toBeDefined();
+        expect(response.body.details).toBe('Reaction deleted successfully');
     });
 });

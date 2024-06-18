@@ -40,9 +40,8 @@ class ReactionRepositoryImplementation extends IReactionRepository {
                 await db('reaction')
                     .where({ id })
                     .update({
-                        user_id: userId,
                         reaction_type_id: reactionTypeId,
-                        post_id: postId
+                        updated_at: new Date()
                     })
                     .transacting(trx);
             });

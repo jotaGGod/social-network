@@ -8,8 +8,7 @@ const createReactionsSchema = yup.object({
 
 const updateReactionsSchema = yup.object({
     id: yup.number().integer().required(),
-    reaction_type_id: yup.number().integer().required(),
-    post_id: yup.number().integer().required()
+    reaction_type_id: yup.number().integer().required()
 });
 
 const getByIdSchema = yup.object({

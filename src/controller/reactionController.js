@@ -32,8 +32,8 @@ class ReactionController {
         const { authorization: token } = req.headers;
         await this.tokenService.verifyToken(token);
         const { id } = req.params;
-        const { user_id, reaction_type_id, post_id } = req.body;
-        await this.reactionService.updateReaction(id, user_id, reaction_type_id, post_id);
+        const { reaction_type_id } = req.body;
+        await this.reactionService.updateReaction(id, reaction_type_id);
         return res.status(httpStatus.OK).json({
             details: "Reaction updated successfully"
         });
