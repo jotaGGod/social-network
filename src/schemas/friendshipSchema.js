@@ -1,6 +1,7 @@
 const yup = require('yup');
 
-const getByidSchema = yup.object({
+const getByIdSchema = yup.object({
+    authorization: yup.string().required(),
     id: yup.number().integer().required()
 });
 
@@ -9,6 +10,6 @@ const authorizationSchema = yup.object().shape({
 });
 
 module.exports = {
-    getByidSchema,
+    getByIdSchema,
     authorizationSchema
 };

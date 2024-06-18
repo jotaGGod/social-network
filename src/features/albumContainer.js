@@ -21,17 +21,4 @@ function configureAlbumContainer() {
     return { albumRoutes };
 }
 
-
-// function configureAlbumContainer() {
-//     const albumRepositoryImplementation = new AlbumRepositoryImplementation();
-//     const tokenRepositoryImplementation = new TokenRepositoryImplementation();  
-//     const tokenRepository = new TokenRepository(tokenRepositoryImplementation, contract=ITokenRepository);
-//     const albumRepository = new AlbumRepository(albumRepositoryImplementation, contract=IAlbumRepository);
-//     const tokenService = new TokenService(tokenRepository);
-//     const albumService = new AlbumService(albumRepository);
-//     const albumController = new AlbumController(albumService, tokenService);
-//     const albumRoutes = createAlbumRoutes(albumController);
-//     return { albumRoutes }
-// }
-
 module.exports = configureAlbumContainer;

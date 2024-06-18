@@ -30,8 +30,9 @@ class AlbumItemRepositoryImplementation extends IAlbumItemRepository {
             .first();
     }
 
-    async getAll() {
+    async getAll(albumId) {
         return db('Album_Item')
+            .where({ id: albumId })
             .select(['id', 'post_id', 'album_id', 'is_active']);
     }
 

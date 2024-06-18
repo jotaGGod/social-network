@@ -5,21 +5,21 @@ class PostService {
     constructor(postRepository) {
         this.postRepository = postRepository;
     }
-    async createPost(description, user_id, target_id, type_id) {
-        return this.postRepository.create(description, user_id, target_id, type_id);
+    async createPost(description, userId, target_id, type_id) {
+        return this.postRepository.create(description, userId, target_id, type_id);
     };
     async getPostById(id) {
         const post = await this.postRepository.getById(id);
         if (!post) throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
         return post;
     };
-    async getAllPosts() {
-        return this.postRepository.getAll();
+    async getAllPosts(userId) {
+        return this.postRepository.getAll(userId);
     };
-    async updatePost(id, description, user_id, target_id, type_id) {
+    async updatePost(id, description, target_id, type_id) {
         const post = await this.postRepository.getById(id);
         if (!post) throw new ApiError(httpStatus.NOT_FOUND, 'Post not found.');
-        return this.postRepository.update(id, description, user_id, target_id, type_id);
+        return this.postRepository.update(id, description, target_id, type_id);
     };
     async deletePost(id) {
         const post = await this.postRepository.getById(id);

@@ -22,8 +22,8 @@ class AlbumController {
     }
     async getAlbums(req, res) {
         const { authorization: token } = req.headers;
-        await this.tokenService.verifyToken(token);
-        const album = await this.albumService.getAllAlbums();
+        const albumId = await this.tokenService.getIdFromToken(token);
+        const album = await this.albumService.getAllAlbums(albumId);
         return res.status(httpStatus.OK).json(album);
     }
     async updateAlbum(req, res) {

@@ -8,8 +8,8 @@ class AlbumItemService {
     async createAlbumItem(post_id, album_id) {
         return this.albumItemRepository.create(post_id, album_id);
     };
-    async getAllAlbumItem() {
-        return this.albumItemRepository.getAll();
+    async getAllAlbumItem(albumId) {
+        return this.albumItemRepository.getAll(albumId);
     };
     async deleteAlbumItem(id) {
         const albumItem = await this.albumItemRepository.getById(id);

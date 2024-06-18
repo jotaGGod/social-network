@@ -2,11 +2,12 @@ const ApiError = require("../utils/ApiError");
 const httpStatus = require("../utils/statusCodes");
 const validateSchema = (schema) => async (req, res, next) => {
     try {
-        const { user_id, reaction_type_id, post_id } = req.body;
+        const {  reaction_type_id, post_id } = req.body;
+        const { authorization } = req.headers;
         const { id } = req.params;
         await schema.validate({
             id,
-            user_id,
+            authorization,
             reaction_type_id,
             post_id
         })

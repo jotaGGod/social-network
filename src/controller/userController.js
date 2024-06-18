@@ -42,42 +42,35 @@ class UserController {
     return res.status(httpStatus.OK).json(user);
   };
   async getUsers(req, res) {
-    const { authorization: token } = req.headers;
-    await this.tokenService.verifyToken(token);
     const users = await this.userService.getAllUsers();
     return res.status(httpStatus.OK).json(users);
   };
   async updateUser(req, res) {
-    const { id } = req.params;
     const { authorization: token } = req.headers;
-    await this.tokenService.verifyToken(token);
+    const userId = await this.tokenService.getIdFromToken(token);
     const { full_name, email, password } = req.body;
-    await this.userService.updateUserById(id, full_name, email, password);
+    await this.userService.updateUserById(userId, full_name, email, password);
     return res.status(httpStatus.OK).json({
       details: "User updated successfully"
     });  
   };
   async deleteUser(req, res) {
-    const { authorization: token } = req.headers;``
-    await this.tokenService.verifyToken(token);
-    const { id } = req.params;
-    await this.userService.deleteUser(id);
+    const { authorization: token } = req.headers;
+    const userId = await this.tokenService.getIdFromToken(token);
+    await this.userService.deleteUser(userId);
     return res.status(httpStatus.OK).json({
       details: "User deleted successfully"
     });
   };
   async getFeedNews(req, res) {    
     const { authorization: token } = req.headers;
-    await this.tokenService.verifyToken(token);
-    const userId = await this.tokenService.decodeUserToken(token);
+    const userId = await this.tokenService.getIdFromToken(token);
     const feed = await this.userService.getFeedNews(userId);
     return res.status(httpStatus.OK).json({
       feed: {posts: feed}
     });    
   }
   async getPostStatistics(req, res) {
-    const { authorization: token } = req.headers;
-    await this.tokenService.verifyToken(token);
     const postStatistics = await this.userService.getPostStatistics();
     return res.status(httpStatus.OK).json({
       post_statistics: postStatistics

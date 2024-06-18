@@ -2,6 +2,7 @@ const db = require('../../database/config/db');
 const ApiError = require("../../utils/ApiError");
 const httpStatus = require("../../utils/statusCodes");
 const { IAlbumRepository } = require("../interfaces/albumRepositoryAbstract");
+const {where} = require("sequelize");
 
 class AlbumRepositoryImplementation extends IAlbumRepository{
     async create(description, target_id) {
@@ -23,8 +24,9 @@ class AlbumRepositoryImplementation extends IAlbumRepository{
             .select('id', 'description', 'target_id', 'is_active')
             .first();        
     };
-    async getAll(){
+    async getAll(albumId){
         return db('album')
+            .where({ id: albumId })
             .select('id', 'description', 'target_id', 'is_active');
     };
     async update(id, description, target_id) { 

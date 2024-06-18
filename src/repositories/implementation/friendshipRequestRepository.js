@@ -1,7 +1,8 @@
 const db = require('../../database/config/db');
-const httpStatus = require('../../utils/statusCodes');
 const ApiError = require("../../utils/ApiError");
 const { IFriendshipRequestRepository } = require("../interfaces/friendshipRequestAbstract");
+const friendshipRequestTypeStatus = require("../../utils/friendshipRequestTypeStatus");
+const httpStatus = require('../../utils/statusCodes');
 
 class FriendshipRequestRepositoryImplementation extends IFriendshipRequestRepository {
     async create(senderId, receiveId) {
@@ -9,7 +10,7 @@ class FriendshipRequestRepositoryImplementation extends IFriendshipRequestReposi
             await db("friendship_request").insert({
                 sender_id: senderId,
                 receiver_id: receiveId,
-                request_type_id: 1
+                request_type_id: friendshipRequestTypeStatus.AWAITING_APPROVAL
             });
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while creating friendship request');
@@ -32,7 +33,7 @@ class FriendshipRequestRepositoryImplementation extends IFriendshipRequestReposi
             await db("friendship_request")
                 .where({ id: requestId })
                 .update({
-                    request_type_id: 2,
+                    request_type_id: friendshipRequestTypeStatus.ACCEPTED,
                     updated_at: new Date()
                 });
         } catch (error) {

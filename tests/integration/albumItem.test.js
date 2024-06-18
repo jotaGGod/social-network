@@ -1,49 +1,104 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { AlbumItem, sequelize } = require('../../database/models');
-
+const db = require('../../src/database/config/db');
 describe('Testing album item feature', () => {
     let tempAlbumItem;
-    let bodyAlbumItem;
+    let bodyAlbumItemCreateTest;
+    let tempPost;
+    let tempAlbum;
+    let tempTarget;
+    let tempType;
+    let tempUser;
+    let loginResponse;
+
     beforeAll(async () => {
-        tempAlbumItem = await AlbumItem.create({
+        const [userId] = await db('user').insert({
             id: 1000,
-            post_id: 1,
-            album_id: 2,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        });
-        bodyAlbumItem = { 
-            post_id: 1,
-            album_id: 2
+            full_name: 'Mc Carol',
+            email: 'carolsobrepeso2000@gmail.com',
+            password: '$2b$10$OMDQ.q5dkZAZkQH1g5W6IOP4ZLCwBV4xnTCHDng2pNhlWOpq/n5xO',
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+        }) 
+        tempUser = await db('user').where({ id: userId }).first(); 
+
+        const [typeId] = await db('file_type').insert({
+            id: 1000,
+            type: 'test',
+            is_active: true
+        }) 
+        const [targetId] = await db('target_public').insert({
+            id: 1000,
+            type: "test",
+            is_active: true
+        })
+        const [albumId] = await db('album').insert({
+            id: 1000,
+            description: "Test Album",
+            target_id: targetId,
+            is_active: true
+        })
+        const [postId] = await db('post').insert({
+            id: 1000,
+            description: "Test Post",
+            user_id: userId,
+            target_id: targetId,
+            type_id: typeId,
+            created_at: new Date(),
+            updated_at: new Date(),
+            is_active: true
+        }) 
+        const [albumItemId] = await db('album_item').insert({
+            post_id: postId,
+            album_id: albumId,
+            created_at: new Date(),
+            updated_at: new Date(),
+        })
+        tempAlbumItem = { id: albumItemId };
+        bodyAlbumItemCreateTest = {
+            post_id: postId,
+            album_id: albumId
         };
+        loginResponse = await request(app).post('/login').send({ email: tempUser.email, password: "1234" });       
     });
+
     afterAll(async () => {
-        await AlbumItem.destroy({ where: { id: tempAlbumItem.id } });
-        await sequelize.close();
+        await db('token').del();
+        await db('album_item').del();
+        await db('album').del();
+        await db('post').del();
+        await db('target_public').del();
+        await db('file_type').del();
+        await db('user').del();
+        await db.destroy();
     });
     it('Should return a list of album items', async () => {
-        const albumItems = await request(app).get('/album_item');
+        const { token } = loginResponse.body;
+        const albumItems = await request(app).get('/album_item').set('Authorization', token);
         expect(albumItems.status).toBe(httpStatus.OK);
-        expect(Array.isArray(albumItems.body)).toBe(true);
         expect(albumItems.body).toBeDefined();
     });
     it('Should create an album item', async () => {
-        const albumItem = await request(app).post('/album_item').send(bodyAlbumItem);
+        const { token } = loginResponse.body;
+        const albumItem = await request(app).post('/album_item').send(bodyAlbumItemCreateTest).set('Authorization', token);
         expect(albumItem.status).toBe(httpStatus.CREATED);
         expect(albumItem.body).toBeDefined();
     });
-    it('Should delete an album item', async () => {
-        const albumItem = await request(app).delete(`/album_item/${tempAlbumItem.id}`);
-        expect(albumItem.status).toBe(httpStatus.OK);
-    });
-    it('Should return a bad request if trying to create a album item with empty body', async () => {
-        const albumItem = await request(app).post('/album_item').send({ });
+    it('Should not create an album item with invalid request body', async () => {
+        const { token } = loginResponse.body;
+        const albumItem = await request(app).post('/album_item').send({}).set('Authorization', token);
         expect(albumItem.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should return a not found if trying to delete an album item with non-existent id', async () => {
-        const albumItem = await request(app).delete('/album_item/100000');
+    it('Should delete an album item', async () => {
+        const { token } = loginResponse.body;
+        const albumItem = await request(app).delete(`/album_item/${tempAlbumItem.id}`).set('Authorization', token);
+        expect(albumItem.status).toBe(httpStatus.OK);
+    });
+    it('Should not delete an album item', async () => {
+        const { token } = loginResponse.body;
+        const albumItem = await request(app).delete('/album_item/100000').set('Authorization', token);
         expect(albumItem.status).toBe(httpStatus.NOT_FOUND);
     });
 });

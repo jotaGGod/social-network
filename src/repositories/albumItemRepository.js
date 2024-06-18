@@ -11,8 +11,8 @@ class AlbumItemRepository {
     async getById(id){
         return this.repository.getById(id);
     };
-    async getAll(){
-        return this.repository.getAll();
+    async getAll(AlbumId){
+        return this.repository.getAll(AlbumId);
     };
     async delete (id) {
         this.repository.delete(id);

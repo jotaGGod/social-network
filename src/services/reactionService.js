@@ -5,16 +5,16 @@ class ReactionService {
     constructor(reactionRepository) {
         this.reactionRepository = reactionRepository;
     }
-    async createReaction(user_id, reaction_type_id, post_id) {
-        return this.reactionRepository.create(user_id, reaction_type_id, post_id);
+    async createReaction(userId, reaction_type_id, post_id) {
+        return this.reactionRepository.create(userId, reaction_type_id, post_id);
     };
     async getReactionById(id) {
         const reaction = await this.reactionRepository.getById(id);
         if (!reaction) throw new ApiError(httpStatus.NOT_FOUND,'Reaction not found');
         return reaction;
     };
-    async getAllReactions() {
-        return this.reactionRepository.getAll();
+    async getAllReactions(userId) {
+        return this.reactionRepository.getAll(userId);
     };
     async updateReaction(id, user_id, reaction_type_id, post_id) {
         const reaction = await this.reactionRepository.getById(id);

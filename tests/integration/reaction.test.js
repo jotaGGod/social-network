@@ -1,7 +1,7 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Reaction, sequelize } = require('../../database/models');
+const { Reaction, sequelize } = require('../../src/database/models');
 
 describe('Testing reaction feature', () => {
     let tempReaction;
@@ -46,11 +46,11 @@ describe('Testing reaction feature', () => {
         const reaction = await request(app).delete(`/reactions/${tempReaction.id}`);
         expect(reaction.status).toBe(httpStatus.OK);
     });
-    it('Should return a bad request if trying to create a reaction with empty body', async () => {
+    it('Should not create a reaction', async () => {
         const reaction = await request(app).post('/reactions').send({});
         expect(reaction.status).toBe(httpStatus.BAD_REQUEST);
     });
-    it('Should return a not found if trying to delete an reaction with non-existent id', async () => {
+    it('Should not delete a reaction', async () => {
         const reaction = await request(app).delete('/reactions/100000');
         expect(reaction.status).toBe(httpStatus.NOT_FOUND);
     });

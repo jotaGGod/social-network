@@ -22,21 +22,19 @@ class CommentRepositoryImplementation extends ICommentRepository{
         }
     }
 
-    async getById(id) {
+    getById(id) {
         try {
-            const comment = await db('comment').where({ id }).first();
-            return comment;
+            return db('comment').where({ id }).first();
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while fetching comment by id');
         }
     }
 
-    async getAll() {
+    getAll(commentId) {
         try {
-            const comments = await db('comment').select('*');
-            return comments;
+            return db('comment').where({ user_id: commentId });
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while fetching comments');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
         }
     }
 

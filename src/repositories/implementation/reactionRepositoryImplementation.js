@@ -4,20 +4,20 @@ const httpStatus = require("../../utils/statusCodes");
 const { IReactionRepository } = require("../interfaces/reactionRepositoryAbstract");
 
 class ReactionRepositoryImplementation extends IReactionRepository {
-    async create(user_id, reaction_type_id, post_id) {
+    async create(userId, reactionTypeId, postId) {
         try {
             const [reaction] = await db.transaction(async (trx) => {
                 return db('reaction')
                     .transacting(trx)
                     .insert({
-                        user_id,
-                        reaction_type_id,
-                        post_id
+                        user_id: userId,
+                        reaction_type_id: reactionTypeId,
+                        post_id: postId
                     });
             });
             return reaction;
         } catch (error) {
-            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while creating a reaction');
+            throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
         }
     };
 
@@ -28,20 +28,21 @@ class ReactionRepositoryImplementation extends IReactionRepository {
             .first();
     };
 
-    async getAll(){
+    async getAll(userId){
         return db('reaction')
+            .where({ user_id: userId })
             .select('id', 'user_id', 'reaction_type_id', 'post_id', 'is_active');
     };
 
-    async update(id, user_id, reaction_type_id, post_id) {
+    async update(id, userId, reactionTypeId, postId) {
         try {
             await db.transaction(async (trx) => {
                 await db('reaction')
                     .where({ id })
                     .update({
-                        user_id,
-                        reaction_type_id,
-                        post_id
+                        user_id: userId,
+                        reaction_type_id: reactionTypeId,
+                        post_id: postId
                     })
                     .transacting(trx);
             });

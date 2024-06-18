@@ -24,8 +24,8 @@ function configureFriendshipRequestContainer() {
     const hashService = new HashService();
     const tokenService = new TokenService(tokenRepository, hashService);
     const friendshipService = new FriendshipService(friendshipRepository);
-    const friendshipRequestService = new FriendshipRequestService(friendshipRequestRepository, friendshipService);
-    const friendshipRequestController = new FriendshipRequestController(friendshipRequestService, tokenService);
+    const friendshipRequestService = new FriendshipRequestService(friendshipRequestRepository);
+    const friendshipRequestController = new FriendshipRequestController(friendshipRequestService, friendshipService, tokenService);
     const friendshipRequestRoutes = createFriendshipRequestRoutes(friendshipRequestController);
     return { friendshipRequestRoutes }
 }

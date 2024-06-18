@@ -1,43 +1,49 @@
+// tests/integration/targetPublic.test.js
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { TargetPublic, sequelize } = require('../../database/models');
+const db = require('../../src/database/config/db');
 
 describe('Testing target public feature', () => {
     let tempTargetPublic;
-    let bodyTargetPublic;
+    let bodyTargetPublicCreateTest;
     beforeAll(async () => {
-        tempTargetPublic = await TargetPublic.create({
-            id: 1000,
+        const [id] = await db('target_public').insert({
             type: "test",
             is_active: true
         });
-        bodyTargetPublic = { type: "test" };
+        tempTargetPublic = { id };
+        bodyTargetPublicCreateTest = { type: "test" };
     });
     afterAll(async () => {
-        await TargetPublic.destroy({ where: { id: tempTargetPublic.id } });
-        await sequelize.close();
+        await db('target_public').del();
+        await db.destroy();
     });
+
     it('Should return a list of target public', async () => {
         const targetPublic = await request(app).get('/target_public');
         expect(targetPublic.status).toBe(httpStatus.OK);
         expect(Array.isArray(targetPublic.body)).toBe(true);
         expect(targetPublic.body).toBeDefined();
     });
+
     it('Should create a target public', async () => {
-        const targetPublic = await request(app).post('/target_public').send(bodyTargetPublic);
+        const targetPublic = await request(app).post('/target_public').send(bodyTargetPublicCreateTest);
         expect(targetPublic.status).toBe(httpStatus.CREATED);
         expect(targetPublic.body).toBeDefined();
     });
+
     it('Should delete a target public', async () => {
         const targetPublic = await request(app).delete(`/target_public/${tempTargetPublic.id}`);
         expect(targetPublic.status).toBe(httpStatus.OK);
     });
-    it('Should return a internal server error if trying to create a target public with empty body', async () => {
+
+    it('Should not create a target public with missing data', async () => {
         const targetPublic = await request(app).post('/target_public').send({});
         expect(targetPublic.status).toBe(httpStatus.INTERNAL_SERVER_ERROR);
     });
-    it('Should return a not found if trying to delete an target public with non-existent id', async () => {
+
+    it('Should not delete a non-existing target public', async () => {
         const targetPublic = await request(app).delete('/target_public/100000');
         expect(targetPublic.status).toBe(httpStatus.NOT_FOUND);
     });
