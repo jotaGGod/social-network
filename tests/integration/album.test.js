@@ -19,6 +19,7 @@ describe('Testing album feature', () => {
             description: "Rolê",
             target_id: 1
         };
+        // testing something
     });
     afterAll(async () => {
         await Album.destroy({ where: { id: tempAlbum.id } });
