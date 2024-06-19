@@ -1,7 +1,6 @@
 const httpStatus = require('../../src/utils/statusCodes');
 const request = require('supertest');
 const app = require('../../app');
-const { Album, sequelize } = require('../../src/database/models');
 
 describe('Testing album feature', () => {
     let tempAlbum;
@@ -19,6 +18,7 @@ describe('Testing album feature', () => {
             description: "Rolê",
             target_id: 1
         };
+        // testing something
     });
     afterAll(async () => {
         await Album.destroy({ where: { id: tempAlbum.id } });
