@@ -38,17 +38,14 @@ class CommentRepositoryImplementation extends ICommentRepository{
         }
     }
 
-    async update(id, description, user_id, post_id) {
+    async update(id, description) {
         try {
             const [comment] = await db('comment')
                 .where({ id })
                 .update({
                     description,
-                    user_id,
-                    post_id,
                     updated_at: new Date()
-                })
-                .returning('*');
+                });
             return comment;
         } catch (error) {
             throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error while updating comment');

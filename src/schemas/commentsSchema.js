@@ -9,9 +9,7 @@ const createCommentSchema = yup.object({
 
 const updateCommentSchema = yup.object({
     id: yup.number().integer().required(),
-    description: yup.string().required(),
-    user_id: yup.number().integer().required(),
-    post_id: yup.number().integer().required()
+    description: yup.string().required()
 });
 
 const getByIdSchema = yup.object({
