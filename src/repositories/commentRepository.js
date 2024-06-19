@@ -14,8 +14,8 @@ class CommentRepository {
     async getAll(commentId){
         return this.repository.getAll(commentId);
     };
-    async update(id, description, user_id, post_id) {
-        this.repository.update(id, description, user_id, post_id);
+    async update(id, description) {
+        this.repository.update(id, description);
     };
     async delete (id) {
         this.repository.delete(id);

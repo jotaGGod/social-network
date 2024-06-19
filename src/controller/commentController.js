@@ -32,8 +32,8 @@ class CommentController {
         const { authorization: token } = req.headers;
         await this.tokenService.verifyToken(token);
         const { id } = req.params;
-        const { description, user_id, post_id } = req.body;
-        await this.commentService.updateComment(id, description, user_id, post_id);
+        const { description } = req.body;
+        await this.commentService.updateComment(id, description);
         return res.status(httpStatus.OK).json({
             details: "Comment updated successfully"
         });

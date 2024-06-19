@@ -11,18 +11,15 @@ describe('Testing friendship request type feature', () => {
         const [id] = await db('friendship_request_type').insert({
             type: 'best_friend'            
         });
-        
         tempFriendshipRequestType = { id };
         bodyFriendshipRequestTypeCreateTest = {
-            type: 'close_friend'
+            "type": 'close_friend'
         };
     });
-
     afterAll(async () => {
         await db('friendship_request_type').del();
         await db.destroy();
     });
-
     it('Should return a list of friendship request types', async () => {
         const friendshipRequestTypes = await request(app).get('/friendship_request_type');
         expect(friendshipRequestTypes.status).toBe(httpStatus.OK);
