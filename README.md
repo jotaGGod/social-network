@@ -121,6 +121,7 @@ These functions are used to simulate interface and type-checking mechanisms, ens
 
 
 ## Database Diagram
+![WhatsApp Image 2024-08-10 at 00 34 19](https://github.com/user-attachments/assets/b3d0a8bd-23f6-41b0-898e-120f5f8cac63)
 
 
 ## Postman collection
