@@ -16,7 +16,7 @@ Social Network Project is an educational backend API that i used to study and pr
 1. **Clone the repository**
 
 ```bash
- git clone https://github.com/Jpgomes06/social-network
+ git clone https://github.com/jotaGGod/social-network
 ```
 
 2. **Set the environment variable**
